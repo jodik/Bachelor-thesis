@@ -1,7 +1,7 @@
 # By user
-SCALE = 2
+SCALE = 3
 BATCH_SIZE = 450
-NUM_EPOCHS = 1000
+NUM_EPOCHS = 250
 EVAL_BATCH_SIZE = 151
 EVAL_FREQUENCY = 30  # Number of steps between evaluations.
 SEED = 66478  # Set to None for random seed.

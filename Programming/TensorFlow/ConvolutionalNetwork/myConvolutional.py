@@ -153,18 +153,18 @@ def main(argv=None):  # pylint: disable=unused-argument
   # initial value which will be assigned when we call:
   # {tf.initialize_all_variables().run()}
   conv1_weights = tf.Variable(
-      tf.truncated_normal([5, 5, configuration.NUM_CHANNELS, 32],  # 5x5 filter, depth 32.
+      tf.truncated_normal([5, 5, configuration.NUM_CHANNELS, 16],  # 5x5 filter, depth 32.
                           stddev=0.1,
                           seed=configuration.SEED))
-  conv1_biases = tf.Variable(tf.zeros([32]))
+  conv1_biases = tf.Variable(tf.zeros([16]))
   conv2_weights = tf.Variable(
-      tf.truncated_normal([5, 5, 32, 64],
+      tf.truncated_normal([5, 5, 16, 64],
                           stddev=0.1,
                           seed=configuration.SEED))
   conv2_biases = tf.Variable(tf.constant(0.1, shape=[64]))
   fc1_weights = tf.Variable(  # fully connected, depth 512.
       tf.truncated_normal(
-          [configuration.IMAGE_HEIGHT // 4 * configuration.IMAGE_WIDTH // 4 * 64, 512],
+          [configuration.IMAGE_HEIGHT // 4 * configuration.IMAGE_WIDTH // 4 * 16, 512],
           stddev=0.1,
           seed=configuration.SEED))
   fc1_biases = tf.Variable(tf.constant(0.1, shape=[512]))
@@ -183,7 +183,7 @@ def main(argv=None):  # pylint: disable=unused-argument
     # shape matches the data layout: [image index, y, x, depth].
     conv = tf.nn.conv2d(data,
                         conv1_weights,
-                        strides=[1, 1, 1, 1],
+                        strides=[1, 2, 2, 1],
                         padding='SAME')
     # Bias and rectified linear non-linearity.
     relu = tf.nn.relu(tf.nn.bias_add(conv, conv1_biases))
