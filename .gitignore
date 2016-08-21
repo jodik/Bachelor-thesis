@@ -1,5 +1,6 @@
 *.pyc
-Images/Dataset
+Images/Cropped\ datasets/Dataset
+Images/Original\ datasets/Dataset
 Images/Okolie
 Images/Not-used
 
