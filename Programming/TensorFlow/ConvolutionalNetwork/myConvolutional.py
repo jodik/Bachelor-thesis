@@ -34,146 +34,96 @@ from six.moves import xrange  # pylint: disable=redefined-builtin
 import tensorflow as tf
 import myDatasetCon as mds
 import sys
+#import Image from PIL
 sys.path.append("../")
-import configuration
+import configuration as conf
 
 SOURCE_URL = 'http://yann.lecun.com/exdb/mnist/'
 WORK_DIRECTORY = 'data'
 
 
-
 tf.app.flags.DEFINE_boolean("self_test", False, "True if running a self test.")
 FLAGS = tf.app.flags.FLAGS
 
-
-def maybe_download(filename):
-  """Download the data from Yann's website, unless it's already here."""
-  if not tf.gfile.Exists(WORK_DIRECTORY):
-    tf.gfile.MakeDirs(WORK_DIRECTORY)
-  filepath = os.path.join(WORK_DIRECTORY, filename)
-  if not tf.gfile.Exists(filepath):
-    filepath, _ = urllib.request.urlretrieve(SOURCE_URL + filename, filepath)
-    with tf.gfile.GFile(filepath) as f:
-      size = f.Size()
-    print('Successfully downloaded', filename, size, 'bytes.')
-  return filepath
-
-
-def extract_data(filename, num_images):
-  """Extract the images into a 4D tensor [image index, y, x, channels].
-
-  Values are rescaled from [0, 255] down to [-0.5, 0.5].
-  """
-  print('Extracting', filename)
-  with gzip.open(filename) as bytestream:
-    bytestream.read(16)
-    buf = bytestream.read(configuration.IMAGE_WIDTH * configuration.IMAGE_HEIGHT * num_images)
-    data = numpy.frombuffer(buf, dtype=numpy.uint8).astype(numpy.float32)
-    data = (data - (PIXEL_DEPTH / 2.0)) / PIXEL_DEPTH
-    data = data.reshape(num_images, configuration.IMAGE_HEIGHT, configuration.IMAGE_WIDTH, 1)
-    return data
-
-
-def extract_labels(filename, num_images):
-  """Extract the labels into a vector of int64 label IDs."""
-  print('Extracting', filename)
-  with gzip.open(filename) as bytestream:
-    bytestream.read(8)
-    buf = bytestream.read(1 * num_images)
-    labels = numpy.frombuffer(buf, dtype=numpy.uint8).astype(numpy.int64)
-  return labels
-
-
-def fake_data(num_images):
-  """Generate a fake dataset that matches the dimensions of MNIST."""
-  data = numpy.ndarray(
-      shape=(num_images, configuration.IMAGE_HEIGHT, configuration.IMAGE_WIDTH, NUM_CHANNELS),
-      dtype=numpy.float32)
-  labels = numpy.zeros(shape=(num_images,), dtype=numpy.int64)
-  for image in xrange(num_images):
-    label = image % 2
-    data[image, :, :, 0] = label - 0.5
-    labels[image] = label
-  return data, labels
-
-
 def error_rate(predictions, labels):
   """Return the error rate based on dense predictions and sparse labels."""
-  return 100.0 - (
-      100.0 *
-      numpy.sum(numpy.argmax(predictions, 1) == labels) /
+  error_rate = 100.0 - (100.0 * 
+      numpy.sum(numpy.argmax(predictions, 1) == labels) / 
       predictions.shape[0])
+  correct = numpy.zeros(labels.shape[0])
+  for  prediction, label in zip(predictions, labels):
+      correct[int(label)]+=int(numpy.argmax(prediction)==label)
+  unique, counts = numpy.unique(labels, return_counts=True)
+  result = zip(unique, correct, counts)
+  return(error_rate, result)
 
 
-def main(argv=None):  # pylint: disable=unused-argument
-  if FLAGS.self_test:
-    print('Running self-test.')
-    train_data, train_labels = fake_data(256)
-    validation_data, validation_labels = fake_data(configuration.EVAL_BATCH_SIZE)
-    test_data, test_labels = fake_data(configuration.EVAL_BATCH_SIZE)
-    num_epochs = 1
-  else:
-    # Get the data.
-    myset = mds.read_data_sets()
-#    train_data_filename = maybe_download('train-images-idx3-ubyte.gz')
- #   train_labels_filename = maybe_download('train-labels-idx1-ubyte.gz')
-  #  test_data_filename = maybe_download('t10k-images-idx3-ubyte.gz')
-   # test_labels_filename = maybe_download('t10k-labels-idx1-ubyte.gz')
+   
+def writeTestStats(result, test_error):
+      percentage_each_category_same_value = 0
+      for _, correct, count in result:
+          percentage_each_category_same_value += 100*correct/float(count)
+      print('Test error: %.1f%%' % test_error)
+      print('Test error, each category same value: %.1f%%' % (100 - percentage_each_category_same_value/len(conf.DATA_TYPES_USED)))
+      print('')
+      for label, correct, count in result:
+          print('%s : count - %d and accuracy - %.1f%%' % (conf.DATA_TYPES_USED[int(label)], count, 100*correct/float(count)))
 
-    # Extract it into numpy arrays.
- #   train_data = extract_data(train_data_filename, 60000)
-  #  train_labels = extract_labels(train_labels_filename, 60000)
- #   test_data = extract_data(test_data_filename, 10000)
- #   test_labels = extract_labels(test_labels_filename, 10000)
-
-    test_data = myset.test.images
-    test_labels = myset.test.labels
-    validation_data = myset.validation.images
-    validation_labels = myset.validation.labels
-    train_data = myset.train.images
-    train_labels = myset.train.labels
+def compute(permutation_index = 0):  
+   # Get the data.
+  myset = mds.read_data_sets(permutation_index)
     
-    print(train_data.shape)
+  test_data = myset.test.images
+  test_labels = myset.test.labels
+  validation_data = myset.validation.images
+  validation_labels = myset.validation.labels
+  train_data = myset.train.images
+  train_labels = myset.train.labels
     
-    num_epochs = configuration.NUM_EPOCHS
+  print(train_data.shape)
+    
   train_size = train_labels.shape[0]
 
+  image = tf.placeholder(
+      tf.float32,
+      shape=(conf.IMAGE_HEIGHT, conf.IMAGE_WIDTH, conf.NUM_CHANNELS))
   # This is where training samples and labels are fed to the graph.
   # These placeholder nodes will be fed a batch of training data at each
   # training step using the {feed_dict} argument to the Run() call below.
   train_data_node = tf.placeholder(
       tf.float32,
-      shape=(configuration.BATCH_SIZE, configuration.IMAGE_HEIGHT, configuration.IMAGE_WIDTH, configuration.NUM_CHANNELS))
-  train_labels_node = tf.placeholder(tf.int64, shape=(configuration.BATCH_SIZE,))
+      shape=(conf.BATCH_SIZE, conf.IMAGE_HEIGHT, conf.IMAGE_WIDTH, conf.NUM_CHANNELS))
+  train_labels_node = tf.placeholder(tf.int64, shape=(conf.BATCH_SIZE,))
   eval_data = tf.placeholder(
       tf.float32,
-      shape=(configuration.EVAL_BATCH_SIZE, configuration.IMAGE_HEIGHT, configuration.IMAGE_WIDTH, configuration.NUM_CHANNELS))
+      shape=(conf.EVAL_BATCH_SIZE, conf.IMAGE_HEIGHT, conf.IMAGE_WIDTH, conf.NUM_CHANNELS))
 
   # The variables below hold all the trainable weights. They are passed an
   # initial value which will be assigned when we call:
   # {tf.initialize_all_variables().run()}
   conv1_weights = tf.Variable(
-      tf.truncated_normal([5, 5, configuration.NUM_CHANNELS, 16],  # 5x5 filter, depth 32.
+      tf.truncated_normal([5, 5, conf.NUM_CHANNELS, conf.CONV_FIRST_DEPTH],  # 5x5 filter, depth 32.
                           stddev=0.1,
-                          seed=configuration.SEED))
-  conv1_biases = tf.Variable(tf.zeros([16]))
+                          seed=conf.SEED))
+  conv1_biases = tf.Variable(tf.zeros([conf.CONV_FIRST_DEPTH]))
   conv2_weights = tf.Variable(
-      tf.truncated_normal([5, 5, 16, 64],
+      tf.truncated_normal([5, 5, conf.CONV_FIRST_DEPTH, conf.CONV_SECOND_DEPTH],
                           stddev=0.1,
-                          seed=configuration.SEED))
-  conv2_biases = tf.Variable(tf.constant(0.1, shape=[64]))
-  fc1_weights = tf.Variable(  # fully connected, depth 512.
+                          seed=conf.SEED))
+  conv2_biases = tf.Variable(tf.constant(0.1, shape=[conf.CONV_SECOND_DEPTH]))
+  fc1_weights = tf.Variable(# fully connected, depth 512.
       tf.truncated_normal(
-          [configuration.IMAGE_HEIGHT // 4 * configuration.IMAGE_WIDTH // 4 * 16, 512],
+          [int((conf.IMAGE_HEIGHT * conf.IMAGE_WIDTH * conf.CONV_SECOND_DEPTH) / (pow(conf.CON_FIRST_STRIDE,2) * pow(conf.POOL_SEC_SIZE,2) * pow(conf.POOL_FIRST_SIZE,2))), conf.FC1_FEATURES],
           stddev=0.1,
-          seed=configuration.SEED))
-  fc1_biases = tf.Variable(tf.constant(0.1, shape=[512]))
+          seed=conf.SEED))
+  fc1_biases = tf.Variable(tf.constant(0.1, shape=[conf.FC1_FEATURES]))
   fc2_weights = tf.Variable(
-      tf.truncated_normal([512, configuration.NUM_LABELS],
+      tf.truncated_normal([conf.FC1_FEATURES, conf.NUM_LABELS],
                           stddev=0.1,
-                          seed=configuration.SEED))
-  fc2_biases = tf.Variable(tf.constant(0.1, shape=[configuration.NUM_LABELS]))
+                          seed=conf.SEED))
+  fc2_biases = tf.Variable(tf.constant(0.1, shape=[conf.NUM_LABELS]))
 
+  flip = tf.image.random_flip_left_right(image, conf.SEED)
   # We will replicate the model structure for the training subgraph, as well
   # as the evaluation subgraphs, while sharing the trainable parameters.
   def model(data, train=False):
@@ -183,15 +133,15 @@ def main(argv=None):  # pylint: disable=unused-argument
     # shape matches the data layout: [image index, y, x, depth].
     conv = tf.nn.conv2d(data,
                         conv1_weights,
-                        strides=[1, 2, 2, 1],
+                        strides=[1, conf.CON_FIRST_STRIDE, conf.CON_FIRST_STRIDE, 1],
                         padding='SAME')
     # Bias and rectified linear non-linearity.
     relu = tf.nn.relu(tf.nn.bias_add(conv, conv1_biases))
     # Max pooling. The kernel size spec {ksize} also follows the layout of
     # the data. Here we have a pooling window of 2, and a stride of 2.
     pool = tf.nn.max_pool(relu,
-                          ksize=[1, 2, 2, 1],
-                          strides=[1, 2, 2, 1],
+                          ksize=[1, conf.POOL_FIRST_SIZE, conf.POOL_FIRST_SIZE, 1],
+                          strides=[1, conf.POOL_FIRST_SIZE, conf.POOL_FIRST_SIZE, 1],
                           padding='SAME')
     conv = tf.nn.conv2d(pool,
                         conv2_weights,
@@ -199,8 +149,8 @@ def main(argv=None):  # pylint: disable=unused-argument
                         padding='SAME')
     relu = tf.nn.relu(tf.nn.bias_add(conv, conv2_biases))
     pool = tf.nn.max_pool(relu,
-                          ksize=[1, 2, 2, 1],
-                          strides=[1, 2, 2, 1],
+                          ksize=[1, conf.POOL_SEC_SIZE, conf.POOL_SEC_SIZE, 1],
+                          strides=[1, conf.POOL_SEC_SIZE, conf.POOL_SEC_SIZE, 1],
                           padding='SAME')
     # Reshape the feature map cuboid into a 2D matrix to feed it to the
     # fully connected layers.
@@ -214,7 +164,7 @@ def main(argv=None):  # pylint: disable=unused-argument
     # Add a 50% dropout during training only. Dropout also scales
     # activations such that no rescaling is needed at evaluation time.
     if train:
-      hidden = tf.nn.dropout(hidden, 0.5, seed=configuration.SEED)
+      hidden = tf.nn.dropout(hidden, conf.DROPOUT_PROBABILITY, seed=conf.SEED)
     return tf.matmul(hidden, fc2_weights) + fc2_biases
 
   # Training computation: logits + cross-entropy loss.
@@ -223,7 +173,7 @@ def main(argv=None):  # pylint: disable=unused-argument
       logits, train_labels_node))
 
   # L2 regularization for the fully connected parameters.
-  regularizers = (tf.nn.l2_loss(fc1_weights) + tf.nn.l2_loss(fc1_biases) +
+  regularizers = (tf.nn.l2_loss(fc1_weights) + tf.nn.l2_loss(fc1_biases) + 
                   tf.nn.l2_loss(fc2_weights) + tf.nn.l2_loss(fc2_biases))
   # Add the regularization term to the loss.
   loss += 5e-4 * regularizers
@@ -233,14 +183,14 @@ def main(argv=None):  # pylint: disable=unused-argument
   batch = tf.Variable(0)
   # Decay once per epoch, using an exponential schedule starting at 0.01.
   learning_rate = tf.train.exponential_decay(
-      configuration.BASE_LEARNING_RATE,                # Base learning rate.
-      batch * configuration.BATCH_SIZE,  # Current index into the dataset.
-      train_size,          # Decay step.
-      configuration.DECAY_RATE,                # Decay rate.
-      staircase=True)
+      conf.BASE_LEARNING_RATE,  # Base learning rate.
+      batch * conf.BATCH_SIZE,  # Current index into the dataset.
+      conf.DECAY_STEP_X_TIMES_TRAIN_SIZE * train_size,  # Decay step.
+      conf.DECAY_RATE,  # Decay rate.
+      staircase=False)
   # Use simple momentum for the optimization.
   optimizer = tf.train.MomentumOptimizer(learning_rate,
-                                         0.9).minimize(loss,
+                                         conf.MOMENTUM).minimize(loss,
                                                        global_step=batch)
 
   # Predictions for the current training minibatch.
@@ -249,17 +199,28 @@ def main(argv=None):  # pylint: disable=unused-argument
   # Predictions for the test and validation, which we'll compute less often.
   eval_prediction = tf.nn.softmax(model(eval_data))
 
+  def preprocess(data):
+      for ndx, member in enumerate(batch_data):
+        image.assign(member)
+        batch_data[ndx] = sess.run(flip)
+   
+  def shouldContinueTraining(validation_errors):
+       if(len(validation_errors) == 0):
+           return True
+       best_index = validation_errors.index(min(validation_errors))
+       return best_index + conf.TRAIN_VALIDATION_CONDINATION >= len(validation_errors)
+      
   # Small utility function to evaluate a dataset by feeding batches of data to
   # {eval_data} and pulling the results from {eval_predictions}.
   # Saves memory and enables this to run on smaller GPUs.
   def eval_in_batches(data, sess):
     """Get all predictions for a dataset by running it in small batches."""
     size = data.shape[0]
-    if size < configuration.EVAL_BATCH_SIZE:
+    if size < conf.EVAL_BATCH_SIZE:
       raise ValueError("batch size for evals larger than dataset: %d" % size)
-    predictions = numpy.ndarray(shape=(size, configuration.NUM_LABELS), dtype=numpy.float32)
-    for begin in xrange(0, size, configuration.EVAL_BATCH_SIZE):
-      end = begin + configuration.EVAL_BATCH_SIZE
+    predictions = numpy.ndarray(shape=(size, conf.NUM_LABELS), dtype=numpy.float32)
+    for begin in xrange(0, size, conf.EVAL_BATCH_SIZE):
+      end = begin + conf.EVAL_BATCH_SIZE
       if end <= size:
         predictions[begin:end, :] = sess.run(
             eval_prediction,
@@ -267,50 +228,82 @@ def main(argv=None):  # pylint: disable=unused-argument
       else:
         batch_predictions = sess.run(
             eval_prediction,
-            feed_dict={eval_data: data[-configuration.EVAL_BATCH_SIZE:, ...]})
+            feed_dict={eval_data: data[-conf.EVAL_BATCH_SIZE:, ...]})
         predictions[begin:, :] = batch_predictions[begin - size:, :]
     return predictions
 
   # Create a local session to run the training.
-  start_time = time.time()
+  time_total = time.time()
   with tf.Session() as sess:
     # Run all the initializers to prepare the trainable parameters.
     tf.initialize_all_variables().run()
     print('Initialized!')
+    past_validation_errors = []
+    past_test_results = []
+    step = 0
     # Loop through training steps.
-    for step in xrange(int(num_epochs * train_size) // configuration.BATCH_SIZE):
+    start_time = time.time()
+    while shouldContinueTraining(past_validation_errors):
       # Compute the offset of the current minibatch in the data.
       # Note that we could use better randomization across epochs.
-      offset = (step * configuration.BATCH_SIZE) % (train_size - configuration.BATCH_SIZE)
-      batch_data = train_data[offset:(offset + configuration.BATCH_SIZE), ...]
-      batch_labels = train_labels[offset:(offset + configuration.BATCH_SIZE)]
+      offset = (step * conf.BATCH_SIZE) % (train_size - conf.BATCH_SIZE)
+      batch_data = train_data[offset:(offset + conf.BATCH_SIZE), ...]
+      batch_labels = train_labels[offset:(offset + conf.BATCH_SIZE)]
       # This dictionary maps the batch data (as a numpy array) to the
       # node in the graph it should be fed to.
+      
       feed_dict = {train_data_node: batch_data,
                    train_labels_node: batch_labels}
       # Run the graph and fetch some of the nodes.
       _, l, lr, predictions = sess.run(
           [optimizer, loss, learning_rate, train_prediction],
           feed_dict=feed_dict)
-      if step % configuration.EVAL_FREQUENCY == 0:
+      if step % conf.EVAL_FREQUENCY == 0:
         elapsed_time = time.time() - start_time
         start_time = time.time()
-        print('Step %d (epoch %.2f), %.1f ms' %
-              (step, float(step) * configuration.BATCH_SIZE / train_size,
-               1000 * elapsed_time / configuration.EVAL_FREQUENCY))
+        print('\nStep %d (epoch %.2f), %.1f ms' % 
+              (step, float(step) * conf.BATCH_SIZE / train_size,
+               1000 * elapsed_time / conf.EVAL_FREQUENCY))
         print('Minibatch loss: %.3f, learning rate: %.6f' % (l, lr))
-        print('Minibatch error: %.1f%%' % error_rate(predictions, batch_labels))
-        print('Validation error: %.1f%%' % error_rate(
-            eval_in_batches(validation_data, sess), validation_labels))
+        print('Minibatch error: %.1f%%' % error_rate(predictions, batch_labels)[0])
+        validation_error, validation_confusion_matrix = error_rate(eval_in_batches(validation_data, sess), validation_labels)
+        print('Validation error: %.1f%%' % validation_error)
         sys.stdout.flush()
+        past_validation_errors.append(validation_error)
+        past_test_results.append(error_rate(eval_in_batches(test_data, sess), test_labels))
+      step += 1  
+    best_validation_error_index = past_validation_errors.index(min(past_validation_errors))
     # Finally print the result!
-    test_error = error_rate(eval_in_batches(test_data, sess), test_labels)
-    print('Test error: %.1f%%' % test_error)
+    num_of_epochs = (step * conf.BATCH_SIZE)/float(train_size)
+    print('')
+    print('')
+    print('Number of epochs: %.1f' % num_of_epochs)
+    time_total = time.time() - time_total
+    print('Total time: %.1f secs' % time_total)
+    print('Time per epoch: %.2f secs' % (time_total/num_of_epochs))
+    test_error, result = past_test_results[best_validation_error_index]
+    writeTestStats(result, test_error)
+      
     if FLAGS.self_test:
       print('test_error', test_error)
       assert test_error == 0.0, 'expected 0.0 test_error, got %.2f' % (
           test_error,)
+    return test_error, result
 
-
+def main(argv=None):  # pylint: disable=unused-argument
+    if conf.FULL_CROSS_VALIDATION:
+        result = zip(numpy.zeros(conf.NUM_LABELS), numpy.zeros(conf.NUM_LABELS), numpy.zeros(conf.NUM_LABELS))
+        error = 0
+        for i in range(conf.CROSS_VALIDATION_ITERATIONS):
+            print('\nCOMPUTE %d. CROSSVALIDATION:\n' % (i+1))
+            test_error, errors_by_fields = compute(i)
+            error += test_error
+            for label, correct, count in errors_by_fields:
+                result[int(label)] = (label, result[int(label)][1] + correct, result[int(label)][2] + count)
+        print('\n\n Full Cross Validation results:\n')
+        writeTestStats(result, error / conf.CROSS_VALIDATION_ITERATIONS)
+    else:
+        compute(conf.PERMUTATION_INDEX)
+    
 if __name__ == '__main__':
   tf.app.run()
