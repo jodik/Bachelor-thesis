@@ -34,7 +34,6 @@ from six.moves import xrange  # pylint: disable=redefined-builtin
 import tensorflow as tf
 import myDatasetCon as mds
 import sys
-#import Image from PIL
 sys.path.append("../")
 import configuration as conf
 

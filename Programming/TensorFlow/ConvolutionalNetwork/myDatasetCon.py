@@ -20,17 +20,12 @@ from __future__ import print_function
 
 import os
 import cv2
-from PIL import Image
-from os import walk
 from cobs import cobs
 import array
-from collections import Counter
 from sets import Set
 import math
 
 import numpy as np
-from six.moves import urllib
-from six.moves import xrange  # pylint: disable=redefined-builtin
 import tensorflow as tf
 import sys
 sys.path.append("../")
