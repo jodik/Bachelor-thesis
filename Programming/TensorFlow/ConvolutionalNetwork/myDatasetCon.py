@@ -199,22 +199,40 @@ def filterAndCreateTrainSet(validation_names, test_names, images, labels, names)
 def normalize(train_images, validation_images, test_images):
     images = (train_images, validation_images, test_images)
     n = 0
-    sum_rgb = np.zeros(3, dtype = np.float64)
+    sum_rgb = np.zeros(3, dtype=np.float64)
+
     for image_set in images:
         n += image_set.size/3
         for image in image_set:
             for col_i in image:
-                for row_i in col_i:
-                    color_pow = np.multiply(row_i,row_i)
-                    sum_rgb += color_pow
-    print(sum_rgb)
-    print(np.sqrt(sum_rgb))
-    sum_rgb = (math.sqrt(n)/np.sqrt(sum_rgb))
-    train_images = np.multiply(train_images, sum_rgb)
-    test_images = np.multiply(test_images, sum_rgb)
-    validation_images = np.multiply(validation_images, sum_rgb)    
-    
-    print (test_images[0][16])    
+                for pixel in col_i:
+                    sum_rgb += pixel
+
+    sum_rgb /= n
+    #sum_rgb = (math.sqrt(n)/np.sqrt(sum_rgb))
+    train_images -= sum_rgb
+    test_images -= sum_rgb
+    validation_images -= sum_rgb
+
+    sum_rgb_pow = np.zeros(3, dtype=np.float64)
+    images = (train_images, validation_images, test_images)
+    for image_set in images:
+        n += image_set.size/3
+        for image in image_set:
+            for col_i in image:
+                for pixel in col_i:
+                    color_pow = np.multiply(pixel, pixel)
+                    sum_rgb_pow += color_pow
+
+    c = n/sum_rgb_pow
+    c = np.sqrt(c)
+    print('c')
+    print(c)
+    validation_images *= c
+    train_images *= c
+    test_images *= c
+
+    print (validation_images[0, 15])
     return train_images, validation_images, test_images
 
 def read_data_sets(permutation_index = 0,one_hot=True, dtype=tf.float32):
@@ -258,8 +276,8 @@ def read_data_sets(permutation_index = 0,one_hot=True, dtype=tf.float32):
       train_images, train_labels, train_names = images_original_set, labels_original_set, names_original_set
   
   # Should be fixed, rozptyl 1, stred 0, somtehing went wrong
-  #train_images, validation_images, test_images = normalize(train_images, validation_images, test_images)
-  
+  train_images, validation_images, test_images = normalize(train_images, validation_images, test_images)
+  #print(validation_images[0, 16:, 15])
   print (labels.shape)
   
   
