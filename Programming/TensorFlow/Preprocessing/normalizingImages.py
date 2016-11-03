@@ -53,7 +53,7 @@ for SCALE in range(1):
                 else:
                     while img.shape[1] < SIZE:
                         img = np.append(img,img,axis = 1)
-                    img = img[:,:34]
+                    img = img[:,:SIZE]
                 #cv2.imshow("as", img)
                 #cv2.waitKey(0)
                 cv2.imwrite(new_dirpath + '/' + filename, img)

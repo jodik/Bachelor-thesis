@@ -35,7 +35,7 @@ def writeToFile(file, bytes):
 
 def saveToFile(byte_data, names, labels, ishard, path):
     if(os.path.isdir(path) == False):
-        os.mkdir(path)
+        os.makedirs(path)
     writeToFile(path + 'labels.byte', array.array('B',labels).tostring())
     writeToFile(path + 'data.byte', array.array('B',byte_data).tostring())
     writeToFile(path + 'ishard.byte', array.array('B',ishard).tostring())
@@ -68,6 +68,7 @@ def enlargeDataset(images, byte_data, names, labels, is_hard):
         print(time.time() - start)
         start = time.time()
         train_data2 = sess.run(train_data2)
+        print(type(train_data2))
         print('time2:', time.time() - start)
         print train_data2[0][16]
         for i in range(l):
