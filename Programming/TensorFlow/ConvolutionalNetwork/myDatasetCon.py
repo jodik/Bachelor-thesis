@@ -104,18 +104,30 @@ class MyDataSet(object):
       assert batch_size <= self._num_examples
     end = self._index_in_epoch
     return self._images[start:end], self._labels[start:end]
-    
+
+
+g = 0
+
+
+def white_or_black(x):
+    global g
+    g += 1
+    if g%2 == 1:
+        return np.zeros(3) + 255
+    return x
+
 def extract_images():
     correct_vals = np.zeros((0))
-    print('test')
     with open (conf.SOURCE_FOLDER_NAME + 'data.byte', "rb") as readdata:
         data = cobs.decode(readdata.read())
         all_images = array.array('B',data)
         num_of_images = int(len(all_images)/(conf.IMAGE_WIDTH*conf.IMAGE_HEIGHT*conf.NUM_CHANNELS))
         all_images = np.asarray(all_images, dtype=np.uint8)
         all_images = all_images.reshape(num_of_images, conf.IMAGE_HEIGHT, conf.IMAGE_WIDTH, conf.NUM_CHANNELS)
+       # all_images[np.sum(all_images, axis = 3) < 10] = np.zeros(3)
+        #all_images = np.apply_along_axis(white_or_black, axis = 3, arr=all_images)
+        print(all_images[2][1])
         all_images = all_images / conf.PIXEL_DEPTH - 0.5
-    print('test2') 
     with open (conf.SOURCE_FOLDER_NAME + 'labels.byte', "rb") as readdata:
         data = cobs.decode(readdata.read())
         labels = array.array('B',data)

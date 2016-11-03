@@ -6,6 +6,8 @@ import random
 
 SOURCE_FOLDER_PATH = '../../../Images/Cropped images/'
 SOURCE_FOLDER_NAME = "Dataset"
+BLACK = False
+
 
 for SCALE in range(1):
     SIZE = 16 * (SCALE + 2)
@@ -13,7 +15,8 @@ for SCALE in range(1):
     f = []
     for (dirpath, dirnames, filenames) in walk(SOURCE_FOLDER_PATH+SOURCE_FOLDER_NAME+'/'):
         new_dirpath = dirpath.replace(SOURCE_FOLDER_NAME, NEW_NAME_OF_DIR)
-        os.mkdir(new_dirpath)
+        if not os.path.isdir(new_dirpath):
+            os.mkdir(new_dirpath)
         if len(dirnames) == 0:
             f.append((dirpath, filenames))
     
@@ -32,16 +35,25 @@ for SCALE in range(1):
                     img = img[0:4000, (temp):(3000-temp)]
     
                 ratio = float(SIZE)/max(img.shape)
-                img = cv2.resize(img, (int(img.shape[1] * ratio),int(ratio * img.shape[0])), interpolation=cv2.INTER_AREA)
+                img = cv2.resize(img, None, fx=ratio, fy=ratio, interpolation=cv2.INTER_AREA)
+
                 needToBeRotated = SIZE == img.shape[1]
                 borderSize = (SIZE - min(img.shape[0], img.shape[1]))/2
                 if needToBeRotated:
-                    img = cv2.copyMakeBorder(img, borderSize, borderSize, 0, 0, cv2.BORDER_CONSTANT)
                     M = cv2.getRotationMatrix2D((SIZE/2,SIZE/2),270,1)
-                    img = cv2.warpAffine(img,M,(SIZE,SIZE))
+                    M = np.float32([[0, 1, 0], [1, 0, 0]])
+                    img = cv2.warpAffine(img,M,(img.shape[0],img.shape[1]))
+
+                if BLACK:
+                    tt = np.zeros((SIZE, (SIZE - img.shape[1])/2, 3), dtype=np.uint8)
+                    img = np.append(tt, img, axis=1)
+                    tt = np.zeros((SIZE, SIZE - img.shape[1], 3), dtype=np.uint8)
+                    img = np.append(img, tt, axis = 1)
                 else:
-                    
-                    img = cv2.copyMakeBorder(img, 0, 0, borderSize, borderSize, cv2.BORDER_CONSTANT)
-                img = cv2.resize(img, (SIZE, SIZE), interpolation=cv2.INTER_AREA)
-                    
-                cv2.imwrite(new_dirpath + '/' + filename, img)
+                    while img.shape[1] < SIZE:
+                        img = np.append(img,img,axis = 1)
+                    img = img[:,:34]
+                cv2.imshow("as", img)
+                cv2.waitKey(0)
+                print(img.shape)
+                #cv2.imwrite(new_dirpath + '/' + filename, img)
