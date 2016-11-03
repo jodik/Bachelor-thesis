@@ -8,7 +8,9 @@ import tensorflow as tf
 import time
 
 TYPE_DIRECTORY = 'Cropped' # or Original
-IMAGES_FOLDER_NAME = '../../../Images/'+ TYPE_DIRECTORY + ' images/'
+BLACK_BORDER = True
+SUB_FOLDER = 'Bordered with black color/' if BLACK_BORDER else 'Extended with itself/'
+IMAGES_FOLDER_NAME = '../../../Images/'+ TYPE_DIRECTORY + ' images/' + SUB_FOLDER
 DATASETS_FOLDER = '../../../Datasets/' + TYPE_DIRECTORY + ' datasets/'
 
 def getLabel(path):
