@@ -7,6 +7,8 @@ import random
 SOURCE_FOLDER_PATH = '../../../Images/Cropped images/'
 SOURCE_FOLDER_NAME = "Dataset"
 BLACK = False
+OUTPUT_FOLDER = 'Bordered with black color/' if BLACK else 'Extended with itself/'
+OUTPUT_FOLDER = SOURCE_FOLDER_PATH + OUTPUT_FOLDER
 
 
 for SCALE in range(1):
@@ -14,14 +16,13 @@ for SCALE in range(1):
     NEW_NAME_OF_DIR = "Dataset_"+str(SIZE)+"_"+str(SIZE)
     f = []
     for (dirpath, dirnames, filenames) in walk(SOURCE_FOLDER_PATH+SOURCE_FOLDER_NAME+'/'):
-        new_dirpath = dirpath.replace(SOURCE_FOLDER_NAME, NEW_NAME_OF_DIR)
+        new_dirpath = OUTPUT_FOLDER + NEW_NAME_OF_DIR + dirpath.split(SOURCE_FOLDER_NAME)[1]
         if not os.path.isdir(new_dirpath):
             os.mkdir(new_dirpath)
         if len(dirnames) == 0:
-            f.append((dirpath, filenames))
+            f.append((dirpath, filenames, new_dirpath))
     
-    for (dirpath, filenames) in f:
-        new_dirpath = dirpath.replace(SOURCE_FOLDER_NAME, NEW_NAME_OF_DIR)
+    for (dirpath, filenames, new_dirpath) in f:
         for filename in filenames:
             if(filename != '.DS_Store'):
                 print filename
@@ -53,7 +54,6 @@ for SCALE in range(1):
                     while img.shape[1] < SIZE:
                         img = np.append(img,img,axis = 1)
                     img = img[:,:34]
-                cv2.imshow("as", img)
-                cv2.waitKey(0)
-                print(img.shape)
-                #cv2.imwrite(new_dirpath + '/' + filename, img)
+                #cv2.imshow("as", img)
+                #cv2.waitKey(0)
+                cv2.imwrite(new_dirpath + '/' + filename, img)
