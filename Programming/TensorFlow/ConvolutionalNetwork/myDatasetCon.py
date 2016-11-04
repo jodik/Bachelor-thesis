@@ -154,36 +154,41 @@ def extract_images():
 
 
 
-def getPermutation(permutation_index, num_of_images_total):
+def getPermutation(permutation_index, labels, validation_size, test_size):
+    num_of_images_total = len(labels)
     if permutation_index >= 10 or permutation_index < 0:
         raise ValueError('Permutation index should not be larger than 9 and lower than 0')
     perm = np.arange(num_of_images_total)
     for i in range(permutation_index + 1):
         np.random.shuffle(perm)
-    return perm
-    folder = conf.PERMUTATION_FOLDER_NAME + conf.DATA_TYPES_USED[0]
-    for i in range(conf.NUM_LABELS - 1):
-        folder+='_' + conf.DATA_TYPES_USED[i+1]
-    if conf.HARD_DIFFICULTY:
-        folder+='_Hard'
-    else:
-        folder+='_Normal'
-    if not os.path.exists(folder):
-        os.makedirs(folder)
-        
-        perm = np.arange(num_of_images_total)
-        for i in range(10):
-            fo = open(folder+"/permutation"+str(i)+".txt", "wb")
-            np.random.shuffle(perm)
-            for item in perm:
-                fo.write("%s\n" % item)
-    print(folder+"/permutation"+str(permutation_index)+".txt")
-    with open(folder+"/permutation"+str(permutation_index)+".txt", 'r') as f:
-        lines = f.read().splitlines()
-        perm = []
-        for i in range(len(lines)):
-            perm.append(int(lines[i]))
-        return perm
+
+    percentage = validation_size / float(num_of_images_total)
+    counts = np.array(percentage * np.bincount(np.array(labels, dtype=int)), dtype=int)
+    to_add = validation_size - sum(counts)
+    for i in np.arange(counts.shape[0])[:to_add]:
+        counts[i] += 1
+    a = np.zeros(0, dtype=int)
+    b = np.zeros(0, dtype=int)
+    c = np.zeros(0, dtype=int)
+    d = np.zeros(0, dtype=int)
+    counts_tmp = np.copy(counts)
+    for t in perm:
+        if counts[labels[t]] > 0:
+            counts[labels[t]]-=1
+            a = np.append(a, t)
+        else:
+            b = np.append(b, t)
+    counts = counts_tmp
+    print(counts)
+    for t in b:
+        if counts[labels[t]] > 0:
+            counts[labels[t]]-=1
+            c = np.append(c, t)
+        else:
+            d = np.append(d, t)
+
+    print (np.append(a, np.append(c, d)))
+    return np.append(a, np.append(c, d))
 
 def filterAndCreateTrainSet(validation_names, test_names, images, labels, names):
     size = 0
@@ -252,8 +257,9 @@ def read_data_sets(permutation_index = 0,one_hot=True, dtype=tf.float32):
   images, labels, names = extract_images()
   TEST_SIZE = int(images.shape[0]/8 * (conf.TEST_PERCENTAGE/100.0))
   VALIDATION_SIZE = int(images.shape[0]/8 * (conf.VALIDATION_PERCENTAGE/100.0))
-  
-  perm2 = getPermutation(permutation_index, int(images.shape[0]/8))
+
+  original_set_size = int(images.shape[0]/8)
+  perm2 = getPermutation(permutation_index, labels[:original_set_size], VALIDATION_SIZE, TEST_SIZE)
   print(images.shape[0])
   print(labels.shape)
   print(names.shape)
