@@ -19,28 +19,18 @@ from __future__ import division
 from __future__ import print_function
 
 import os
-import cv2
 from cobs import cobs
 import array
 from sets import Set
-import math
 
 import numpy as np
 import tensorflow as tf
-import sys
-sys.path.append("../")
-import configuration as conf
+import Programming.TensorFlow.configuration as conf
+from Programming.HelperScripts import helper
 
 def count_images():
     return extract_images()[0].shape[0]
     
-def getLabel(label, data_types):
-     data_types = sorted(data_types)
-     for i in range(len(data_types)):
-         if data_types[i] in label:
-             return i
-     raise ValueError('Bad path.')
-
 class MyDataSet(object):
 
   def __init__(self, images, labels, one_hot=True,
@@ -149,9 +139,9 @@ def extract_images():
     size = 0
     names_chosen = []
     for i in range(num_of_images):
-        label = conf.ALL_DATA_TYPES[labels[i]]
-        if label in conf.DATA_TYPES_USED and (ishard[i] == 0 or conf.HARD_DIFFICULTY):
-            category = getLabel(label, conf.DATA_TYPES_USED)
+        label_word = conf.ALL_DATA_TYPES[labels[i]]
+        if label_word in conf.DATA_TYPES_USED and (ishard[i] == 0 or conf.HARD_DIFFICULTY):
+            category = helper.getLabelIndex(label_word, conf.DATA_TYPES_USED)
             correct_vals = np.append(correct_vals, [category])
             images[size] = all_images[i]
             names_chosen.append(names[i])
@@ -167,6 +157,10 @@ def extract_images():
 def getPermutation(permutation_index, num_of_images_total):
     if permutation_index >= 10 or permutation_index < 0:
         raise ValueError('Permutation index should not be larger than 9 and lower than 0')
+    perm = np.arange(num_of_images_total)
+    for i in range(permutation_index + 1):
+        np.random.shuffle(perm)
+    return perm
     folder = conf.PERMUTATION_FOLDER_NAME + conf.DATA_TYPES_USED[0]
     for i in range(conf.NUM_LABELS - 1):
         folder+='_' + conf.DATA_TYPES_USED[i+1]
@@ -250,6 +244,8 @@ def normalize(train_images, validation_images, test_images):
 def read_data_sets(permutation_index = 0,one_hot=True, dtype=tf.float32):
   class DataSets(object):
     pass
+
+  np.random.seed(conf.SEED)
   data_sets = DataSets()
 
   
@@ -258,7 +254,6 @@ def read_data_sets(permutation_index = 0,one_hot=True, dtype=tf.float32):
   VALIDATION_SIZE = int(images.shape[0]/8 * (conf.VALIDATION_PERCENTAGE/100.0))
   
   perm2 = getPermutation(permutation_index, int(images.shape[0]/8))
-  print(len(perm2))
   print(images.shape[0])
   print(labels.shape)
   print(names.shape)
@@ -292,7 +287,9 @@ def read_data_sets(permutation_index = 0,one_hot=True, dtype=tf.float32):
   #print(validation_images[0, 16:, 15])
   print (labels.shape)
   
-  
+  print(train_images.shape)
+  print(validation_images.shape)
+  print(test_images.shape)
   data_sets.train = MyDataSet(train_images, train_labels, dtype=dtype)
   data_sets.validation = MyDataSet(validation_images, validation_labels,
                                  dtype=dtype)

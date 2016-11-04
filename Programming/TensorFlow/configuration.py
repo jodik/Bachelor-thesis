@@ -7,14 +7,14 @@ EVAL_FREQUENCY = 30  # Number of steps between evaluations.
 SEED = 66478  # Set to None for random seed.
 TEST_PERCENTAGE = 20
 VALIDATION_PERCENTAGE = 20
-DATA_TYPES_USED = ['Blue','Green', 'White', 'Box', 'Can', 'Chemical', 'Colorful']
+DATA_TYPES_USED = sorted(['Blue','Green', 'White', 'Box', 'Can', 'Chemical', 'Colorful'])
 BASE_LEARNING_RATE = 0.0005
-DECAY_RATE = 0.9
+DECAY_RATE = 0.6
 HARD_DIFFICULTY = True
 PERMUTATION_INDEX = 3
 FULL_CROSS_VALIDATION = False
 CROPPED_VERSION = True
-BLACK_BORDER = True
+BLACK_BORDER = False
 MOMENTUM = 0.95
 DROPOUT_PROBABILITY = 0.6
 CROSS_VALIDATION_ITERATIONS = 5
@@ -30,7 +30,6 @@ CONV_SECOND_DEPTH = 150
 POOL_SEC_SIZE = 2
 
 # Should not change
-DATA_TYPES_USED = sorted(DATA_TYPES_USED)
 NUM_LABELS = len(DATA_TYPES_USED)
 NUM_CHANNELS = 3
 PIXEL_DEPTH = 255.0
@@ -44,7 +43,7 @@ else:
     IMAGE_HEIGHT = 12 * SCALE
     SOURCE_FOLDER_NAME = "../../../Datasets/Original datasets/Dataset_"+str(IMAGE_WIDTH)+"_"+str(IMAGE_HEIGHT)+"/";
 PERMUTATION_FOLDER_NAME = "../../../Programming/Permutations/";
-ALL_DATA_TYPES = ['Blue',
+ALL_DATA_TYPES = sorted(['Blue',
  'Box',
  'Can',
  'Chemical',
@@ -52,4 +51,4 @@ ALL_DATA_TYPES = ['Blue',
  'Green',
  'Multiple Objects',
  'Nothing',
- 'White']
+ 'White'])

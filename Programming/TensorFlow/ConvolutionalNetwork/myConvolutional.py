@@ -23,19 +23,15 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import gzip
-import os
-import sys
 import time
-
 import numpy
-from six.moves import urllib
-from six.moves import xrange  # pylint: disable=redefined-builtin
+from six.moves import xrange
 import tensorflow as tf
 import myDatasetCon as mds
 import sys
-sys.path.append("../")
-import configuration as conf
+from Programming.HelperScripts.time_calculator import TimeCalculator
+from Programming.HelperScripts import helper
+import Programming.TensorFlow.configuration as conf
 
 SOURCE_URL = 'http://yann.lecun.com/exdb/mnist/'
 WORK_DIRECTORY = 'data'
@@ -49,24 +45,22 @@ def error_rate(predictions, labels):
   error_rate = 100.0 - (100.0 * 
       numpy.sum(numpy.argmax(predictions, 1) == labels) / 
       predictions.shape[0])
-  correct = numpy.zeros(labels.shape[0])
+  num_cat = max(labels) + 1
+  correct = numpy.zeros((num_cat, num_cat), dtype=int)
   for  prediction, label in zip(predictions, labels):
-      correct[int(label)]+=int(numpy.argmax(prediction)==label)
-  unique, counts = numpy.unique(labels, return_counts=True)
-  result = zip(unique, correct, counts)
-  return(error_rate, result)
-
+      correct[int(label), numpy.argmax(prediction)]+= 1
+  return(error_rate, correct)
 
    
-def writeTestStats(result, test_error):
-      percentage_each_category_same_value = 0
-      for _, correct, count in result:
-          percentage_each_category_same_value += 100*correct/float(count)
+def writeTestStats(test_confusion_matrix, test_error):
+      percentage_each_category_same_value = 0.0
+      for i in range(len(test_confusion_matrix)):
+          percentage_each_category_same_value += test_confusion_matrix[i, i]/sum(test_confusion_matrix[i])
+      percentage_each_category_same_value /= len(test_confusion_matrix)
+      percentage_each_category_same_value *= 100
       print('Test error: %.1f%%' % test_error)
-      print('Test error, each category same value: %.1f%%' % (100 - percentage_each_category_same_value/len(conf.DATA_TYPES_USED)))
-      print('')
-      for label, correct, count in result:
-          print('%s : count - %d and accuracy - %.1f%%' % (conf.DATA_TYPES_USED[int(label)], count, 100*correct/float(count)))
+      print('Test error, each category same value: %.1f%%' % (100 - percentage_each_category_same_value))
+      helper.writeConfusionMatrix(test_confusion_matrix)
 
 def compute(permutation_index = 0):  
    # Get the data.
@@ -198,11 +192,6 @@ def compute(permutation_index = 0):
   # Predictions for the test and validation, which we'll compute less often.
   eval_prediction = tf.nn.softmax(model(eval_data))
 
-  def preprocess(data):
-      for ndx, member in enumerate(batch_data):
-        image.assign(member)
-        batch_data[ndx] = sess.run(flip)
-   
   def shouldContinueTraining(validation_errors):
        if(len(validation_errors) == 0):
            return True
@@ -232,7 +221,7 @@ def compute(permutation_index = 0):
     return predictions
 
   # Create a local session to run the training.
-  time_total = time.time()
+  time_logger = TimeCalculator()
   with tf.Session() as sess:
     # Run all the initializers to prepare the trainable parameters.
     tf.initialize_all_variables().run()
@@ -260,47 +249,48 @@ def compute(permutation_index = 0):
       if step % conf.EVAL_FREQUENCY == 0:
         elapsed_time = time.time() - start_time
         start_time = time.time()
-        print('\nStep %d (epoch %.2f), %.1f ms' % 
+        print('\nStep %d' % step)
+        validation_error, validation_confusion_matrix = error_rate(eval_in_batches(validation_data, sess),
+                                                                   validation_labels)
+        #helper.writeConfusionMatrix(validation_confusion_matrix)
+        print('Step %d (epoch %.2f), %.1f ms' %
               (step, float(step) * conf.BATCH_SIZE / train_size,
                1000 * elapsed_time / conf.EVAL_FREQUENCY))
         print('Minibatch loss: %.3f, learning rate: %.6f' % (l, lr))
         print('Minibatch error: %.1f%%' % error_rate(predictions, batch_labels)[0])
-        validation_error, validation_confusion_matrix = error_rate(eval_in_batches(validation_data, sess), validation_labels)
         print('Validation error: %.1f%%' % validation_error)
         sys.stdout.flush()
         past_validation_errors.append(validation_error)
         past_test_results.append(error_rate(eval_in_batches(test_data, sess), test_labels))
-      step += 1  
-    best_validation_error_index = past_validation_errors.index(min(past_validation_errors))
+      step += 1
+    min_validation_error = min(past_validation_errors)
+    best_validation_error_index = past_validation_errors.index(min_validation_error)
     # Finally print the result!
     num_of_epochs = (step * conf.BATCH_SIZE)/float(train_size)
     print('')
+    time_logger.show("Training")
+    print('Time per epoch: %.2f secs' % (time_logger.getTotalTime() / num_of_epochs))
     print('')
     print('Number of epochs: %.1f' % num_of_epochs)
-    time_total = time.time() - time_total
-    print('Total time: %.1f secs' % time_total)
-    print('Time per epoch: %.2f secs' % (time_total/num_of_epochs))
-    test_error, result = past_test_results[best_validation_error_index]
-    writeTestStats(result, test_error)
-      
-    if FLAGS.self_test:
-      print('test_error', test_error)
-      assert test_error == 0.0, 'expected 0.0 test_error, got %.2f' % (
-          test_error,)
-    return test_error, result
+    print('Min validation error: %.1f%%' % min_validation_error)
+    test_error, test_confusion_matrix = past_test_results[best_validation_error_index]
+    writeTestStats(test_confusion_matrix, test_error)
+
+    return test_error, test_confusion_matrix
 
 def main(argv=None):  # pylint: disable=unused-argument
     if conf.FULL_CROSS_VALIDATION:
         result = zip(numpy.zeros(conf.NUM_LABELS), numpy.zeros(conf.NUM_LABELS), numpy.zeros(conf.NUM_LABELS))
         error = 0
+        confusion_matrix_across_all_iterations = numpy.zeros((len(conf.DATA_TYPES_USED), len(conf.DATA_TYPES_USED)), dtype=int)
         for i in range(conf.CROSS_VALIDATION_ITERATIONS):
             print('\nCOMPUTE %d. CROSSVALIDATION:\n' % (i+1))
-            test_error, errors_by_fields = compute(i)
+            test_error, confusion_matrix = compute(i)
             error += test_error
-            for label, correct, count in errors_by_fields:
-                result[int(label)] = (label, result[int(label)][1] + correct, result[int(label)][2] + count)
+            confusion_matrix_across_all_iterations += confusion_matrix
+
         print('\n\n Full Cross Validation results:\n')
-        writeTestStats(result, error / conf.CROSS_VALIDATION_ITERATIONS)
+        writeTestStats(confusion_matrix_across_all_iterations, error / conf.CROSS_VALIDATION_ITERATIONS)
     else:
         compute(conf.PERMUTATION_INDEX)
     

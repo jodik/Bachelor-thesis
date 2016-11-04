@@ -6,6 +6,8 @@ from os import walk
 import numpy as np
 import tensorflow as tf
 import time
+from Programming.HelperScripts import helper
+import Programming.TensorFlow.configuration as conf
 
 TYPE_DIRECTORY = 'Cropped' # or Original
 BLACK_BORDER = False
@@ -13,13 +15,6 @@ SUB_FOLDER = 'Bordered with black color/' if BLACK_BORDER else 'Extended with it
 IMAGES_FOLDER_NAME = '../../../Images/'+ TYPE_DIRECTORY + ' images/' + SUB_FOLDER
 DATASETS_FOLDER = '../../../Datasets/' + TYPE_DIRECTORY + ' datasets/' + SUB_FOLDER
 
-def getLabel(path):
-     DATA_TYPES = ['Blue','Green', 'White', 'Box', 'Can', 'Chemical', 'Colorful', 'Multiple Objects', 'Nothing']
-     DATA_TYPES = sorted(DATA_TYPES)
-     for i in range(len(DATA_TYPES)):
-         if DATA_TYPES[i] in path:
-             return i
-     raise ValueError('Bad path.')
 
 def isHard(path):
     if 'Hard' in path:
@@ -95,7 +90,7 @@ for SCALE in range(1):
             if(filename != '.DS_Store' and filename!='data.byte'):
                 img = cv2.imread(dirpath + '/' + filename, cv2.IMREAD_COLOR)
                 images.append(img)
-                labels.append(getLabel(dirpath))
+                labels.append(helper.getLabelIndex(dirpath, conf.ALL_DATA_TYPES))
                 is_hard.append(isHard(dirpath))
                 names.append(filename)
                 byte_data.extend(img.flatten())
