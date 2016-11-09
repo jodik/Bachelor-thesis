@@ -68,8 +68,7 @@ def enlargeDataset(images, byte_data, names, labels, is_hard):
         print train_data2[0][16]
         for i in range(l):
              byte_data.extend(train_data2[i].flatten())
-    return (byte_data, names, labels, is_hard)     
-        
+
         
 for SCALE in range(1):
     WIDTH = 16 * (SCALE + 2)

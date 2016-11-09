@@ -107,7 +107,7 @@ def white_or_black(x):
     return x
 
 def extract_images():
-    correct_vals = np.zeros((0))
+    correct_vals = np.zeros((0), dtype=np.uint8)
     with open (conf.SOURCE_FOLDER_NAME + 'data.byte', "rb") as readdata:
         data = cobs.decode(readdata.read())
         all_images = array.array('B',data)
@@ -174,7 +174,7 @@ def getPermutation(permutation_index, labels, validation_size, test_size):
     counts_tmp = np.copy(counts)
     for t in perm:
         if counts[labels[t]] > 0:
-            counts[labels[t]]-=1
+            counts[labels[t]] -= 1
             a = np.append(a, t)
         else:
             b = np.append(b, t)
@@ -246,11 +246,28 @@ def normalize(train_images, validation_images, test_images):
     print (validation_images[0, 15])
     return train_images, validation_images, test_images
 
+
+def equalCountsPerms(labels):
+    print("equalCountsPerms")
+    counts = np.bincount(labels)
+    print(counts)
+    counts = np.full(len(counts), max(counts), dtype=np.uint32)
+    res = np.zeros(0, dtype=np.uint8)
+    while max(counts) > 0:
+        for i in range(len(labels)):
+            label = labels[i]
+            if counts[label] > 0:
+                res = np.append(res, i)
+                counts[label] -= 1
+    np.random.shuffle(res)
+    return res
+
+
 def read_data_sets(permutation_index = 0,one_hot=True, dtype=tf.float32):
   class DataSets(object):
     pass
 
-  np.random.seed(conf.SEED)
+
   data_sets = DataSets()
 
   
@@ -288,14 +305,24 @@ def read_data_sets(permutation_index = 0,one_hot=True, dtype=tf.float32):
   else:
       train_images, train_labels, train_names = images_original_set, labels_original_set, names_original_set
   
-  # Should be fixed, rozptyl 1, stred 0, somtehing went wrong
   train_images, validation_images, test_images = normalize(train_images, validation_images, test_images)
-  #print(validation_images[0, 16:, 15])
-  print (labels.shape)
-  
-  print(train_images.shape)
-  print(validation_images.shape)
-  print(test_images.shape)
+
+  print("tu")
+  print(len(train_labels))
+  print(len(validation_labels))
+  print(len(test_labels))
+  train_perm, validation_perm, test_perm = map(lambda x: equalCountsPerms(x), (train_labels, validation_labels, test_labels))
+  print (len(train_perm))
+  print(len(validation_perm))
+  print(len(test_perm))
+  train_images = train_images[train_perm]
+  train_labels = train_labels[train_perm]
+  validation_images = validation_images[validation_perm]
+  validation_labels = validation_labels[validation_perm]
+  test_images = test_images[test_perm]
+  test_labels = test_labels[test_perm]
+
+
   data_sets.train = MyDataSet(train_images, train_labels, dtype=dtype)
   data_sets.validation = MyDataSet(validation_images, validation_labels,
                                  dtype=dtype)
