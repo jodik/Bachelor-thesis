@@ -27,7 +27,7 @@ import time
 import numpy
 from six.moves import xrange
 import tensorflow as tf
-import myDatasetCon as mds
+import Programming.TensorFlow.ConvolutionalNetwork.myDatasetCon as mds
 import sys
 from Programming.HelperScripts.time_calculator import TimeCalculator
 from Programming.HelperScripts import helper

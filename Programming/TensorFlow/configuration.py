@@ -42,7 +42,7 @@ if CROPPED_VERSION:
 else:
     IMAGE_HEIGHT = 12 * SCALE
     SOURCE_FOLDER_NAME = "../../../Datasets/Original datasets/Dataset_"+str(IMAGE_WIDTH)+"_"+str(IMAGE_HEIGHT)+"/";
-PERMUTATION_FOLDER_NAME = "../../../Programming/Permutations/";
+
 ALL_DATA_TYPES = sorted(['Blue',
  'Box',
  'Can',
