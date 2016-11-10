@@ -53,14 +53,8 @@ def getPermutation(permutation_index, labels, validation_size, test_size):
     return np.append(a, np.append(c, d))
 
 
-def getOriginalDatasetSize(data):
-    divide_by = 8 if conf.EXTENDED_DATASET else 1
-    original_dataset_size = data.size() / divide_by
-    return original_dataset_size
-
-
 def process(full_data, permutation_index):
-    original_set_size = getOriginalDatasetSize(full_data)
+    original_set_size = full_data.getOriginalDatasetSize()
     TEST_SIZE = int(original_set_size * (conf.TEST_PERCENTAGE / 100.0))
     VALIDATION_SIZE = int(original_set_size * (conf.VALIDATION_PERCENTAGE / 100.0))
 

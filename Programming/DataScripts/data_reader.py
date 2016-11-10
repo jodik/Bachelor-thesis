@@ -4,7 +4,7 @@ import array
 import data_process
 from Programming.HelperScripts import helper
 import Programming.TensorFlow.configuration as conf
-from data import Data
+from data import FullData
 
 
 def extract_data():
@@ -43,7 +43,7 @@ def extract_data():
             names_chosen.append(names[i])
             size += 1
     images = images[0:size]
-    return Data(images, correct_vals, np.array(names_chosen), ishard)
+    return FullData(images, correct_vals, np.array(names_chosen), ishard)
 
 
 def read_datasets(permutation_index):
