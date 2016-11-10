@@ -1,4 +1,4 @@
-import Programming.TensorFlow.configuration as conf
+import Programming.configuration as conf
 
 
 class Data(object):

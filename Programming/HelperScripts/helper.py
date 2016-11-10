@@ -1,5 +1,7 @@
 from texttable import Texttable
-import Programming.TensorFlow.configuration as conf
+
+import Programming.configuration as conf
+
 
 def getLabelIndex(path, data_types):
      for i in range(len(data_types)):

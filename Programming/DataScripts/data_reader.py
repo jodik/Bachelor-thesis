@@ -1,9 +1,11 @@
+import array
+
 import numpy as np
 from cobs import cobs
-import array
+
+import Programming.configuration as conf
 import data_process
 from Programming.HelperScripts import helper
-import Programming.TensorFlow.configuration as conf
 from data import FullData
 
 

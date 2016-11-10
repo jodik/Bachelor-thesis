@@ -1,6 +1,8 @@
-import numpy as np
 import copy
-import Programming.TensorFlow.configuration as conf
+
+import numpy as np
+
+import Programming.configuration as conf
 from dataset import DataSet
 
 

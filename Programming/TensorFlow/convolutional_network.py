@@ -23,14 +23,16 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
-import time
-import numpy
-from six.moves import xrange
-import tensorflow as tf
 import sys
-from Programming.HelperScripts.time_calculator import TimeCalculator
+import time
+
+import numpy
+import tensorflow as tf
+from six.moves import xrange
+
+import Programming.configuration as conf
 from Programming.HelperScripts import helper
-import Programming.TensorFlow.configuration as conf
+from Programming.HelperScripts.time_calculator import TimeCalculator
 
 SOURCE_URL = 'http://yann.lecun.com/exdb/mnist/'
 WORK_DIRECTORY = 'data'

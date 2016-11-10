@@ -1,13 +1,15 @@
-import cv2
-import os 
-from cobs import cobs
 import array
+import os
+import time
 from os import walk
+
+import cv2
 import numpy as np
 import tensorflow as tf
-import time
+from cobs import cobs
+
+import Programming.configuration as conf
 from Programming.HelperScripts import helper
-import Programming.TensorFlow.configuration as conf
 
 TYPE_DIRECTORY = 'Cropped' # or Original
 BLACK_BORDER = False

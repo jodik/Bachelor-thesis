@@ -1,8 +1,9 @@
 import numpy
-import Programming.TensorFlow.configuration as conf
-import Programming.TensorFlow.ConvolutionalNetwork.myConvolutional as conv
-from Programming.DataScripts import data_reader
+
+import Programming.TensorFlow.convolutional_network as conv
+import Programming.configuration as conf
 from Programming.DataScripts import data_normalization
+from Programming.DataScripts import data_reader
 
 
 def compute(permutation_index):
