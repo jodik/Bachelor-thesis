@@ -14,3 +14,6 @@ class DataSet(object):
 
     def getImageSets(self):
         return self.train.images, self.validation.images, self.test.images
+
+    def getLabelSets(self):
+        return self.train.labels, self.validation.labels, self.test.labels
