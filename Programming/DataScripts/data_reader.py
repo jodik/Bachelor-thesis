@@ -15,7 +15,6 @@ def extract_data():
         num_of_images = int(len(all_images) / (conf.IMAGE_WIDTH * conf.IMAGE_HEIGHT * conf.NUM_CHANNELS))
         all_images = np.asarray(all_images, dtype=np.uint8)
         all_images = all_images.reshape(num_of_images, conf.IMAGE_HEIGHT, conf.IMAGE_WIDTH, conf.NUM_CHANNELS)
-        print(all_images[2][1])
         all_images = all_images / conf.PIXEL_DEPTH - 0.5
     with open(conf.SOURCE_FOLDER_NAME + 'labels.byte', "rb") as readdata:
         data = cobs.decode(readdata.read())
@@ -32,8 +31,6 @@ def extract_data():
         l = len("IMG_0519.JPG")
         for i in range(num_of_images):
             names.append(data[i * l:(i + 1) * l])
-    print('test3')
-    print(num_of_images)
     images = np.zeros((num_of_images, conf.IMAGE_HEIGHT, conf.IMAGE_WIDTH, conf.NUM_CHANNELS))
     size = 0
     names_chosen = []
@@ -46,9 +43,6 @@ def extract_data():
             names_chosen.append(names[i])
             size += 1
     images = images[0:size]
-    print('test4')
-    # for i in range(count):
-    #   images[i] = images[i].reshape(width, height, channels)
     return Data(images, correct_vals, np.array(names_chosen), ishard)
 
 
@@ -56,4 +50,6 @@ def read_datasets(permutation_index):
     np.random.seed(conf.SEED)
 
     data = extract_data()
+    if not conf.EXTENDED_DATASET:
+        data = data.createData(0, data.size() / 8)
     return data_process.process(data, permutation_index)

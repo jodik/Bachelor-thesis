@@ -120,20 +120,15 @@ def normalize(train_images, validation_images, test_images):
 
     c = n/sum_rgb_pow
     c = np.sqrt(c)
-    print('c')
-    print(c)
     validation_images *= c
     train_images *= c
     test_images *= c
 
-    print (validation_images[0, 15])
     return train_images, validation_images, test_images
 
 
 def equalCountsPerms(labels):
-    print("equalCountsPerms")
     counts = np.bincount(labels)
-    print(counts)
     counts = np.full(len(counts), max(counts), dtype=np.uint32)
     res = np.zeros(0, dtype=np.uint8)
     while max(counts) > 0:
@@ -156,14 +151,7 @@ def read_data_sets(permutation_index, dtype=tf.float32):
 
   train_images, validation_images, test_images = normalize(train_images, validation_images, test_images)
 
-  print("tu")
-  print(len(train_labels))
-  print(len(validation_labels))
-  print(len(test_labels))
   train_perm, validation_perm, test_perm = map(lambda x: equalCountsPerms(x), (train_labels, validation_labels, test_labels))
-  print (len(train_perm))
-  print(len(validation_perm))
-  print(len(test_perm))
   train_images = train_images[train_perm]
   train_labels = train_labels[train_perm]
   validation_images = validation_images[validation_perm]

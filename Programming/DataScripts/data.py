@@ -1,5 +1,3 @@
-import Programming.TensorFlow.configuration as conf
-
 class Data(object):
     def __init__(self, images, labels, names, ishard):
         self.data = (images, labels, names, ishard)

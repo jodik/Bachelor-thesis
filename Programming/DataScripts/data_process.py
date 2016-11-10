@@ -4,22 +4,16 @@ import copy
 import Programming.TensorFlow.configuration as conf
 
 
-def filterAndCreateTrainSet(validation_names, test_names, images, labels, names):
-    size = 0
-    print('LEN: '+str(len(Set(names))))
-    for i in range(images.shape[0]):
-        if (names[i] not in validation_names) and (names[i] not in test_names):
-            images[size] = images[i]
-            labels[size] = labels[i]
-            names[size] = names[i]
-            size += 1
-    perm = np.arange(size)
+def filterAndCreateTrainSet(validation_names, test_names, full_data):
+    chosen = []
+    for i in range(full_data.size()):
+        if (full_data.names[i] not in validation_names) and (full_data.names[i] not in test_names):
+            chosen.append(i)
+    train_data = copy.deepcopy(full_data).applyPermutation(chosen)
+    perm = np.arange(train_data.size())
     np.random.shuffle(perm)
-    images = images[perm]
-    labels = labels[perm]
-    names = names[perm]
-    print('LEN: '+str(len(Set(names))))
-    return images, labels, names
+    train_data.applyPermutation(perm)
+    return train_data
 
 
 def getPermutation(permutation_index, labels, validation_size, test_size):
@@ -76,11 +70,7 @@ def process(full_data, permutation_index):
     test_data = original_data.createData(0, TEST_SIZE)
     validation_data = original_data.createData(TEST_SIZE, TEST_SIZE + VALIDATION_SIZE)
 
-    if conf.EXTENDED_DATASET:
-        train_images, train_labels, train_names = filterAndCreateTrainSet(validation_data.names, test_data.names, full_data.images, full_data.labels,
-                                                                          full_data.names)
-    else:
-        train_data = full_data.createData(TEST_SIZE + VALIDATION_SIZE, full_data.size())
-        train_images, train_labels, train_names = train_data.images, train_data.labels, train_data.names
+    train_data = filterAndCreateTrainSet(validation_data.names, test_data.names, full_data)
+    train_images, train_labels, train_names = train_data.images, train_data.labels, train_data.names
 
     return train_images, train_labels, validation_data.images, validation_data.labels, test_data.images, test_data.labels
