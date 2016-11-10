@@ -9,7 +9,7 @@ class DataSet(object):
         return self.data
 
     def size(self):
-        size = self.train.size() + self.validation.size() + self.test.size()
+        size = self.train.num_examples + self.validation.num_examples + self.test.num_examples
         return size
 
     def getImageSets(self):

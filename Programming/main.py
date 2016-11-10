@@ -1,12 +1,22 @@
 import numpy
 import Programming.TensorFlow.configuration as conf
-import Programming.TensorFlow.ConvolutionalNetwork.myDatasetCon as mds
 import Programming.TensorFlow.ConvolutionalNetwork.myConvolutional as conv
+from Programming.DataScripts import data_reader
+from Programming.DataScripts import data_normalization
 
 
 def compute(permutation_index):
-    myset = mds.read_data_sets(permutation_index)
-    return conv.compute(myset)
+    data_sets = data_reader.read_datasets(permutation_index)
+
+    data_normalization.normalize(data_sets)
+
+    train_perm, validation_perm, test_perm = map(lambda x: data_normalization.equalCountsPerms(x),
+                                                 data_sets.getLabelSets())
+    data_sets.train.apply_permutation(train_perm)
+    data_sets.validation.apply_permutation(validation_perm)
+    data_sets.test.apply_permutation(test_perm)
+
+    return conv.compute(data_sets)
 
 
 def main():

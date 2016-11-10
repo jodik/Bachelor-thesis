@@ -6,13 +6,13 @@ from dataset import DataSet
 
 def filterAndCreateTrainSet(validation_names, test_names, full_data):
     chosen = []
-    for i in range(full_data.size()):
+    for i in range(full_data.num_examples):
         if (full_data.names[i] not in validation_names) and (full_data.names[i] not in test_names):
             chosen.append(i)
-    train_data = copy.deepcopy(full_data).applyPermutation(chosen)
-    perm = np.arange(train_data.size())
+    train_data = copy.deepcopy(full_data).apply_permutation(chosen)
+    perm = np.arange(train_data.num_examples)
     np.random.shuffle(perm)
-    train_data.applyPermutation(perm)
+    train_data.apply_permutation(perm)
     return train_data
 
 
@@ -60,9 +60,9 @@ def process(full_data, permutation_index):
 
     perm = getPermutation(permutation_index, full_data.labels[:original_set_size], VALIDATION_SIZE, TEST_SIZE)
 
-    original_data = copy.deepcopy(full_data).applyPermutation(perm)
-    test_data = original_data.createData(0, TEST_SIZE)
-    validation_data = original_data.createData(TEST_SIZE, TEST_SIZE + VALIDATION_SIZE)
+    original_data = copy.deepcopy(full_data).apply_permutation(perm)
+    test_data = original_data.create_data(0, TEST_SIZE)
+    validation_data = original_data.create_data(TEST_SIZE, TEST_SIZE + VALIDATION_SIZE)
     train_data = filterAndCreateTrainSet(validation_data.names, test_data.names, full_data)
 
     data_set = DataSet(train_data, validation_data, test_data)

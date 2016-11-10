@@ -23,8 +23,8 @@ def extract_data():
 
     with open(conf.SOURCE_FOLDER_NAME + 'ishard.byte', "rb") as readdata:
         data = cobs.decode(readdata.read())
-        ishard = array.array('B', data)
-        ishard = np.asarray(ishard, dtype=np.uint8)
+        is_hard_all = array.array('B', data)
+        is_hard_all = np.asarray(is_hard_all, dtype=np.uint8)
     names = []
     with open(conf.SOURCE_FOLDER_NAME + 'names.byte', "rb") as readdata:
         data = cobs.decode(readdata.read())
@@ -32,18 +32,21 @@ def extract_data():
         for i in range(num_of_images):
             names.append(data[i * l:(i + 1) * l])
     images = np.zeros((num_of_images, conf.IMAGE_HEIGHT, conf.IMAGE_WIDTH, conf.NUM_CHANNELS))
+    is_hard = np.zeros(num_of_images, dtype=np.uint8)
     size = 0
     names_chosen = []
     for i in range(num_of_images):
         label_word = conf.ALL_DATA_TYPES[labels[i]]
-        if label_word in conf.DATA_TYPES_USED and (ishard[i] == 0 or conf.HARD_DIFFICULTY):
+        if label_word in conf.DATA_TYPES_USED and (is_hard_all[i] == 0 or conf.HARD_DIFFICULTY):
             category = helper.getLabelIndex(label_word, conf.DATA_TYPES_USED)
             correct_vals = np.append(correct_vals, [category])
             images[size] = all_images[i]
+            is_hard[size] = is_hard_all[i]
             names_chosen.append(names[i])
             size += 1
     images = images[0:size]
-    return FullData(images, correct_vals, np.array(names_chosen), ishard)
+    is_hard = is_hard[0:size]
+    return FullData(images, correct_vals, np.array(names_chosen), is_hard)
 
 
 def read_datasets(permutation_index):
@@ -51,5 +54,5 @@ def read_datasets(permutation_index):
 
     data = extract_data()
     if not conf.EXTENDED_DATASET:
-        data = data.createData(0, data.size() / 8)
+        data = data.create_data(0, data.num_examples / 8)
     return data_process.process(data, permutation_index)
