@@ -56,15 +56,15 @@ def getPermutation(permutation_index, labels, validation_size, test_size):
 
 
 def process(full_data, permutation_index):
-    original_set_size = full_data.getOriginalDatasetSize()
+    original_set_size = full_data.get_original_data_set_size()
     TEST_SIZE = int(original_set_size * (conf.TEST_PERCENTAGE / 100.0))
     VALIDATION_SIZE = int(original_set_size * (conf.VALIDATION_PERCENTAGE / 100.0))
 
     perm = getPermutation(permutation_index, full_data.labels[:original_set_size], VALIDATION_SIZE, TEST_SIZE)
 
     original_data = copy.deepcopy(full_data).apply_permutation(perm)
-    test_data = original_data.create_data(0, TEST_SIZE)
-    validation_data = original_data.create_data(TEST_SIZE, TEST_SIZE + VALIDATION_SIZE)
+    test_data = original_data.create_data_set(0, TEST_SIZE)
+    validation_data = original_data.create_data_set(TEST_SIZE, TEST_SIZE + VALIDATION_SIZE)
     train_data = filterAndCreateTrainSet(validation_data.names, test_data.names, full_data)
 
     data_sets = DataSets(train_data, validation_data, test_data)

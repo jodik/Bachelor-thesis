@@ -6,7 +6,7 @@ from cobs import cobs
 import Programming.configuration as conf
 import data_process
 from Programming.HelperScripts import helper
-from data import FullData
+from data_set import FullData
 
 
 def extract_data():
@@ -56,5 +56,5 @@ def read_datasets(permutation_index):
 
     data = extract_data()
     if not conf.EXTENDED_DATASET:
-        data = data.create_data(0, data.num_examples / 8)
+        data = data.create_data_set(0, data.num_examples / 8)
     return data_process.process(data, permutation_index)
