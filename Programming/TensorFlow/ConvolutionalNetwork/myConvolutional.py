@@ -27,7 +27,6 @@ import time
 import numpy
 from six.moves import xrange
 import tensorflow as tf
-import Programming.TensorFlow.ConvolutionalNetwork.myDatasetCon as mds
 import sys
 from Programming.HelperScripts.time_calculator import TimeCalculator
 from Programming.HelperScripts import helper
@@ -62,18 +61,15 @@ def writeTestStats(test_confusion_matrix, test_error):
       print('Test error, each category same value: %.1f%%' % (100 - percentage_each_category_same_value))
       helper.writeConfusionMatrix(test_confusion_matrix)
 
-def compute(permutation_index = 0):  
-   # Get the data.
-  myset = mds.read_data_sets(permutation_index)
-    
-  test_data = myset.test.images
-  test_labels = myset.test.labels
-  validation_data = myset.validation.images
-  validation_labels = myset.validation.labels
-  train_data = myset.train.images
-  train_labels = myset.train.labels
-    
-  print(train_data.shape)
+
+def compute(datasets):
+
+  test_data = datasets.test.images
+  test_labels = datasets.test.labels
+  validation_data = datasets.validation.images
+  validation_labels = datasets.validation.labels
+  train_data = datasets.train.images
+  train_labels = datasets.train.labels
     
   train_size = train_labels.shape[0]
 
@@ -278,21 +274,6 @@ def compute(permutation_index = 0):
 
     return test_error, test_confusion_matrix
 
-def main(argv=None):  # pylint: disable=unused-argument
-    if conf.FULL_CROSS_VALIDATION:
-        result = zip(numpy.zeros(conf.NUM_LABELS), numpy.zeros(conf.NUM_LABELS), numpy.zeros(conf.NUM_LABELS))
-        error = 0
-        confusion_matrix_across_all_iterations = numpy.zeros((len(conf.DATA_TYPES_USED), len(conf.DATA_TYPES_USED)), dtype=int)
-        for i in range(conf.CROSS_VALIDATION_ITERATIONS):
-            print('\nCOMPUTE %d. CROSSVALIDATION:\n' % (i+1))
-            test_error, confusion_matrix = compute(i)
-            error += test_error
-            confusion_matrix_across_all_iterations += confusion_matrix
 
-        print('\n\n Full Cross Validation results:\n')
-        writeTestStats(confusion_matrix_across_all_iterations, error / conf.CROSS_VALIDATION_ITERATIONS)
-    else:
-        compute(conf.PERMUTATION_INDEX)
     
-if __name__ == '__main__':
-  tf.app.run()
+

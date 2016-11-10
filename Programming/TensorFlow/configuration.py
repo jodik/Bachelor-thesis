@@ -38,10 +38,10 @@ IMAGE_WIDTH = 16 * SCALE
 SUB_FOLDER = 'Bordered with black color/' if BLACK_BORDER else 'Extended with itself/'
 if CROPPED_VERSION:
     IMAGE_HEIGHT = 16 * SCALE
-    SOURCE_FOLDER_NAME = "../../../Datasets/Cropped datasets/"+SUB_FOLDER+"Dataset_"+str(IMAGE_WIDTH)+"_"+str(IMAGE_HEIGHT)+"/";
+    SOURCE_FOLDER_NAME = "../Datasets/Cropped datasets/"+SUB_FOLDER+"Dataset_"+str(IMAGE_WIDTH)+"_"+str(IMAGE_HEIGHT)+"/";
 else:
     IMAGE_HEIGHT = 12 * SCALE
-    SOURCE_FOLDER_NAME = "../../../Datasets/Original datasets/Dataset_"+str(IMAGE_WIDTH)+"_"+str(IMAGE_HEIGHT)+"/";
+    SOURCE_FOLDER_NAME = "../Datasets/Original datasets/Dataset_"+str(IMAGE_WIDTH)+"_"+str(IMAGE_HEIGHT)+"/";
 
 ALL_DATA_TYPES = sorted(['Blue',
  'Box',
