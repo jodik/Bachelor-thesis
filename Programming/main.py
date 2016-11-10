@@ -5,6 +5,7 @@ import Programming.configuration as conf
 from Programming.DataScripts import data_normalization
 from Programming.DataScripts import data_reader
 from Programming.DataScripts import data_process
+from Programming.HelperScripts import helper
 
 
 def compute(permutation_index):
@@ -27,7 +28,7 @@ def main():
             confusion_matrix_across_all_iterations += confusion_matrix
 
         print('\n\n Full Cross Validation results:\n')
-        writeTestStats(confusion_matrix_across_all_iterations, error / conf.CROSS_VALIDATION_ITERATIONS)
+        helper.write_test_stats(confusion_matrix_across_all_iterations, error / conf.CROSS_VALIDATION_ITERATIONS)
     else:
         compute(conf.PERMUTATION_INDEX)
 

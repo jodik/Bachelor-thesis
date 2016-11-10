@@ -53,17 +53,6 @@ def error_rate(predictions, labels):
   return(error_rate, correct)
 
    
-def writeTestStats(test_confusion_matrix, test_error):
-      percentage_each_category_same_value = 0.0
-      for i in range(len(test_confusion_matrix)):
-          percentage_each_category_same_value += test_confusion_matrix[i, i]/sum(test_confusion_matrix[i])
-      percentage_each_category_same_value /= len(test_confusion_matrix)
-      percentage_each_category_same_value *= 100
-      print('Test error: %.1f%%' % test_error)
-      print('Test error, each category same value: %.1f%%' % (100 - percentage_each_category_same_value))
-      helper.writeConfusionMatrix(test_confusion_matrix)
-
-
 def compute(datasets):
 
   test_data = datasets.test.images

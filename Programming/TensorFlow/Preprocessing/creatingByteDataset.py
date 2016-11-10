@@ -91,7 +91,7 @@ for SCALE in range(1):
             if(filename != '.DS_Store' and filename!='data.byte'):
                 img = cv2.imread(dirpath + '/' + filename, cv2.IMREAD_COLOR)
                 images.append(img)
-                labels.append(helper.getLabelIndex(dirpath, conf.ALL_DATA_TYPES))
+                labels.append(helper.get_label_index(dirpath, conf.ALL_DATA_TYPES))
                 is_hard.append(isHard(dirpath))
                 names.append(filename)
                 byte_data.extend(img.flatten())

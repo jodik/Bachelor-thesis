@@ -40,7 +40,7 @@ def extract_data():
     for i in range(num_of_images):
         label_word = conf.ALL_DATA_TYPES[labels[i]]
         if label_word in conf.DATA_TYPES_USED and (is_hard_all[i] == 0 or conf.HARD_DIFFICULTY):
-            category = helper.getLabelIndex(label_word, conf.DATA_TYPES_USED)
+            category = helper.get_label_index(label_word, conf.DATA_TYPES_USED)
             correct_vals = np.append(correct_vals, [category])
             images[size] = all_images[i]
             is_hard[size] = is_hard_all[i]
