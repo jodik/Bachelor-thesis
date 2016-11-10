@@ -90,41 +90,29 @@ class MyDataSet(object):
     return self._images[start:end], self._labels[start:end]
 
 
-def normalize(train_images, validation_images, test_images):
-    images = (train_images, validation_images, test_images)
-    n = 0
-    sum_rgb = np.zeros(3, dtype=np.float64)
+def normalize(data_set):
+    num_of_pixels = 0
+    image_sets = data_set.getImageSets()
+    sum_rgb = np.sum(np.sum(s, axis=(0, 1, 2)) for s in image_sets)
 
-    for image_set in images:
-        n += image_set.size/3
-        for image in image_set:
-            for col_i in image:
-                for pixel in col_i:
-                    sum_rgb += pixel
+    for image_set in image_sets:
+        num_of_pixels += image_set.size/3
 
-    sum_rgb /= n
-    #sum_rgb = (math.sqrt(n)/np.sqrt(sum_rgb))
-    train_images -= sum_rgb
-    test_images -= sum_rgb
-    validation_images -= sum_rgb
+    sum_rgb /= num_of_pixels
+    for image_set in image_sets:
+        image_set -= sum_rgb
 
     sum_rgb_pow = np.zeros(3, dtype=np.float64)
-    images = (train_images, validation_images, test_images)
-    for image_set in images:
-        n += image_set.size/3
-        for image in image_set:
-            for col_i in image:
-                for pixel in col_i:
-                    color_pow = np.multiply(pixel, pixel)
-                    sum_rgb_pow += color_pow
+    for image_set in image_sets:
+        tmp = np.apply_along_axis(lambda x: np.power(x, 2), 2, image_set)
+        sum_rgb_pow += np.sum(tmp, axis=(0, 1, 2))
 
-    c = n/sum_rgb_pow
+    c = num_of_pixels/sum_rgb_pow
     c = np.sqrt(c)
-    validation_images *= c
-    train_images *= c
-    test_images *= c
+    for image_set in image_sets:
+        image_set *= c
 
-    return train_images, validation_images, test_images
+    return image_sets
 
 
 def equalCountsPerms(labels):
@@ -147,9 +135,10 @@ def read_data_sets(permutation_index, dtype=tf.float32):
 
   data_sets = DataSets()
 
-  train_images, train_labels, validation_images, validation_labels, test_images, test_labels = data_reader.read_datasets(permutation_index)
+  data_set = data_reader.read_datasets(permutation_index)
 
-  train_images, validation_images, test_images = normalize(train_images, validation_images, test_images)
+  train_images, validation_images, test_images = normalize(data_set)
+  train_labels, validation_labels, test_labels = data_set.train.labels, data_set.validation.labels, data_set.test.labels
 
   train_perm, validation_perm, test_perm = map(lambda x: equalCountsPerms(x), (train_labels, validation_labels, test_labels))
   train_images = train_images[train_perm]

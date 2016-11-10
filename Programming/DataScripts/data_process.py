@@ -1,7 +1,7 @@
 import numpy as np
-from sets import Set
 import copy
 import Programming.TensorFlow.configuration as conf
+from dataset import DataSet
 
 
 def filterAndCreateTrainSet(validation_names, test_names, full_data):
@@ -64,13 +64,13 @@ def process(full_data, permutation_index):
     TEST_SIZE = int(original_set_size * (conf.TEST_PERCENTAGE / 100.0))
     VALIDATION_SIZE = int(original_set_size * (conf.VALIDATION_PERCENTAGE / 100.0))
 
-    perm2 = getPermutation(permutation_index, full_data.labels[:original_set_size], VALIDATION_SIZE, TEST_SIZE)
+    perm = getPermutation(permutation_index, full_data.labels[:original_set_size], VALIDATION_SIZE, TEST_SIZE)
 
-    original_data = copy.deepcopy(full_data).applyPermutation(perm2)
+    original_data = copy.deepcopy(full_data).applyPermutation(perm)
     test_data = original_data.createData(0, TEST_SIZE)
     validation_data = original_data.createData(TEST_SIZE, TEST_SIZE + VALIDATION_SIZE)
-
     train_data = filterAndCreateTrainSet(validation_data.names, test_data.names, full_data)
-    train_images, train_labels, train_names = train_data.images, train_data.labels, train_data.names
 
-    return train_images, train_labels, validation_data.images, validation_data.labels, test_data.images, test_data.labels
+    data_set = DataSet(train_data, validation_data, test_data)
+
+    return data_set
