@@ -1,26 +1,22 @@
-import numpy
+import numpy as np
 
-import Programming.TensorFlow.convolutional_network as conv
+from Programming.TensorFlow import convolutional_network
 import Programming.configuration as conf
 from Programming.DataScripts import data_normalization
 from Programming.DataScripts import data_reader
+from Programming.DataScripts import data_process
 
 
 def compute(permutation_index):
-    data_sets = data_reader.read_datasets(permutation_index)
+    full_data_set = data_reader.read_datasets(permutation_index)
+    data_sets = data_process.process(full_data_set, permutation_index)
+    data_sets = data_normalization.normalize_data_sets(data_sets)
 
-    data_normalization.normalize(data_sets)
-
-    train_perm, validation_perm, test_perm = map(lambda x: data_normalization.equalCountsPerms(x),
-                                                 data_sets.get_label_sets())
-    data_sets.train.apply_permutation(train_perm)
-    data_sets.validation.apply_permutation(validation_perm)
-    data_sets.test.apply_permutation(test_perm)
-
-    return conv.compute(data_sets)
+    return convolutional_network.compute(data_sets)
 
 
 def main():
+    np.random.seed(conf.SEED)
     if conf.FULL_CROSS_VALIDATION:
         error = 0
         confusion_matrix_across_all_iterations = numpy.zeros((len(conf.DATA_TYPES_USED), len(conf.DATA_TYPES_USED)), dtype=int)

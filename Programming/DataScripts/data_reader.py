@@ -52,9 +52,7 @@ def extract_data():
 
 
 def read_datasets(permutation_index):
-    np.random.seed(conf.SEED)
-
-    data = extract_data()
+    full_data_set = extract_data()
     if not conf.EXTENDED_DATASET:
-        data = data.create_data_set(0, data.num_examples / 8)
-    return data_process.process(data, permutation_index)
+        full_data_set = full_data_set.create_data_set(0, full_data_set.num_examples / 8)
+    return full_data_set
