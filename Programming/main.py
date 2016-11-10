@@ -12,7 +12,7 @@ def compute(permutation_index):
     data_normalization.normalize(data_sets)
 
     train_perm, validation_perm, test_perm = map(lambda x: data_normalization.equalCountsPerms(x),
-                                                 data_sets.getLabelSets())
+                                                 data_sets.get_label_sets())
     data_sets.train.apply_permutation(train_perm)
     data_sets.validation.apply_permutation(validation_perm)
     data_sets.test.apply_permutation(test_perm)

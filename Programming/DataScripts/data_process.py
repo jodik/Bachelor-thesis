@@ -3,7 +3,7 @@ import copy
 import numpy as np
 
 import Programming.configuration as conf
-from dataset import DataSet
+from data_sets import DataSets
 
 
 def filterAndCreateTrainSet(validation_names, test_names, full_data):
@@ -67,6 +67,6 @@ def process(full_data, permutation_index):
     validation_data = original_data.create_data(TEST_SIZE, TEST_SIZE + VALIDATION_SIZE)
     train_data = filterAndCreateTrainSet(validation_data.names, test_data.names, full_data)
 
-    data_set = DataSet(train_data, validation_data, test_data)
+    data_sets = DataSets(train_data, validation_data, test_data)
 
-    return data_set
+    return data_sets

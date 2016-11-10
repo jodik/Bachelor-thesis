@@ -3,7 +3,7 @@ import numpy as np
 
 def normalize(data_set):
     num_of_pixels = 0
-    image_sets = data_set.getImageSets()
+    image_sets = data_set.get_image_sets()
     sum_rgb = np.sum(np.sum(s, axis=(0, 1, 2)) for s in image_sets)
 
     for image_set in image_sets:
@@ -23,7 +23,7 @@ def normalize(data_set):
     for image_set in image_sets:
         image_set *= c
 
-    return data_set.getImageSets()
+    return data_set.get_image_sets()
 
 
 def equalCountsPerms(labels):
