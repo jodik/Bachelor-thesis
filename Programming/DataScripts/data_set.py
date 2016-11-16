@@ -60,6 +60,10 @@ class DataSet(object):
         end = self._index_in_epoch
         return self._images[start:end], self._labels[start:end]
 
+    def flatten(self):
+        new_data = map(lambda x: x.reshape(len(x), -1), self._data)
+        self.__init__(*new_data)
+
 
 class FullData(DataSet):
     def get_original_data_set_size(self):

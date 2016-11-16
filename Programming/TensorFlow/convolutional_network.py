@@ -261,7 +261,7 @@ def compute(datasets):
     print('Number of epochs: %.1f' % num_of_epochs)
     print('Min validation error: %.1f%%' % min_validation_error)
     test_error, test_confusion_matrix = past_test_results[best_validation_error_index]
-    writeTestStats(test_confusion_matrix, test_error)
+    helper.write_test_stats(test_confusion_matrix, test_error)
 
     return test_error, test_confusion_matrix
 

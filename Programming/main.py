@@ -1,6 +1,7 @@
 import numpy as np
 
 from Programming.TensorFlow import convolutional_network
+from Programming.TensorFlow import pca_svm
 import Programming.configuration as conf
 from Programming.DataScripts import data_normalization
 from Programming.DataScripts import data_reader
@@ -9,10 +10,11 @@ from Programming.HelperScripts import helper
 
 
 def compute(permutation_index):
-    full_data_set = data_reader.read_datasets(permutation_index)
+    full_data_set = data_reader.read_data()
     data_sets = data_process.process(full_data_set, permutation_index)
     data_sets = data_normalization.normalize_data_sets(data_sets)
 
+    return pca_svm.compute(data_sets)
     return convolutional_network.compute(data_sets)
 
 
@@ -20,7 +22,7 @@ def main():
     np.random.seed(conf.SEED)
     if conf.FULL_CROSS_VALIDATION:
         error = 0
-        confusion_matrix_across_all_iterations = numpy.zeros((len(conf.DATA_TYPES_USED), len(conf.DATA_TYPES_USED)), dtype=int)
+        confusion_matrix_across_all_iterations = np.zeros((len(conf.DATA_TYPES_USED), len(conf.DATA_TYPES_USED)), dtype=int)
         for i in range(conf.CROSS_VALIDATION_ITERATIONS):
             print('\nCOMPUTE %d. CROSSVALIDATION:\n' % (i+1))
             test_error, confusion_matrix = compute(i)

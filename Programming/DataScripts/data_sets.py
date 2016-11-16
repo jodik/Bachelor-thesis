@@ -26,3 +26,7 @@ class DataSets(object):
 
     def get_label_sets(self):
         return self.train.labels, self.validation.labels, self.test.labels
+
+    def flatten(self):
+        for x in self._data:
+            x.flatten()
