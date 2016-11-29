@@ -12,13 +12,13 @@ BASE_LEARNING_RATE = 0.0005
 DECAY_RATE = 0.6
 HARD_DIFFICULTY = True
 PERMUTATION_INDEX = 3
-FULL_CROSS_VALIDATION = True
+FULL_CROSS_VALIDATION = False
 CROPPED_VERSION = True
 BLACK_BORDER = True
 MOMENTUM = 0.95
 DROPOUT_PROBABILITY = 0.6
 CROSS_VALIDATION_ITERATIONS = 5
-EXTENDED_DATASET = True
+EXTENDED_DATASET = False
 DECAY_STEP_X_TIMES_TRAIN_SIZE = 8
 
 # In case two convolutional layers
@@ -39,6 +39,7 @@ SUB_FOLDER = 'Bordered with black color/' if BLACK_BORDER else 'Extended with it
 if CROPPED_VERSION:
     IMAGE_HEIGHT = 16 * SCALE
     SOURCE_FOLDER_NAME = "../Datasets/Cropped datasets/"+SUB_FOLDER+"Dataset_"+str(IMAGE_WIDTH)+"_"+str(IMAGE_HEIGHT)+"/";
+    SOURCE_FOLDER_NAME2 = "../Datasets/Cropped datasets/" + SUB_FOLDER + "Dataset_160_160/";
 else:
     IMAGE_HEIGHT = 12 * SCALE
     SOURCE_FOLDER_NAME = "../Datasets/Original datasets/Dataset_"+str(IMAGE_WIDTH)+"_"+str(IMAGE_HEIGHT)+"/";

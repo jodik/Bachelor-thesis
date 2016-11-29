@@ -1,6 +1,7 @@
 import numpy as np
 
 from Programming.TensorFlow import convolutional_network
+from Programming.TensorFlow import convolutional_network_edges
 from Programming.TensorFlow import pca_svm
 import Programming.configuration as conf
 from Programming.DataScripts import data_normalization
@@ -14,6 +15,7 @@ def compute(permutation_index):
     data_sets = data_process.process(full_data_set, permutation_index)
     data_sets = data_normalization.normalize_data_sets(data_sets)
 
+    return convolutional_network_edges.compute(data_sets)
     return pca_svm.compute(data_sets)
     return convolutional_network.compute(data_sets)
 
