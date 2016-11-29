@@ -4,6 +4,7 @@ from cobs import cobs
 import Programming.configuration as conf
 from Programming.HelperScripts import helper
 from data_set import FullData
+import cv2
 
 
 def read_basic(path):
@@ -32,6 +33,24 @@ def read_is_hard():
     return is_hard_all
 
 
+def read_edge_descriptors():
+    edge_descriptors_all = read_basic(conf.SOURCE_FOLDER_NAME2 + 'edges.byte')
+    #num_of_images = int(len(edge_descriptors_all) / (conf.IMAGE_WIDTH * conf.IMAGE_HEIGHT))
+    num_of_images = int(len(edge_descriptors_all) / (160 * 160))
+    #edge_descriptors_all = edge_descriptors_all.reshape(num_of_images, conf.IMAGE_HEIGHT, conf.IMAGE_WIDTH)
+    edge_descriptors_all = edge_descriptors_all.reshape(num_of_images, 160, 160, 1)
+    edge_descriptors_all = np.concatenate((edge_descriptors_all, edge_descriptors_all))
+    edge_descriptors_all = np.concatenate((edge_descriptors_all, edge_descriptors_all))
+    edge_descriptors_all = np.concatenate((edge_descriptors_all, edge_descriptors_all))
+    print(edge_descriptors_all.shape)
+    #cv2.imshow("as3", edge_descriptors_all[0])
+    #cv2.waitKey(0)
+    edge_descriptors_all = edge_descriptors_all / conf.PIXEL_DEPTH - 0.5
+    #cv2.imshow("as3", edge_descriptors_all[0])
+    #cv2.waitKey(0)
+    return edge_descriptors_all
+
+
 def read_names(num_of_images):
     names = []
     example = "IMG_0519.JPG"
@@ -43,9 +62,11 @@ def read_names(num_of_images):
     return names
 
 
-def filter_unselected_categories(all_images, num_of_all_images, all_labels, all_names, all_is_hard):
+def filter_unselected_categories(all_images, num_of_all_images, all_labels, all_names, all_is_hard, all_edge_descriptors):
     labels = np.zeros(num_of_all_images, dtype=np.uint8)
     images = np.zeros((num_of_all_images, conf.IMAGE_HEIGHT, conf.IMAGE_WIDTH, conf.NUM_CHANNELS))
+    #edge_descriptors = np.zeros((num_of_all_images, conf.IMAGE_HEIGHT, conf.IMAGE_WIDTH))
+    edge_descriptors = np.zeros((num_of_all_images, 160, 160, 1))
     is_hard = np.zeros(num_of_all_images, dtype=np.uint8)
     num_selected = 0
     names_chosen = []
@@ -56,23 +77,29 @@ def filter_unselected_categories(all_images, num_of_all_images, all_labels, all_
             labels[num_selected] = category
             images[num_selected] = all_images[i]
             is_hard[num_selected] = all_is_hard[i]
+            edge_descriptors[num_selected] = all_edge_descriptors[i]
             names_chosen.append(all_names[i])
             num_selected += 1
     images = images[0:num_selected]
     is_hard = is_hard[0:num_selected]
     labels = labels[0:num_selected]
-    return images, labels, np.array(names_chosen), is_hard
+    edge_descriptors = edge_descriptors[0:num_selected]
+    return images, labels, np.array(names_chosen), is_hard, edge_descriptors
 
 
 def extract_data():
     all_images = read_images()
     num_of_all_images = all_images.shape[0]
+
     all_labels = read_labels()
+
+    print (num_of_all_images, all_labels.shape[0])
     all_names = read_names(num_of_all_images)
     all_is_hard = read_is_hard()
+    all_edge_descriptors = read_edge_descriptors()
 
-    images, labels, names, is_hard = filter_unselected_categories(all_images, num_of_all_images, all_labels, all_names, all_is_hard)
-    return FullData(images, labels, names, is_hard)
+    images, labels, names, is_hard, edge_descriptors = filter_unselected_categories(all_images, num_of_all_images, all_labels, all_names, all_is_hard, all_edge_descriptors)
+    return FullData(images, labels, names, is_hard, edge_descriptors)
 
 
 def read_data():
