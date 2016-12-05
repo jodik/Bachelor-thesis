@@ -15,8 +15,8 @@ def compute(permutation_index):
     data_sets = data_process.process(full_data_set, permutation_index)
     data_sets = data_normalization.normalize_data_sets(data_sets)
 
-    return convolutional_network_edges.compute(data_sets)
-    return pca_svm.compute(data_sets)
+    #return convolutional_network_edges.compute(data_sets)
+    #return pca_svm.compute(data_sets)
     return convolutional_network.compute(data_sets)
 
 

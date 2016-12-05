@@ -1,3 +1,4 @@
+import TensorFlow.configuration as confs
 # By user
 SCALE = 2
 BATCH_SIZE = 100
@@ -7,8 +8,8 @@ EVAL_FREQUENCY = 30  # Number of steps between evaluations.
 SEED = 66478  # Set to None for random seed.
 TEST_PERCENTAGE = 20
 VALIDATION_PERCENTAGE = 20
-DATA_TYPES_USED = sorted(['Blue', 'Green', 'White', 'Box', 'Can', 'Chemical', 'Colorful'])
-BASE_LEARNING_RATE = 0.0005
+DATA_TYPES_USED = sorted(['Blue', 'Box', 'Can', 'Chemical', 'Colorful', 'Green', 'White'])
+BASE_LEARNING_RATE = 0.0001
 DECAY_RATE = 0.6
 HARD_DIFFICULTY = True
 PERMUTATION_INDEX = 3
@@ -39,7 +40,7 @@ SUB_FOLDER = 'Bordered with black color/' if BLACK_BORDER else 'Extended with it
 if CROPPED_VERSION:
     IMAGE_HEIGHT = 16 * SCALE
     SOURCE_FOLDER_NAME = "../Datasets/Cropped datasets/"+SUB_FOLDER+"Dataset_"+str(IMAGE_WIDTH)+"_"+str(IMAGE_HEIGHT)+"/";
-    SOURCE_FOLDER_NAME2 = "../Datasets/Cropped datasets/" + SUB_FOLDER + "Dataset_160_160/";
+    SOURCE_FOLDER_NAME2 = "../Datasets/Cropped datasets/" + SUB_FOLDER + "Dataset_"+str(confs.IMAGE_WIDTH)+"_"+str(confs.IMAGE_HEIGHT)+"/";
 else:
     IMAGE_HEIGHT = 12 * SCALE
     SOURCE_FOLDER_NAME = "../Datasets/Original datasets/Dataset_"+str(IMAGE_WIDTH)+"_"+str(IMAGE_HEIGHT)+"/";

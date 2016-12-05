@@ -8,7 +8,7 @@ SUB_FOLDER = 'Bordered with black color/' if BLACK_BORDER else 'Extended with it
 IMAGES_FOLDER_NAME = 'Images/' + TYPE_DIRECTORY + ' images/' + SUB_FOLDER
 DATASETS_FOLDER = 'Datasets/' + TYPE_DIRECTORY + ' datasets/' + SUB_FOLDER
 
-SCALE = 10
+SCALE = 3
 WIDTH = 16 * SCALE
 HEIGHT = 16 * SCALE
 DATASET_NAME = "Dataset_" + str(WIDTH) + "_" + str(HEIGHT) + '/'
