@@ -1,13 +1,11 @@
 import numpy as np
 
-from Programming.TensorFlow import convolutional_network
-from Programming.TensorFlow import convolutional_network_edges
-from Programming.TensorFlow import pca_svm
 import Programming.configuration as conf
 from Programming.DataScripts import data_normalization
-from Programming.DataScripts import data_reader
 from Programming.DataScripts import data_process
+from Programming.DataScripts import data_reader
 from Programming.HelperScripts import helper
+from Programming.TensorFlow.CNN import convolutional_network
 
 
 def compute(permutation_index):
