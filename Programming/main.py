@@ -5,7 +5,7 @@ from Programming.DataScripts import data_normalization
 from Programming.DataScripts import data_process
 from Programming.DataScripts import data_reader
 from Programming.HelperScripts import helper
-from Programming.TensorFlow.CNN import convolutional_network
+from Programming.Learning.CNN import cnn_default, cnn_edges
 
 
 def compute(permutation_index):
@@ -13,9 +13,9 @@ def compute(permutation_index):
     data_sets = data_process.process(full_data_set, permutation_index)
     data_sets = data_normalization.normalize_data_sets(data_sets)
 
-    #return convolutional_network_edges.compute(data_sets)
+    return cnn_edges.compute(data_sets)
     #return pca_svm.compute(data_sets)
-    return convolutional_network.compute(data_sets)
+    return cnn_default.compute(data_sets)
 
 
 def main():

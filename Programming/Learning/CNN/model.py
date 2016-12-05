@@ -1,6 +1,7 @@
 import tensorflow as tf
 import Programming.configuration as conf_global
 
+
 class Model(object):
     def __init__(self, configuration_specific):
         self.configuration_specific = configuration_specific

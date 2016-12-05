@@ -1,4 +1,4 @@
-import TensorFlow.configuration as confs
+import Programming.Learning.CNN.configuration_edges as confs
 # By user
 SCALE = 2
 BATCH_SIZE = 100

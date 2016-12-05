@@ -30,8 +30,8 @@ import numpy
 import tensorflow as tf
 from six.moves import xrange
 
+import Programming.Learning.CNN.configuration_edges as confs
 import Programming.configuration as conf
-import Programming.TensorFlow.configuration as confs
 from Programming.HelperScripts import helper
 from Programming.HelperScripts.time_calculator import TimeCalculator
 
@@ -47,6 +47,7 @@ def error_rate(predictions, labels):
                           numpy.sum(numpy.argmax(predictions, 1) == labels) /
                           predictions.shape[0])
     num_cat = max(labels) + 1
+    num_cat = len(conf.DATA_TYPES_USED)
     correct = numpy.zeros((num_cat, num_cat), dtype=int)
     for prediction, label in zip(predictions, labels):
         correct[int(label), numpy.argmax(prediction)] += 1

@@ -33,7 +33,7 @@ from six.moves import xrange
 import Programming.configuration as conf
 from Programming.HelperScripts import helper
 from Programming.HelperScripts.time_calculator import TimeCalculator
-from Programming.TensorFlow.CNN.model import Model
+from Programming.Learning.CNN.model import Model
 
 
 def error_rate(predictions, labels):
