@@ -10,7 +10,7 @@ class Model(object):
         self.init_convolutional_layers()
         self.init_normal_layers()
         self.init_predictions()
-        self.init_optimizers(train_size)
+        self.init_optimizer(train_size)
 
     def init_input_nodes(self):
         self.train_data_node = tf.placeholder(
@@ -104,7 +104,7 @@ class Model(object):
         # Predictions for the test and validation, which we'll compute less often.
         self.eval_prediction = tf.nn.softmax(self.create_eval_model())
 
-    def init_optimizers(self, train_size):
+    def init_optimizer(self, train_size):
         self.loss = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(
             self.train_logits, self.train_labels_node))
 
