@@ -135,7 +135,7 @@ class Model(object):
         # Decay once per epoch, using an exponential schedule starting at 0.01.
         self.learning_rate = tf.train.exponential_decay(
             self.configuration_specific.BASE_LEARNING_RATE,  # Base learning rate.
-            batch * conf_global.BATCH_SIZE,  # Current index into the dataset.
+            batch * self.configuration_specific.BATCH_SIZE,  # Current index into the dataset.
             self.configuration_specific.DECAY_STEP_X_TIMES_TRAIN_SIZE * train_size,  # Decay step.
             self.configuration_specific.DECAY_RATE,  # Decay rate.
             staircase=False)

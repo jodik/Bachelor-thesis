@@ -28,12 +28,13 @@ def write_confusion_matrix(matrix):
     print table.draw()
 
 
-def write_test_stats(test_confusion_matrix, test_error):
+def write_eval_stats(test_confusion_matrix, test_error, test_data = False):
     percentage_each_category_same_value = 0.0
     for i in range(len(test_confusion_matrix)):
         percentage_each_category_same_value += test_confusion_matrix[i, i] / sum(test_confusion_matrix[i])
     percentage_each_category_same_value /= len(test_confusion_matrix)
     percentage_each_category_same_value *= 100
-    print('Test error: %.1f%%' % test_error)
-    print('Test error, each category same value: %.1f%%' % (100 - percentage_each_category_same_value))
+    type_of_result = "Test" if test_data else "Validation"
+    print(type_of_result + ' error: %.1f%%' % test_error)
+    print(type_of_result + ' error, each category same value: %.1f%%' % (100 - percentage_each_category_same_value))
     write_confusion_matrix(test_confusion_matrix)

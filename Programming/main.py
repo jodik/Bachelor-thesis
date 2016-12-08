@@ -33,7 +33,7 @@ def main():
             confusion_matrix_across_all_iterations += confusion_matrix
 
         print('\n\n Full Cross Validation results:\n')
-        helper.write_test_stats(confusion_matrix_across_all_iterations, error / conf.CROSS_VALIDATION_ITERATIONS)
+        helper.write_eval_stats(confusion_matrix_across_all_iterations, error / conf.CROSS_VALIDATION_ITERATIONS)
     else:
         compute(conf.PERMUTATION_INDEX)
 
