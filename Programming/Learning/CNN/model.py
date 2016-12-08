@@ -6,14 +6,14 @@ class Model(object):
     def __init__(self, configuration_specific):
         self.configuration_specific = configuration_specific
 
-    def init(self, train_size):
-        self.init_input_nodes()
+    def init(self, train_size, eval_size):
+        self.init_input_nodes(eval_size)
         self.init_convolutional_layers()
         self.init_normal_layers()
         self.init_predictions()
         self.init_optimizer(train_size)
 
-    def init_input_nodes(self):
+    def init_input_nodes(self, eval_size):
         self.train_data_node = tf.placeholder(
             tf.float32,
             shape=(self.configuration_specific.BATCH_SIZE, self.configuration_specific.IMAGE_HEIGHT,
@@ -21,7 +21,7 @@ class Model(object):
         self.train_labels_node = tf.placeholder(tf.int64, shape=(self.configuration_specific.BATCH_SIZE,))
         self.eval_data_node = tf.placeholder(
             tf.float32,
-            shape=(self.configuration_specific.EVAL_BATCH_SIZE, self.configuration_specific.IMAGE_HEIGHT,
+            shape=(eval_size, self.configuration_specific.IMAGE_HEIGHT,
                    self.configuration_specific.IMAGE_WIDTH, self.configuration_specific.NUM_CHANNELS))
 
     def init_convolutional_layers(self):

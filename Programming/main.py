@@ -15,7 +15,7 @@ def compute(permutation_index):
     data_sets = data_process.process(full_data_set, permutation_index)
     data_sets = data_normalization.normalize_data_sets(data_sets)
 
-    cnn_run = CNNDefault(data_sets)
+    #cnn_run = CNNDefault(data_sets)
     cnn_run = CNNEdges(data_sets)
     return cnn_run.run()
     #return pca_svm.compute(data_sets)

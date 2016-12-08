@@ -9,7 +9,8 @@ class TimeCalculator(object):
 
     def show(self, message):
         current_time = time.time()
-        print self.name + ': Time for '+message+': ' + self.toString(current_time - self.lastly)
+        print '--------------------------------'
+        print self.name + ': '+message+': ' + self.toString(current_time - self.lastly)
         print self.name + ': Total time: ' + self.toString(self.getTotalTime())
         self.lastly = current_time
 

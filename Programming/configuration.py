@@ -2,7 +2,7 @@ import Programming.Learning.CNN.configuration_edges as confs
 # By user
 SCALE = 2
 BATCH_SIZE = 100
-TRAIN_VALIDATION_CONDINATION = 15
+TRAIN_VALIDATION_CONDINATION = 2
 EVAL_BATCH_SIZE = 151
 EVAL_FREQUENCY = 30  # Number of steps between evaluations.
 SEED = 66478  # Set to None for random seed.
