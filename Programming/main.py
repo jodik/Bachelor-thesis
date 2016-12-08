@@ -5,7 +5,9 @@ from Programming.DataScripts import data_normalization
 from Programming.DataScripts import data_process
 from Programming.DataScripts import data_reader
 from Programming.HelperScripts import helper
-from Programming.Learning.CNN import cnn_default, cnn_edges
+from Programming.Learning.CNN import cnn_edges
+from Programming.Learning.CNN.cnn_default import CNNDefault
+from Programming.Learning.CNN.cnn_edges import CNNEdges
 
 
 def compute(permutation_index):
@@ -13,9 +15,10 @@ def compute(permutation_index):
     data_sets = data_process.process(full_data_set, permutation_index)
     data_sets = data_normalization.normalize_data_sets(data_sets)
 
-    return cnn_edges.compute(data_sets)
+    cnn_run = CNNDefault(data_sets)
+    cnn_run = CNNEdges(data_sets)
+    return cnn_run.run()
     #return pca_svm.compute(data_sets)
-    return cnn_default.compute(data_sets)
 
 
 def main():
@@ -35,4 +38,4 @@ def main():
         compute(conf.PERMUTATION_INDEX)
 
 if __name__ == '__main__':
-  main()
+    main()

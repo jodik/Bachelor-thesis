@@ -2,14 +2,15 @@ import time
 
 
 class TimeCalculator(object):
-    def __init__(self):
+    def __init__(self, name):
         self.t = time.time()
         self.lastly = self.t
+        self.name = name
 
     def show(self, message):
         current_time = time.time()
-        print 'Time for '+message+': ' + self.toString(current_time - self.lastly)
-        print 'Total time: ' + self.toString(self.getTotalTime())
+        print self.name + ': Time for '+message+': ' + self.toString(current_time - self.lastly)
+        print self.name + ': Total time: ' + self.toString(self.getTotalTime())
         self.lastly = current_time
 
     def getTotalTime(self):

@@ -16,29 +16,37 @@ class Model(object):
     def init_input_nodes(self):
         self.train_data_node = tf.placeholder(
             tf.float32,
-            shape=(self.configuration_specific.BATCH_SIZE, self.configuration_specific.IMAGE_HEIGHT, self.configuration_specific.IMAGE_WIDTH, self.configuration_specific.NUM_CHANNELS))
+            shape=(self.configuration_specific.BATCH_SIZE, self.configuration_specific.IMAGE_HEIGHT,
+                   self.configuration_specific.IMAGE_WIDTH, self.configuration_specific.NUM_CHANNELS))
         self.train_labels_node = tf.placeholder(tf.int64, shape=(self.configuration_specific.BATCH_SIZE,))
         self.eval_data_node = tf.placeholder(
             tf.float32,
-            shape=(self.configuration_specific.EVAL_BATCH_SIZE, self.configuration_specific.IMAGE_HEIGHT, self.configuration_specific.IMAGE_WIDTH, self.configuration_specific.NUM_CHANNELS))
+            shape=(self.configuration_specific.EVAL_BATCH_SIZE, self.configuration_specific.IMAGE_HEIGHT,
+                   self.configuration_specific.IMAGE_WIDTH, self.configuration_specific.NUM_CHANNELS))
 
     def init_convolutional_layers(self):
         self.conv1_weights = tf.Variable(
-            tf.truncated_normal([5, 5, self.configuration_specific.NUM_CHANNELS, self.configuration_specific.CONV_FIRST_DEPTH],  # 5x5 filter, depth 32.
-                                stddev=0.1,
-                                seed=conf_global.SEED))
+            tf.truncated_normal(
+                [self.configuration_specific.CONV_FIRST_FILTER_SIZE, self.configuration_specific.CONV_FIRST_FILTER_SIZE, self.configuration_specific.NUM_CHANNELS, self.configuration_specific.CONV_FIRST_DEPTH],
+                # 5x5 filter, depth 32.
+                stddev=0.1,
+                seed=conf_global.SEED))
         self.conv1_biases = tf.Variable(tf.zeros([self.configuration_specific.CONV_FIRST_DEPTH]))
         self.conv2_weights = tf.Variable(
-            tf.truncated_normal([5, 5, self.configuration_specific.CONV_FIRST_DEPTH, self.configuration_specific.CONV_SECOND_DEPTH],
-                                stddev=0.1,
-                                seed=conf_global.SEED))
+            tf.truncated_normal(
+                [self.configuration_specific.CONV_SECOND_FILTER_SIZE, self.configuration_specific.CONV_SECOND_FILTER_SIZE, self.configuration_specific.CONV_FIRST_DEPTH, self.configuration_specific.CONV_SECOND_DEPTH],
+                stddev=0.1,
+                seed=conf_global.SEED))
         self.conv2_biases = tf.Variable(tf.constant(0.1, shape=[self.configuration_specific.CONV_SECOND_DEPTH]))
 
     def init_normal_layers(self):
         self.fc1_weights = tf.Variable(  # fully connected, depth 512.
             tf.truncated_normal(
-                [int((self.configuration_specific.IMAGE_HEIGHT * self.configuration_specific.IMAGE_WIDTH * self.configuration_specific.CONV_SECOND_DEPTH) / (
-                pow(self.configuration_specific.CON_FIRST_STRIDE, 2) * pow(self.configuration_specific.POOL_SEC_SIZE, 2) * pow(self.configuration_specific.POOL_FIRST_SIZE, 2))),
+                [int((
+                     self.configuration_specific.IMAGE_HEIGHT * self.configuration_specific.IMAGE_WIDTH * self.configuration_specific.CONV_SECOND_DEPTH) / (
+                         pow(self.configuration_specific.CON_FIRST_STRIDE, 2) * pow(
+                             self.configuration_specific.POOL_SEC_SIZE, 2) * pow(
+                             self.configuration_specific.POOL_FIRST_SIZE, 2))),
                  self.configuration_specific.FC1_FEATURES],
                 stddev=0.1,
                 seed=conf_global.SEED))
@@ -50,6 +58,7 @@ class Model(object):
         self.fc2_biases = tf.Variable(tf.constant(0.1, shape=[conf_global.NUM_LABELS]))
 
     """Connect layers"""
+
     def create_model(self, input_node, train=False):
         """The Model definition."""
         # 2D convolution, with 'SAME' padding (i.e. the output feature map has
@@ -57,15 +66,18 @@ class Model(object):
         # shape matches the data layout: [image index, y, x, depth].
         conv = tf.nn.conv2d(input_node,
                             self.conv1_weights,
-                            strides=[1, self.configuration_specific.CON_FIRST_STRIDE, self.configuration_specific.CON_FIRST_STRIDE, 1],
+                            strides=[1, self.configuration_specific.CON_FIRST_STRIDE,
+                                     self.configuration_specific.CON_FIRST_STRIDE, 1],
                             padding='SAME')
         # Bias and rectified linear non-linearity.
         relu = tf.nn.relu(tf.nn.bias_add(conv, self.conv1_biases))
         # Max pooling. The kernel size spec {ksize} also follows the layout of
         # the data. Here we have a pooling window of 2, and a stride of 2.
         pool = tf.nn.max_pool(relu,
-                              ksize=[1, self.configuration_specific.POOL_FIRST_SIZE, self.configuration_specific.POOL_FIRST_SIZE, 1],
-                              strides=[1, self.configuration_specific.POOL_FIRST_SIZE, self.configuration_specific.POOL_FIRST_SIZE, 1],
+                              ksize=[1, self.configuration_specific.POOL_FIRST_SIZE,
+                                     self.configuration_specific.POOL_FIRST_SIZE, 1],
+                              strides=[1, self.configuration_specific.POOL_FIRST_SIZE,
+                                       self.configuration_specific.POOL_FIRST_SIZE, 1],
                               padding='SAME')
         conv = tf.nn.conv2d(pool,
                             self.conv2_weights,
@@ -73,8 +85,10 @@ class Model(object):
                             padding='SAME')
         relu = tf.nn.relu(tf.nn.bias_add(conv, self.conv2_biases))
         pool = tf.nn.max_pool(relu,
-                              ksize=[1, self.configuration_specific.POOL_SEC_SIZE, self.configuration_specific.POOL_SEC_SIZE, 1],
-                              strides=[1, self.configuration_specific.POOL_SEC_SIZE, self.configuration_specific.POOL_SEC_SIZE, 1],
+                              ksize=[1, self.configuration_specific.POOL_SEC_SIZE,
+                                     self.configuration_specific.POOL_SEC_SIZE, 1],
+                              strides=[1, self.configuration_specific.POOL_SEC_SIZE,
+                                       self.configuration_specific.POOL_SEC_SIZE, 1],
                               padding='SAME')
         # Reshape the feature map cuboid into a 2D matrix to feed it to the
         # fully connected layers.
@@ -127,5 +141,5 @@ class Model(object):
             staircase=False)
         # Use simple momentum for the optimization.
         self.optimizer = tf.train.MomentumOptimizer(self.learning_rate,
-                                               self.configuration_specific.MOMENTUM).minimize(self.loss,
-                                                                       global_step=batch)
+                                                    self.configuration_specific.MOMENTUM).minimize(self.loss,
+                                                                                                   global_step=batch)
