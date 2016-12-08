@@ -1,3 +1,6 @@
+import Programming.configuration as conf
+
+FC1_FEATURES = 1300
 BASE_LEARNING_RATE = 0.0001
 DECAY_RATE = 0.6
 MOMENTUM = 0.95
@@ -18,3 +21,15 @@ VALIDATION_FREQUENCY = 5
 USE_TEST_DATA = False
 TRAIN_VALIDATION_CONDITION = 15
 BATCH_SIZE = 100
+NUM_CHANNELS = 3
+
+SCALE = 2
+IMAGE_WIDTH = 16 * SCALE
+if conf.CROPPED_VERSION:
+    IMAGE_HEIGHT = 16 * SCALE
+    SOURCE_FOLDER_NAME = "../Datasets/Cropped datasets/" + conf.SUB_FOLDER + "Dataset_" + str(IMAGE_WIDTH) + "_" + str(
+        IMAGE_HEIGHT) + "/"
+else:
+    IMAGE_HEIGHT = 12 * SCALE
+    SOURCE_FOLDER_NAME = "../Datasets/Original datasets/Dataset_" + str(IMAGE_WIDTH) + "_" + str(IMAGE_HEIGHT) + "/"
+
