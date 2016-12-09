@@ -13,8 +13,10 @@ def write_confusion_matrix(matrix):
     table = Texttable()
 
     data = []
-    for i in range(len(conf.DATA_TYPES_USED)):
+    for i in range(conf.NUM_LABELS):
         tmp = [conf.DATA_TYPES_USED[i]]
+        if i == 0 and conf.SIMPLIFIED_CATEGORIES:
+            tmp = ['Bottles']
         count = 0
         for num in matrix[i]:
             tmp.append(num)
@@ -23,18 +25,15 @@ def write_confusion_matrix(matrix):
         data.append(tmp)
 
     cols = [''] + conf.DATA_TYPES_USED + ['Predicted']
+    if conf.SIMPLIFIED_CATEGORIES:
+        cols[1] = 'Bottles'
+        cols = cols[0:4] + [cols[-1]]
     cols = map(lambda x: x[:4], cols)
     table.add_rows([cols] + data)
     print table.draw()
 
 
-def write_eval_stats(test_confusion_matrix, test_error, test_data = False):
-    percentage_each_category_same_value = 0.0
-    for i in range(len(test_confusion_matrix)):
-        percentage_each_category_same_value += test_confusion_matrix[i, i] / sum(test_confusion_matrix[i])
-    percentage_each_category_same_value /= len(test_confusion_matrix)
-    percentage_each_category_same_value *= 100
+def write_eval_stats(eval_confusion_matrix, eval_error, test_data = False):
     type_of_result = "Test" if test_data else "Validation"
-    print(type_of_result + ' error: %.1f%%' % test_error)
-    print(type_of_result + ' error, each category same value: %.1f%%' % (100 - percentage_each_category_same_value))
-    write_confusion_matrix(test_confusion_matrix)
+    print(type_of_result + ' error: %.1f%%' % eval_error)
+    write_confusion_matrix(eval_confusion_matrix)

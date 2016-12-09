@@ -78,9 +78,7 @@ class CNNDefault(object):
         error_rate = 100.0 - (100.0 *
                               numpy.sum(numpy.argmax(predictions, 1) == labels) /
                               predictions.shape[0])
-        num_cat = max(labels) + 1
-        num_cat = len(conf.DATA_TYPES_USED)
-        correct = numpy.zeros((num_cat, num_cat), dtype=int)
+        correct = numpy.zeros((conf.NUM_LABELS, conf.NUM_LABELS), dtype=int)
         for prediction, label in zip(predictions, labels):
             correct[int(label), numpy.argmax(prediction)] += 1
         return error_rate, correct
