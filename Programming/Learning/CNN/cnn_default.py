@@ -142,7 +142,7 @@ class CNNDefault(object):
 
     def final_results(self, steps):
         num_of_epochs = self.num_of_epochs(steps)
-        print('Time per epoch: %.2f secs' % (self.time_logger.getTotalTime() / num_of_epochs))
+        print('\nRESULTS:\nTime per epoch: %.2f secs' % (self.time_logger.getTotalTime() / num_of_epochs))
         print('Number of epochs: %.1f' % num_of_epochs)
 
         min_validation_error = min(self.past_validation_errors)

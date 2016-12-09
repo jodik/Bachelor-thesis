@@ -8,7 +8,7 @@ from Programming.HelperScripts import redirect_output_stream
 from Programming.HelperScripts.what_to_run import WhatToRun
 
 
-WHAT_TO_RUN = WhatToRun.cnn_default
+WHAT_TO_RUN = WhatToRun.cnn_edges
 
 
 def compute(permutation_index):
@@ -37,8 +37,6 @@ def main():
         helper.write_eval_stats(confusion_matrix_across_all_iterations, error / conf.CROSS_VALIDATION_ITERATIONS)
     else:
         compute(conf.PERMUTATION_INDEX)
-    if conf.WRITE_TO_FILE:
-        redirect_output_stream.update_file_index(WHAT_TO_RUN)
 
 if __name__ == '__main__':
     main()

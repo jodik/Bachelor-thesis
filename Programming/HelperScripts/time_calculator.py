@@ -1,4 +1,5 @@
 import time
+from Programming.HelperScripts import helper
 
 
 class TimeCalculator(object):
@@ -9,7 +10,7 @@ class TimeCalculator(object):
 
     def show(self, message):
         current_time = time.time()
-        print '--------------------------------'
+        helper.write_line()
         print self.name + ': '+message+': ' + self.toString(current_time - self.lastly)
         print self.name + ': Total time: ' + self.toString(self.getTotalTime())
         self.lastly = current_time

@@ -1,6 +1,7 @@
 from texttable import Texttable
 import Programming.configuration as conf
-
+from os import listdir
+from os.path import join
 
 def get_label_index(path, data_types):
     for i in range(len(data_types)):
@@ -37,3 +38,20 @@ def write_eval_stats(eval_confusion_matrix, eval_error, test_data = False):
     type_of_result = "Test" if test_data else "Validation"
     print(type_of_result + ' error: %.1f%%' % eval_error)
     write_confusion_matrix(eval_confusion_matrix)
+
+
+def main_directory():
+    current_directory = './'
+    current_folders = listdir(current_directory)
+    while 'Programming' not in current_folders:
+        current_directory = join(current_directory, '..')
+        current_folders = listdir(current_directory)
+    return current_directory + '/'
+
+
+def unpack_file(path):
+    return open(main_directory() + path, 'r').read().splitlines()
+
+
+def write_line():
+    print '--------------------------------'
