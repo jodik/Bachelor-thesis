@@ -1,0 +1,84 @@
+CONFIGURATION LOCAL:
+FC1_FEATURES = 1300
+BASE_LEARNING_RATE = 0.0001
+DECAY_RATE = 0.6
+MOMENTUM = 0.95
+DROPOUT_PROBABILITY = 0.6
+DECAY_STEP_X_TIMES_TRAIN_SIZE = 8
+CON_FIRST_STRIDE = 2
+CONV_FIRST_FILTER_SIZE = 5
+CONV_SECOND_FILTER_SIZE = 5
+CONV_FIRST_DEPTH = 75
+POOL_FIRST_SIZE = 2
+CONV_SECOND_DEPTH = 150
+POOL_SEC_SIZE = 2
+EVAL_BATCH_SIZE = 151
+EVAL_FREQUENCY = 100
+VALIDATION_FREQUENCY = 5
+TRAIN_VALIDATION_CONDITION = 15
+BATCH_SIZE = 100
+NUM_CHANNELS = 3
+USE_TEST_DATA = False
+SCALE = 2
+--------------------------------
+CONFIGURATION GLOBAL:
+EXTENDED_DATASET = False
+BLACK_BORDER = True
+HARD_DIFFICULTY = True
+SIMPLIFIED_CATEGORIES = True
+CROPPED_VERSION = True
+WRITE_TO_FILE = True
+FULL_CROSS_VALIDATION = False
+CROSS_VALIDATION_ITERATIONS = 5
+SEED = 66478
+TEST_PERCENTAGE = 20
+VALIDATION_PERCENTAGE = 20
+--------------------------------
+(10440, 10440)
+[204  35  22]
+[ 821  415  846 ...,  427 1191   68]
+--------------------------------
+CNN Default: Model creation: 0.22s
+CNN Default: Total time: 0.22s
+--------------------------------
+CNN Default: Start: 0.00s
+CNN Default: Total time: 0.22s
+--------------------------------
+CNN Default: Variable initialization: 0.11s
+CNN Default: Total time: 0.33s
+--------------------------------
+CNN Default: Step 0 (epoch 0.00): 0.41s
+CNN Default: Total time: 0.75s
+Minibatch loss: 50.572, learning rate: 0.000100
+Minibatch error: 65.0%
+Validation error: 78.3%
+--------------------------------
+CNN Default: Step 100 (epoch 5.47): 22.34s
+CNN Default: Total time: 23.08s
+Minibatch loss: 7.232, learning rate: 0.000071
+Minibatch error: 22.0%
+Validation error: 27.9%
+--------------------------------
+CNN Default: Step 200 (epoch 10.95): 22.26s
+CNN Default: Total time: 45.35s
+Minibatch loss: 6.543, learning rate: 0.000050
+Minibatch error: 16.0%
+Validation error: 28.9%
+--------------------------------
+CNN Default: Training the model: 1.34s
+CNN Default: Total time: 46.69s
+
+RESULTS:
+Time per epoch: 4.14 secs
+Number of epochs: 11.3
+Min validation error: 26.3%
+Validation error: 26.3%
++---------+------+-----+-----+-------+
+|         | Bott | Box | Can | Pred  |
++=========+======+=====+=====+=======+
+| Bottles | 161  | 16  | 27  | 78.9% |
++---------+------+-----+-----+-------+
+| Box     | 6    | 151 | 47  | 74.0% |
++---------+------+-----+-----+-------+
+| Can     | 0    | 65  | 139 | 68.1% |
++---------+------+-----+-----+-------+

@@ -1,0 +1,275 @@
+CONFIGURATION LOCAL:
+FC1_FEATURES = 1300
+BASE_LEARNING_RATE = 0.0001
+DECAY_RATE = 0.6
+MOMENTUM = 0.95
+DROPOUT_PROBABILITY = 0.5
+DECAY_STEP_X_TIMES_TRAIN_SIZE = 8
+CON_FIRST_STRIDE = 2
+CONV_FIRST_FILTER_SIZE = 15
+CONV_SECOND_FILTER_SIZE = 5
+CONV_FIRST_DEPTH = 75
+POOL_FIRST_SIZE = 2
+CONV_SECOND_DEPTH = 150
+POOL_SEC_SIZE = 2
+EVAL_BATCH_SIZE = 151
+EVAL_FREQUENCY = 100
+VALIDATION_FREQUENCY = 5
+TRAIN_VALIDATION_CONDITION = 15
+BATCH_SIZE = 100
+NUM_CHANNELS = 1
+USE_TEST_DATA = False
+SCALE = 2
+--------------------------------
+CONFIGURATION GLOBAL:
+EXTENDED_DATASET = False
+BLACK_BORDER = True
+HARD_DIFFICULTY = True
+SIMPLIFIED_CATEGORIES = True
+CROPPED_VERSION = True
+WRITE_TO_FILE = True
+FULL_CROSS_VALIDATION = True
+CROSS_VALIDATION_ITERATIONS = 5
+SEED = 66478
+TEST_PERCENTAGE = 20
+VALIDATION_PERCENTAGE = 20
+--------------------------------
+
+COMPUTE 1. CROSSVALIDATION:
+
+(10440, 10440)
+[204  35  22]
+[ 782 1087 1028 ...,  131 1248  465]
+--------------------------------
+CNN Edges: Model creation: 0.22s
+CNN Edges: Total time: 0.22s
+--------------------------------
+CNN Edges: Start: 0.00s
+CNN Edges: Total time: 0.22s
+--------------------------------
+CNN Edges: Variable initialization: 0.11s
+CNN Edges: Total time: 0.33s
+--------------------------------
+CNN Edges: Step 0 (epoch 0.00): 0.45s
+CNN Edges: Total time: 0.79s
+Minibatch loss: 46.713, learning rate: 0.000100
+Minibatch error: 70.0%
+Validation error: 72.5%
+--------------------------------
+CNN Edges: Step 100 (epoch 5.47): 25.53s
+CNN Edges: Total time: 26.32s
+Minibatch loss: 7.921, learning rate: 0.000071
+Minibatch error: 28.0%
+Validation error: 40.5%
+--------------------------------
+CNN Edges: Training the model: 15.58s
+CNN Edges: Total time: 41.90s
+
+RESULTS:
+Time per epoch: 4.75 secs
+Number of epochs: 8.8
+Min validation error: 38.9%
+Validation error: 38.9%
++---------+------+-----+-----+-------+
+|         | Bott | Box | Can | Pred  |
++=========+======+=====+=====+=======+
+| Bottles | 181  | 15  | 8   | 88.7% |
++---------+------+-----+-----+-------+
+| Box     | 103  | 72  | 29  | 35.3% |
++---------+------+-----+-----+-------+
+| Can     | 55   | 28  | 121 | 59.3% |
++---------+------+-----+-----+-------+
+
+COMPUTE 2. CROSSVALIDATION:
+
+(10440, 10440)
+[204  35  22]
+[   3  744 1159 ...,  647   46  308]
+--------------------------------
+CNN Edges: Model creation: 0.21s
+CNN Edges: Total time: 0.21s
+--------------------------------
+CNN Edges: Start: 0.00s
+CNN Edges: Total time: 0.21s
+--------------------------------
+CNN Edges: Variable initialization: 0.25s
+CNN Edges: Total time: 0.46s
+--------------------------------
+CNN Edges: Step 0 (epoch 0.00): 0.76s
+CNN Edges: Total time: 1.22s
+Minibatch loss: 44.655, learning rate: 0.000100
+Minibatch error: 67.0%
+Validation error: 77.6%
+--------------------------------
+CNN Edges: Step 100 (epoch 5.47): 26.20s
+CNN Edges: Total time: 27.42s
+Minibatch loss: 7.538, learning rate: 0.000071
+Minibatch error: 22.0%
+Validation error: 47.1%
+--------------------------------
+CNN Edges: Training the model: 14.31s
+CNN Edges: Total time: 41.73s
+
+RESULTS:
+Time per epoch: 4.89 secs
+Number of epochs: 8.5
+Min validation error: 39.9%
+Validation error: 39.9%
++---------+------+-----+-----+-------+
+|         | Bott | Box | Can | Pred  |
++=========+======+=====+=====+=======+
+| Bottles | 151  | 26  | 27  | 74.0% |
++---------+------+-----+-----+-------+
+| Box     | 54   | 87  | 63  | 42.6% |
++---------+------+-----+-----+-------+
+| Can     | 19   | 55  | 130 | 63.7% |
++---------+------+-----+-----+-------+
+
+COMPUTE 3. CROSSVALIDATION:
+
+(10440, 10440)
+[204  35  22]
+[ 286  399  199 ...,  974 1084  157]
+--------------------------------
+CNN Edges: Model creation: 0.21s
+CNN Edges: Total time: 0.21s
+--------------------------------
+CNN Edges: Start: 0.00s
+CNN Edges: Total time: 0.21s
+--------------------------------
+CNN Edges: Variable initialization: 0.27s
+CNN Edges: Total time: 0.48s
+--------------------------------
+CNN Edges: Step 0 (epoch 0.00): 0.73s
+CNN Edges: Total time: 1.21s
+Minibatch loss: 44.047, learning rate: 0.000100
+Minibatch error: 66.0%
+Validation error: 77.8%
+--------------------------------
+CNN Edges: Step 100 (epoch 5.47): 26.02s
+CNN Edges: Total time: 27.23s
+Minibatch loss: 7.660, learning rate: 0.000071
+Minibatch error: 23.0%
+Validation error: 46.6%
+--------------------------------
+CNN Edges: Training the model: 18.10s
+CNN Edges: Total time: 45.33s
+
+RESULTS:
+Time per epoch: 4.84 secs
+Number of epochs: 9.4
+Min validation error: 42.3%
+Validation error: 42.3%
++---------+------+-----+-----+-------+
+|         | Bott | Box | Can | Pred  |
++=========+======+=====+=====+=======+
+| Bottles | 146  | 29  | 29  | 71.6% |
++---------+------+-----+-----+-------+
+| Box     | 58   | 87  | 59  | 42.6% |
++---------+------+-----+-----+-------+
+| Can     | 56   | 28  | 120 | 58.8% |
++---------+------+-----+-----+-------+
+
+COMPUTE 4. CROSSVALIDATION:
+
+(10440, 10440)
+[204  35  22]
+[ 821  415  846 ...,  427 1191   68]
+--------------------------------
+CNN Edges: Model creation: 0.21s
+CNN Edges: Total time: 0.21s
+--------------------------------
+CNN Edges: Start: 0.00s
+CNN Edges: Total time: 0.21s
+--------------------------------
+CNN Edges: Variable initialization: 0.42s
+CNN Edges: Total time: 0.63s
+--------------------------------
+CNN Edges: Step 0 (epoch 0.00): 0.72s
+CNN Edges: Total time: 1.35s
+Minibatch loss: 46.985, learning rate: 0.000100
+Minibatch error: 73.0%
+Validation error: 80.6%
+--------------------------------
+CNN Edges: Step 100 (epoch 5.47): 26.04s
+CNN Edges: Total time: 27.39s
+Minibatch loss: 7.870, learning rate: 0.000071
+Minibatch error: 30.0%
+Validation error: 33.7%
+--------------------------------
+CNN Edges: Training the model: 20.61s
+CNN Edges: Total time: 48.00s
+
+RESULTS:
+Time per epoch: 4.84 secs
+Number of epochs: 9.9
+Min validation error: 33.3%
+Validation error: 33.3%
++---------+------+-----+-----+-------+
+|         | Bott | Box | Can | Pred  |
++=========+======+=====+=====+=======+
+| Bottles | 136  | 32  | 36  | 66.7% |
++---------+------+-----+-----+-------+
+| Box     | 30   | 133 | 41  | 65.2% |
++---------+------+-----+-----+-------+
+| Can     | 0    | 65  | 139 | 68.1% |
++---------+------+-----+-----+-------+
+
+COMPUTE 5. CROSSVALIDATION:
+
+(10440, 10440)
+[204  35  22]
+[628  25 970 ..., 904 482 496]
+--------------------------------
+CNN Edges: Model creation: 0.21s
+CNN Edges: Total time: 0.21s
+--------------------------------
+CNN Edges: Start: 0.00s
+CNN Edges: Total time: 0.21s
+--------------------------------
+CNN Edges: Variable initialization: 0.51s
+CNN Edges: Total time: 0.72s
+--------------------------------
+CNN Edges: Step 0 (epoch 0.00): 0.72s
+CNN Edges: Total time: 1.45s
+Minibatch loss: 50.952, learning rate: 0.000100
+Minibatch error: 70.0%
+Validation error: 75.5%
+--------------------------------
+CNN Edges: Step 100 (epoch 5.47): 25.70s
+CNN Edges: Total time: 27.15s
+Minibatch loss: 7.796, learning rate: 0.000071
+Minibatch error: 27.0%
+Validation error: 53.4%
+--------------------------------
+CNN Edges: Training the model: 6.61s
+CNN Edges: Total time: 33.76s
+
+RESULTS:
+Time per epoch: 4.90 secs
+Number of epochs: 6.9
+Min validation error: 45.6%
+Validation error: 45.6%
++---------+------+-----+-----+-------+
+|         | Bott | Box | Can | Pred  |
++=========+======+=====+=====+=======+
+| Bottles | 116  | 23  | 65  | 56.9% |
++---------+------+-----+-----+-------+
+| Box     | 47   | 40  | 117 | 19.6% |
++---------+------+-----+-----+-------+
+| Can     | 0    | 27  | 177 | 86.8% |
++---------+------+-----+-----+-------+
+
+
+ Full Cross Validation results:
+
+Validation error: 40.0%
++---------+------+-----+-----+-------+
+|         | Bott | Box | Can | Pred  |
++=========+======+=====+=====+=======+
+| Bottles | 730  | 125 | 165 | 71.6% |
++---------+------+-----+-----+-------+
+| Box     | 292  | 419 | 309 | 41.1% |
++---------+------+-----+-----+-------+
+| Can     | 130  | 203 | 687 | 67.4% |
++---------+------+-----+-----+-------+

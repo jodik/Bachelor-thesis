@@ -1,0 +1,102 @@
+CONFIGURATION LOCAL:
+FC1_FEATURES = 1300
+BASE_LEARNING_RATE = 0.0001
+DECAY_RATE = 0.6
+MOMENTUM = 0.95
+DROPOUT_PROBABILITY = 0.5
+DECAY_STEP_X_TIMES_TRAIN_SIZE = 8
+CON_FIRST_STRIDE = 2
+CONV_FIRST_FILTER_SIZE = 10
+CONV_SECOND_FILTER_SIZE = 5
+CONV_FIRST_DEPTH = 75
+POOL_FIRST_SIZE = 2
+CONV_SECOND_DEPTH = 150
+POOL_SEC_SIZE = 2
+EVAL_BATCH_SIZE = 151
+EVAL_FREQUENCY = 30
+VALIDATION_FREQUENCY = 5
+TRAIN_VALIDATION_CONDITION = 15
+BATCH_SIZE = 100
+NUM_CHANNELS = 1
+USE_TEST_DATA = False
+SCALE = 2
+--------------------------------
+CONFIGURATION GLOBAL:
+EXTENDED_DATASET = False
+BLACK_BORDER = True
+HARD_DIFFICULTY = True
+SIMPLIFIED_CATEGORIES = True
+CROPPED_VERSION = True
+WRITE_TO_FILE = True
+FULL_CROSS_VALIDATION = False
+CROSS_VALIDATION_ITERATIONS = 5
+SEED = 66478
+TEST_PERCENTAGE = 20
+VALIDATION_PERCENTAGE = 20
+--------------------------------
+(10440, 10440)
+[204  35  22]
+[ 821  415  846 ...,  427 1191   68]
+--------------------------------
+CNN Edges: Model creation: 0.41s
+CNN Edges: Total time: 0.41s
+--------------------------------
+CNN Edges: Start: 0.00s
+CNN Edges: Total time: 0.41s
+--------------------------------
+CNN Edges: Variable initialization: 0.23s
+CNN Edges: Total time: 0.63s
+--------------------------------
+CNN Edges: Step 0 (epoch 0.00): 1.22s
+CNN Edges: Total time: 1.85s
+Minibatch loss: 31.004, learning rate: 0.000100
+Minibatch error: 69.0%
+Validation error: 69.3%
+--------------------------------
+CNN Edges: Step 30 (epoch 1.64): 13.29s
+CNN Edges: Total time: 15.14s
+Minibatch loss: 13.705, learning rate: 0.000090
+Minibatch error: 54.0%
+Validation error: 51.5%
+--------------------------------
+CNN Edges: Step 60 (epoch 3.28): 13.32s
+CNN Edges: Total time: 28.47s
+Minibatch loss: 9.561, learning rate: 0.000081
+Minibatch error: 42.0%
+Validation error: 41.0%
+--------------------------------
+CNN Edges: Step 90 (epoch 4.93): 13.24s
+CNN Edges: Total time: 41.70s
+Minibatch loss: 8.055, learning rate: 0.000073
+Minibatch error: 35.0%
+Validation error: 36.1%
+--------------------------------
+CNN Edges: Step 120 (epoch 6.57): 13.47s
+CNN Edges: Total time: 55.17s
+Minibatch loss: 7.625, learning rate: 0.000066
+Minibatch error: 37.0%
+Validation error: 40.0%
+--------------------------------
+CNN Edges: Step 150 (epoch 8.21): 13.46s
+CNN Edges: Total time: 68.63s
+Minibatch loss: 6.800, learning rate: 0.000059
+Minibatch error: 22.0%
+Validation error: 38.9%
+--------------------------------
+CNN Edges: Training the model: 7.11s
+CNN Edges: Total time: 75.74s
+
+RESULTS:
+Time per epoch: 8.34 secs
+Number of epochs: 9.1
+Min validation error: 36.1%
+Validation error: 36.1%
++---------+------+-----+-----+-------+
+|         | Bott | Box | Can | Pred  |
++=========+======+=====+=====+=======+
+| Bottles | 174  | 10  | 20  | 85.3% |
++---------+------+-----+-----+-------+
+| Box     | 83   | 86  | 35  | 42.2% |
++---------+------+-----+-----+-------+
+| Can     | 28   | 45  | 131 | 64.2% |
++---------+------+-----+-----+-------+
