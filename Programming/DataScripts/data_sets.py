@@ -24,6 +24,9 @@ class DataSets(object):
     def get_image_sets(self):
         return self.train.images, self.validation.images, self.test.images
 
+    def get_edge_sets(self):
+        return self.train.edge_descriptors, self.validation.edge_descriptors, self.test.edge_descriptors
+
     def get_label_sets(self):
         return self.train.labels, self.validation.labels, self.test.labels
 

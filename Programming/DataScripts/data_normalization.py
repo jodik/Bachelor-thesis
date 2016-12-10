@@ -1,29 +1,27 @@
 import numpy as np
 
 
-def normalize_images(data_sets):
+def normalize_data(data):
     num_of_pixels = 0
-    image_sets = data_sets.get_image_sets()
-    sum_rgb = np.sum(np.sum(s, axis=(0, 1, 2)) for s in image_sets)
+    channels = data[0][0, 0, 0].shape[0]
+    sum_rgb = np.sum(np.sum(s, axis=(0, 1, 2)) for s in data)
 
-    for image_set in image_sets:
-        num_of_pixels += image_set.size / 3
+    for image_set in data:
+        num_of_pixels += image_set.size / channels
 
     sum_rgb /= num_of_pixels
-    for image_set in image_sets:
+    for image_set in data:
         image_set -= sum_rgb
 
-    sum_rgb_pow = np.zeros(3, dtype=np.float64)
-    for image_set in image_sets:
+    sum_rgb_pow = np.zeros(channels, dtype=np.float64)
+    for image_set in data:
         tmp = np.apply_along_axis(lambda x: np.power(x, 2), 2, image_set)
         sum_rgb_pow += np.sum(tmp, axis=(0, 1, 2))
 
     c = num_of_pixels / sum_rgb_pow
     c = np.sqrt(c)
-    for image_set in image_sets:
+    for image_set in data:
         image_set *= c
-
-    return data_sets
 
 
 def equal_counts_perms(labels):
@@ -50,6 +48,7 @@ def make_equal_count_per_category(data_sets):
 
 
 def normalize_data_sets(data_sets):
-    data_sets = normalize_images(data_sets)
+    normalize_data(data_sets.get_image_sets())
+    normalize_data(data_sets.get_edge_sets())
     data_sets = make_equal_count_per_category(data_sets)
     return data_sets

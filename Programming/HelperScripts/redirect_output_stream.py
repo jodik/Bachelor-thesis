@@ -7,11 +7,13 @@ from Programming.HelperScripts import helper
 
 OUTPUT_PATHS = {WhatToRun.cnn_default: 'CNN/results/default/',
                 WhatToRun.cnn_edges: 'CNN/results/edges/',
+                WhatToRun.cnn_4_channels: 'CNN/results/4_channels/',
                 WhatToRun.pca_svm: 'PCA_SVM/results/default/',
                 WhatToRun.pca_svm_edges: 'PCA_SVM/results/edges/'}
 
 CONFIGURATION_PATHS = {WhatToRun.cnn_default: 'CNN/configuration_default.py',
                        WhatToRun.cnn_edges: 'CNN/configuration_edges.py',
+                       WhatToRun.cnn_4_channels: 'CNN/configuration_4_channels.py',
                        WhatToRun.pca_svm: 'PCA_SVM/results/default/',
                        WhatToRun.pca_svm_edges: 'PCA_SVM/results/edges/'}
 
@@ -27,7 +29,7 @@ def retrieve_output_folder(WHAT_TO_RUN):
 
 def log_config_files(WHAT_TO_RUN):
     print ('CONFIGURATION LOCAL:')
-    conf_important_lines = helper.unpack_file('Programming/Learning/' + CONFIGURATION_PATHS[WHAT_TO_RUN])[2:23]
+    conf_important_lines = helper.unpack_file('Programming/Learning/' + CONFIGURATION_PATHS[WHAT_TO_RUN])[2:22]
     for x in conf_important_lines:
         print(x)
     helper.write_line()

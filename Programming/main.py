@@ -8,7 +8,7 @@ from Programming.HelperScripts import redirect_output_stream
 from Programming.HelperScripts.what_to_run import WhatToRun
 
 
-WHAT_TO_RUN = WhatToRun.cnn_edges
+WHAT_TO_RUN = WhatToRun.cnn_default
 
 
 def compute(permutation_index):
@@ -26,7 +26,7 @@ def main():
         redirect_output_stream.change_output_stream(WHAT_TO_RUN)
     if conf.FULL_CROSS_VALIDATION:
         error = 0
-        confusion_matrix_across_all_iterations = np.zeros((len(conf.DATA_TYPES_USED), len(conf.DATA_TYPES_USED)), dtype=int)
+        confusion_matrix_across_all_iterations = np.zeros((conf.NUM_LABELS, conf.NUM_LABELS), dtype=int)
         for i in range(conf.CROSS_VALIDATION_ITERATIONS):
             print('\nCOMPUTE %d. CROSSVALIDATION:\n' % (i+1))
             test_error, confusion_matrix = compute(i)
