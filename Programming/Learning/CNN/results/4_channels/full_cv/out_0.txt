@@ -1,0 +1,922 @@
+CONFIGURATION LOCAL:
+FC1_FEATURES = 1300
+BASE_LEARNING_RATE = 0.0005
+DECAY_RATE = 0.6
+MOMENTUM = 0.95
+DROPOUT_PROBABILITY = 0.6
+DECAY_STEP_X_TIMES_TRAIN_SIZE = 8
+CON_FIRST_STRIDE = 2
+CONV_FIRST_FILTER_SIZE = 5
+CONV_SECOND_FILTER_SIZE = 5
+CONV_FIRST_DEPTH = 75
+POOL_FIRST_SIZE = 2
+CONV_SECOND_DEPTH = 150
+POOL_SEC_SIZE = 2
+EVAL_FREQUENCY = 100
+VALIDATION_FREQUENCY = 30
+TRAIN_VALIDATION_CONDITION = 30
+BATCH_SIZE = 100
+NUM_CHANNELS = 4
+USE_TEST_DATA = False
+SCALE = 2
+--------------------------------
+CONFIGURATION GLOBAL:
+EXTENDED_DATASET = True
+BLACK_BORDER = True
+HARD_DIFFICULTY = True
+SIMPLIFIED_CATEGORIES = False
+CROPPED_VERSION = True
+WRITE_TO_FILE = True
+FULL_CROSS_VALIDATION = True
+CROSS_VALIDATION_ITERATIONS = 5
+SEED = 66478
+TEST_PERCENTAGE = 20
+VALIDATION_PERCENTAGE = 20
+--------------------------------
+
+COMPUTE 1. CROSSVALIDATION:
+
+(10440, 10440)
+[42 36 23 23 17 55 52]
+[1094 1050  851 ..., 1136  131  465]
+--------------------------------
+CNN 4 Channels: Model creation: 0.89s
+CNN 4 Channels: Total time: 0.89s
+--------------------------------
+CNN 4 Channels: Start: 0.00s
+CNN 4 Channels: Total time: 0.89s
+--------------------------------
+CNN 4 Channels: Variable initialization: 0.45s
+CNN 4 Channels: Total time: 1.34s
+--------------------------------
+CNN 4 Channels: Step 0 (epoch 0.00): 1.49s
+CNN 4 Channels: Total time: 2.83s
+Minibatch loss: 57.317, learning rate: 0.000500
+Minibatch error: 84.0%
+Validation error: 86.0%
+--------------------------------
+CNN 4 Channels: Step 100 (epoch 1.06): 53.90s
+CNN 4 Channels: Total time: 56.73s
+Minibatch loss: 7.414, learning rate: 0.000467
+Minibatch error: 50.0%
+Validation error: 55.6%
+--------------------------------
+CNN 4 Channels: Step 200 (epoch 2.13): 84.62s
+CNN 4 Channels: Total time: 2.36m
+Minibatch loss: 6.936, learning rate: 0.000437
+Minibatch error: 35.0%
+Validation error: 53.0%
+--------------------------------
+CNN 4 Channels: Step 300 (epoch 3.19): 1.71m
+CNN 4 Channels: Total time: 4.07m
+Minibatch loss: 6.776, learning rate: 0.000408
+Minibatch error: 25.0%
+Validation error: 48.1%
+--------------------------------
+CNN 4 Channels: Step 400 (epoch 4.25): 1.67m
+CNN 4 Channels: Total time: 5.74m
+Minibatch loss: 6.436, learning rate: 0.000381
+Minibatch error: 17.0%
+Validation error: 46.8%
+--------------------------------
+CNN 4 Channels: Step 500 (epoch 5.31): 1.66m
+CNN 4 Channels: Total time: 7.40m
+Minibatch loss: 6.508, learning rate: 0.000356
+Minibatch error: 16.0%
+Validation error: 44.9%
+--------------------------------
+CNN 4 Channels: Step 600 (epoch 6.38): 1.71m
+CNN 4 Channels: Total time: 9.11m
+Minibatch loss: 6.561, learning rate: 0.000333
+Minibatch error: 22.0%
+Validation error: 43.9%
+--------------------------------
+CNN 4 Channels: Step 700 (epoch 7.44): 1.68m
+CNN 4 Channels: Total time: 10.79m
+Minibatch loss: 6.327, learning rate: 0.000311
+Minibatch error: 11.0%
+Validation error: 43.4%
+--------------------------------
+CNN 4 Channels: Step 800 (epoch 8.50): 1.69m
+CNN 4 Channels: Total time: 12.48m
+Minibatch loss: 6.364, learning rate: 0.000291
+Minibatch error: 13.0%
+Validation error: 43.9%
+--------------------------------
+CNN 4 Channels: Step 900 (epoch 9.57): 1.72m
+CNN 4 Channels: Total time: 14.19m
+Minibatch loss: 6.261, learning rate: 0.000271
+Minibatch error: 8.0%
+Validation error: 43.6%
+--------------------------------
+CNN 4 Channels: Step 1000 (epoch 10.63): 1.66m
+CNN 4 Channels: Total time: 15.85m
+Minibatch loss: 6.245, learning rate: 0.000254
+Minibatch error: 6.0%
+Validation error: 43.1%
+--------------------------------
+CNN 4 Channels: Step 1100 (epoch 11.69): 1.65m
+CNN 4 Channels: Total time: 17.50m
+Minibatch loss: 6.139, learning rate: 0.000237
+Minibatch error: 3.0%
+Validation error: 42.9%
+--------------------------------
+CNN 4 Channels: Step 1200 (epoch 12.76): 89.72s
+CNN 4 Channels: Total time: 19.00m
+Minibatch loss: 6.174, learning rate: 0.000221
+Minibatch error: 7.0%
+Validation error: 42.6%
+--------------------------------
+CNN 4 Channels: Step 1300 (epoch 13.82): 1.53m
+CNN 4 Channels: Total time: 20.52m
+Minibatch loss: 6.170, learning rate: 0.000207
+Minibatch error: 6.0%
+Validation error: 44.9%
+--------------------------------
+CNN 4 Channels: Step 1400 (epoch 14.88): 1.61m
+CNN 4 Channels: Total time: 22.14m
+Minibatch loss: 6.249, learning rate: 0.000193
+Minibatch error: 10.0%
+Validation error: 44.2%
+--------------------------------
+CNN 4 Channels: Step 1500 (epoch 15.94): 1.71m
+CNN 4 Channels: Total time: 23.84m
+Minibatch loss: 6.165, learning rate: 0.000181
+Minibatch error: 3.0%
+Validation error: 43.6%
+--------------------------------
+CNN 4 Channels: Step 1600 (epoch 17.01): 1.67m
+CNN 4 Channels: Total time: 25.52m
+Minibatch loss: 6.090, learning rate: 0.000169
+Minibatch error: 3.0%
+Validation error: 44.7%
+--------------------------------
+CNN 4 Channels: Step 1700 (epoch 18.07): 1.67m
+CNN 4 Channels: Total time: 27.18m
+Minibatch loss: 6.098, learning rate: 0.000158
+Minibatch error: 2.0%
+Validation error: 46.8%
+--------------------------------
+CNN 4 Channels: Step 1800 (epoch 19.13): 1.69m
+CNN 4 Channels: Total time: 28.87m
+Minibatch loss: 6.118, learning rate: 0.000147
+Minibatch error: 4.0%
+Validation error: 45.5%
+--------------------------------
+CNN 4 Channels: Step 1900 (epoch 20.20): 1.67m
+CNN 4 Channels: Total time: 30.54m
+Minibatch loss: 6.134, learning rate: 0.000138
+Minibatch error: 5.0%
+Validation error: 45.2%
+--------------------------------
+CNN 4 Channels: Step 2000 (epoch 21.26): 1.68m
+CNN 4 Channels: Total time: 32.22m
+Minibatch loss: 6.072, learning rate: 0.000129
+Minibatch error: 2.0%
+Validation error: 44.9%
+--------------------------------
+CNN 4 Channels: Step 2100 (epoch 22.32): 1.71m
+CNN 4 Channels: Total time: 33.93m
+Minibatch loss: 6.078, learning rate: 0.000120
+Minibatch error: 3.0%
+Validation error: 43.9%
+--------------------------------
+CNN 4 Channels: Step 2200 (epoch 23.38): 1.56m
+CNN 4 Channels: Total time: 35.49m
+Minibatch loss: 6.091, learning rate: 0.000112
+Minibatch error: 3.0%
+Validation error: 44.9%
+--------------------------------
+CNN 4 Channels: Step 2300 (epoch 24.45): 1.68m
+CNN 4 Channels: Total time: 37.16m
+Minibatch loss: 6.022, learning rate: 0.000105
+Minibatch error: 0.0%
+Validation error: 43.9%
+--------------------------------
+CNN 4 Channels: Step 2400 (epoch 25.51): 1.54m
+CNN 4 Channels: Total time: 38.70m
+Minibatch loss: 6.061, learning rate: 0.000098
+Minibatch error: 1.0%
+Validation error: 44.2%
+--------------------------------
+CNN 4 Channels: Step 2500 (epoch 26.57): 1.65m
+CNN 4 Channels: Total time: 40.35m
+Minibatch loss: 6.061, learning rate: 0.000092
+Minibatch error: 3.0%
+Validation error: 43.6%
+--------------------------------
+CNN 4 Channels: Training the model: 51.79s
+CNN 4 Channels: Total time: 41.21m
+
+RESULTS:
+Time per epoch: 91.19 secs
+Number of epochs: 27.1
+Min validation error: 42.1%
+Validation error: 42.1%
++----------+------+-----+-----+------+------+------+------+-------+
+|          | Blue | Box | Can | Chem | Colo | Gree | Whit | Pred  |
++==========+======+=====+=====+======+======+======+======+=======+
+| Blue     | 21   | 5   | 0   | 3    | 0    | 4    | 22   | 38.2% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Box      | 3    | 40  | 3   | 6    | 1    | 2    | 0    | 72.7% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Can      | 0    | 18  | 31  | 2    | 2    | 0    | 2    | 56.4% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Chemical | 3    | 14  | 2   | 17   | 7    | 5    | 7    | 30.9% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Colorful | 6    | 0   | 3   | 0    | 30   | 0    | 16   | 54.5% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Green    | 3    | 0   | 0   | 1    | 1    | 50   | 0    | 90.9% |
++----------+------+-----+-----+------+------+------+------+-------+
+| White    | 5    | 3   | 4   | 4    | 2    | 3    | 34   | 61.8% |
++----------+------+-----+-----+------+------+------+------+-------+
+
+COMPUTE 2. CROSSVALIDATION:
+
+(10440, 10440)
+[42 36 23 23 17 55 52]
+[960 389 255 ..., 525 330 878]
+--------------------------------
+CNN 4 Channels: Model creation: 2.52s
+CNN 4 Channels: Total time: 2.52s
+--------------------------------
+CNN 4 Channels: Start: 0.00s
+CNN 4 Channels: Total time: 2.52s
+--------------------------------
+CNN 4 Channels: Variable initialization: 1.34s
+CNN 4 Channels: Total time: 3.86s
+--------------------------------
+CNN 4 Channels: Step 0 (epoch 0.00): 2.63s
+CNN 4 Channels: Total time: 6.49s
+Minibatch loss: 52.675, learning rate: 0.000500
+Minibatch error: 84.0%
+Validation error: 82.6%
+--------------------------------
+CNN 4 Channels: Step 100 (epoch 1.06): 1.63m
+CNN 4 Channels: Total time: 1.74m
+Minibatch loss: 7.653, learning rate: 0.000467
+Minibatch error: 54.0%
+Validation error: 60.3%
+--------------------------------
+CNN 4 Channels: Step 200 (epoch 2.13): 1.57m
+CNN 4 Channels: Total time: 3.31m
+Minibatch loss: 7.310, learning rate: 0.000437
+Minibatch error: 48.0%
+Validation error: 56.4%
+--------------------------------
+CNN 4 Channels: Step 300 (epoch 3.19): 1.73m
+CNN 4 Channels: Total time: 5.03m
+Minibatch loss: 6.780, learning rate: 0.000408
+Minibatch error: 29.0%
+Validation error: 46.5%
+--------------------------------
+CNN 4 Channels: Step 400 (epoch 4.25): 1.58m
+CNN 4 Channels: Total time: 6.61m
+Minibatch loss: 6.835, learning rate: 0.000381
+Minibatch error: 26.0%
+Validation error: 44.4%
+--------------------------------
+CNN 4 Channels: Step 500 (epoch 5.31): 1.66m
+CNN 4 Channels: Total time: 8.27m
+Minibatch loss: 6.577, learning rate: 0.000356
+Minibatch error: 17.0%
+Validation error: 46.2%
+--------------------------------
+CNN 4 Channels: Step 600 (epoch 6.38): 1.63m
+CNN 4 Channels: Total time: 9.90m
+Minibatch loss: 6.409, learning rate: 0.000333
+Minibatch error: 16.0%
+Validation error: 42.6%
+--------------------------------
+CNN 4 Channels: Step 700 (epoch 7.44): 1.68m
+CNN 4 Channels: Total time: 11.58m
+Minibatch loss: 6.547, learning rate: 0.000311
+Minibatch error: 17.0%
+Validation error: 45.2%
+--------------------------------
+CNN 4 Channels: Step 800 (epoch 8.50): 1.67m
+CNN 4 Channels: Total time: 13.25m
+Minibatch loss: 6.291, learning rate: 0.000291
+Minibatch error: 9.0%
+Validation error: 42.3%
+--------------------------------
+CNN 4 Channels: Step 900 (epoch 9.57): 1.72m
+CNN 4 Channels: Total time: 14.97m
+Minibatch loss: 6.368, learning rate: 0.000271
+Minibatch error: 10.0%
+Validation error: 39.5%
+--------------------------------
+CNN 4 Channels: Step 1000 (epoch 10.63): 1.68m
+CNN 4 Channels: Total time: 16.64m
+Minibatch loss: 6.250, learning rate: 0.000254
+Minibatch error: 7.0%
+Validation error: 41.6%
+--------------------------------
+CNN 4 Channels: Step 1100 (epoch 11.69): 1.62m
+CNN 4 Channels: Total time: 18.27m
+Minibatch loss: 6.220, learning rate: 0.000237
+Minibatch error: 5.0%
+Validation error: 40.8%
+--------------------------------
+CNN 4 Channels: Step 1200 (epoch 12.76): 1.67m
+CNN 4 Channels: Total time: 19.94m
+Minibatch loss: 6.173, learning rate: 0.000221
+Minibatch error: 5.0%
+Validation error: 41.0%
+--------------------------------
+CNN 4 Channels: Step 1300 (epoch 13.82): 1.56m
+CNN 4 Channels: Total time: 21.49m
+Minibatch loss: 6.162, learning rate: 0.000207
+Minibatch error: 4.0%
+Validation error: 42.1%
+--------------------------------
+CNN 4 Channels: Step 1400 (epoch 14.88): 1.58m
+CNN 4 Channels: Total time: 23.07m
+Minibatch loss: 6.180, learning rate: 0.000193
+Minibatch error: 4.0%
+Validation error: 42.6%
+--------------------------------
+CNN 4 Channels: Step 1500 (epoch 15.94): 1.70m
+CNN 4 Channels: Total time: 24.78m
+Minibatch loss: 6.114, learning rate: 0.000181
+Minibatch error: 2.0%
+Validation error: 42.1%
+--------------------------------
+CNN 4 Channels: Step 1600 (epoch 17.01): 1.63m
+CNN 4 Channels: Total time: 26.41m
+Minibatch loss: 6.126, learning rate: 0.000169
+Minibatch error: 6.0%
+Validation error: 41.3%
+--------------------------------
+CNN 4 Channels: Step 1700 (epoch 18.07): 1.60m
+CNN 4 Channels: Total time: 28.01m
+Minibatch loss: 6.121, learning rate: 0.000158
+Minibatch error: 5.0%
+Validation error: 42.1%
+--------------------------------
+CNN 4 Channels: Step 1800 (epoch 19.13): 1.72m
+CNN 4 Channels: Total time: 29.73m
+Minibatch loss: 6.104, learning rate: 0.000147
+Minibatch error: 2.0%
+Validation error: 42.6%
+--------------------------------
+CNN 4 Channels: Training the model: 0.98s
+CNN 4 Channels: Total time: 29.75m
+
+RESULTS:
+Time per epoch: 93.23 secs
+Number of epochs: 19.1
+Min validation error: 39.5%
+Validation error: 39.5%
++----------+------+-----+-----+------+------+------+------+-------+
+|          | Blue | Box | Can | Chem | Colo | Gree | Whit | Pred  |
++==========+======+=====+=====+======+======+======+======+=======+
+| Blue     | 34   | 2   | 0   | 1    | 0    | 0    | 18   | 61.8% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Box      | 1    | 37  | 6   | 2    | 0    | 1    | 8    | 67.3% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Can      | 5    | 5   | 30  | 2    | 8    | 0    | 5    | 54.5% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Chemical | 10   | 20  | 0   | 10   | 0    | 0    | 15   | 18.2% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Colorful | 0    | 0   | 0   | 0    | 37   | 0    | 18   | 67.3% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Green    | 1    | 1   | 0   | 0    | 0    | 50   | 3    | 90.9% |
++----------+------+-----+-----+------+------+------+------+-------+
+| White    | 6    | 1   | 5   | 2    | 5    | 1    | 35   | 63.6% |
++----------+------+-----+-----+------+------+------+------+-------+
+
+COMPUTE 3. CROSSVALIDATION:
+
+(10440, 10440)
+[42 36 23 23 17 55 52]
+[ 601   56  503 ..., 1057  549  883]
+--------------------------------
+CNN 4 Channels: Model creation: 2.48s
+CNN 4 Channels: Total time: 2.48s
+--------------------------------
+CNN 4 Channels: Start: 0.00s
+CNN 4 Channels: Total time: 2.48s
+--------------------------------
+CNN 4 Channels: Variable initialization: 1.76s
+CNN 4 Channels: Total time: 4.24s
+--------------------------------
+CNN 4 Channels: Step 0 (epoch 0.00): 2.83s
+CNN 4 Channels: Total time: 7.06s
+Minibatch loss: 57.198, learning rate: 0.000500
+Minibatch error: 85.0%
+Validation error: 84.9%
+--------------------------------
+CNN 4 Channels: Step 100 (epoch 1.06): 1.67m
+CNN 4 Channels: Total time: 1.79m
+Minibatch loss: 7.829, learning rate: 0.000467
+Minibatch error: 52.0%
+Validation error: 50.9%
+--------------------------------
+CNN 4 Channels: Step 200 (epoch 2.13): 1.69m
+CNN 4 Channels: Total time: 3.48m
+Minibatch loss: 7.146, learning rate: 0.000437
+Minibatch error: 36.0%
+Validation error: 49.9%
+--------------------------------
+CNN 4 Channels: Step 300 (epoch 3.19): 1.71m
+CNN 4 Channels: Total time: 5.19m
+Minibatch loss: 6.797, learning rate: 0.000408
+Minibatch error: 29.0%
+Validation error: 47.3%
+--------------------------------
+CNN 4 Channels: Step 400 (epoch 4.25): 1.69m
+CNN 4 Channels: Total time: 6.87m
+Minibatch loss: 6.539, learning rate: 0.000381
+Minibatch error: 14.0%
+Validation error: 48.3%
+--------------------------------
+CNN 4 Channels: Step 500 (epoch 5.31): 1.60m
+CNN 4 Channels: Total time: 8.47m
+Minibatch loss: 6.427, learning rate: 0.000356
+Minibatch error: 12.0%
+Validation error: 47.3%
+--------------------------------
+CNN 4 Channels: Step 600 (epoch 6.38): 1.66m
+CNN 4 Channels: Total time: 10.13m
+Minibatch loss: 6.323, learning rate: 0.000333
+Minibatch error: 11.0%
+Validation error: 44.2%
+--------------------------------
+CNN 4 Channels: Step 700 (epoch 7.44): 89.03s
+CNN 4 Channels: Total time: 11.62m
+Minibatch loss: 6.248, learning rate: 0.000311
+Minibatch error: 7.0%
+Validation error: 42.6%
+--------------------------------
+CNN 4 Channels: Step 800 (epoch 8.50): 78.99s
+CNN 4 Channels: Total time: 12.93m
+Minibatch loss: 6.295, learning rate: 0.000291
+Minibatch error: 10.0%
+Validation error: 43.6%
+--------------------------------
+CNN 4 Channels: Step 900 (epoch 9.57): 1.51m
+CNN 4 Channels: Total time: 14.44m
+Minibatch loss: 6.268, learning rate: 0.000271
+Minibatch error: 9.0%
+Validation error: 42.1%
+--------------------------------
+CNN 4 Channels: Step 1000 (epoch 10.63): 88.58s
+CNN 4 Channels: Total time: 15.92m
+Minibatch loss: 6.148, learning rate: 0.000254
+Minibatch error: 4.0%
+Validation error: 46.2%
+--------------------------------
+CNN 4 Channels: Step 1100 (epoch 11.69): 88.40s
+CNN 4 Channels: Total time: 17.39m
+Minibatch loss: 6.166, learning rate: 0.000237
+Minibatch error: 5.0%
+Validation error: 44.7%
+--------------------------------
+CNN 4 Channels: Step 1200 (epoch 12.76): 1.51m
+CNN 4 Channels: Total time: 18.90m
+Minibatch loss: 6.107, learning rate: 0.000221
+Minibatch error: 3.0%
+Validation error: 44.4%
+--------------------------------
+CNN 4 Channels: Step 1300 (epoch 13.82): 87.41s
+CNN 4 Channels: Total time: 20.36m
+Minibatch loss: 6.151, learning rate: 0.000207
+Minibatch error: 3.0%
+Validation error: 43.9%
+--------------------------------
+CNN 4 Channels: Step 1400 (epoch 14.88): 87.99s
+CNN 4 Channels: Total time: 21.82m
+Minibatch loss: 6.111, learning rate: 0.000193
+Minibatch error: 4.0%
+Validation error: 42.9%
+--------------------------------
+CNN 4 Channels: Step 1500 (epoch 15.94): 89.58s
+CNN 4 Channels: Total time: 23.32m
+Minibatch loss: 6.099, learning rate: 0.000181
+Minibatch error: 3.0%
+Validation error: 46.5%
+--------------------------------
+CNN 4 Channels: Step 1600 (epoch 17.01): 77.71s
+CNN 4 Channels: Total time: 24.61m
+Minibatch loss: 6.104, learning rate: 0.000169
+Minibatch error: 4.0%
+Validation error: 42.3%
+--------------------------------
+CNN 4 Channels: Step 1700 (epoch 18.07): 76.42s
+CNN 4 Channels: Total time: 25.89m
+Minibatch loss: 6.097, learning rate: 0.000158
+Minibatch error: 3.0%
+Validation error: 44.9%
+--------------------------------
+CNN 4 Channels: Step 1800 (epoch 19.13): 77.66s
+CNN 4 Channels: Total time: 27.18m
+Minibatch loss: 6.078, learning rate: 0.000147
+Minibatch error: 3.0%
+Validation error: 45.2%
+--------------------------------
+CNN 4 Channels: Step 1900 (epoch 20.20): 76.75s
+CNN 4 Channels: Total time: 28.46m
+Minibatch loss: 6.116, learning rate: 0.000138
+Minibatch error: 5.0%
+Validation error: 45.7%
+--------------------------------
+CNN 4 Channels: Step 2000 (epoch 21.26): 72.33s
+CNN 4 Channels: Total time: 29.67m
+Minibatch loss: 6.057, learning rate: 0.000129
+Minibatch error: 3.0%
+Validation error: 43.6%
+--------------------------------
+CNN 4 Channels: Step 2100 (epoch 22.32): 60.88s
+CNN 4 Channels: Total time: 30.68m
+Minibatch loss: 6.052, learning rate: 0.000120
+Minibatch error: 2.0%
+Validation error: 43.4%
+--------------------------------
+CNN 4 Channels: Training the model: 36.58s
+CNN 4 Channels: Total time: 31.29m
+
+RESULTS:
+Time per epoch: 81.73 secs
+Number of epochs: 23.0
+Min validation error: 41.8%
+Validation error: 41.8%
++----------+------+-----+-----+------+------+------+------+-------+
+|          | Blue | Box | Can | Chem | Colo | Gree | Whit | Pred  |
++==========+======+=====+=====+======+======+======+======+=======+
+| Blue     | 41   | 0   | 3   | 1    | 0    | 2    | 8    | 74.5% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Box      | 0    | 40  | 1   | 2    | 2    | 0    | 10   | 72.7% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Can      | 3    | 13  | 27  | 0    | 4    | 0    | 8    | 49.1% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Chemical | 8    | 10  | 2   | 14   | 0    | 5    | 16   | 25.5% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Colorful | 3    | 7   | 4   | 0    | 19   | 0    | 22   | 34.5% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Green    | 1    | 0   | 0   | 1    | 0    | 50   | 3    | 90.9% |
++----------+------+-----+-----+------+------+------+------+-------+
+| White    | 13   | 1   | 2   | 2    | 2    | 2    | 33   | 60.0% |
++----------+------+-----+-----+------+------+------+------+-------+
+
+COMPUTE 4. CROSSVALIDATION:
+
+(10440, 10440)
+[42 36 23 23 17 55 52]
+[ 448  123  202 ...,  321 1049  404]
+--------------------------------
+CNN 4 Channels: Model creation: 1.35s
+CNN 4 Channels: Total time: 1.35s
+--------------------------------
+CNN 4 Channels: Start: 0.00s
+CNN 4 Channels: Total time: 1.35s
+--------------------------------
+CNN 4 Channels: Variable initialization: 1.65s
+CNN 4 Channels: Total time: 3.01s
+--------------------------------
+CNN 4 Channels: Step 0 (epoch 0.00): 1.88s
+CNN 4 Channels: Total time: 4.88s
+Minibatch loss: 59.492, learning rate: 0.000500
+Minibatch error: 82.0%
+Validation error: 82.1%
+--------------------------------
+CNN 4 Channels: Step 100 (epoch 1.06): 63.89s
+CNN 4 Channels: Total time: 68.77s
+Minibatch loss: 7.961, learning rate: 0.000467
+Minibatch error: 60.0%
+Validation error: 54.5%
+--------------------------------
+CNN 4 Channels: Step 200 (epoch 2.13): 60.67s
+CNN 4 Channels: Total time: 2.16m
+Minibatch loss: 7.125, learning rate: 0.000437
+Minibatch error: 36.0%
+Validation error: 50.6%
+--------------------------------
+CNN 4 Channels: Step 300 (epoch 3.19): 62.85s
+CNN 4 Channels: Total time: 3.20m
+Minibatch loss: 6.981, learning rate: 0.000408
+Minibatch error: 32.0%
+Validation error: 51.4%
+--------------------------------
+CNN 4 Channels: Step 400 (epoch 4.25): 58.97s
+CNN 4 Channels: Total time: 4.19m
+Minibatch loss: 6.543, learning rate: 0.000381
+Minibatch error: 16.0%
+Validation error: 49.4%
+--------------------------------
+CNN 4 Channels: Step 500 (epoch 5.31): 52.16s
+CNN 4 Channels: Total time: 5.06m
+Minibatch loss: 6.552, learning rate: 0.000356
+Minibatch error: 18.0%
+Validation error: 47.3%
+--------------------------------
+CNN 4 Channels: Step 600 (epoch 6.38): 52.35s
+CNN 4 Channels: Total time: 5.93m
+Minibatch loss: 6.439, learning rate: 0.000333
+Minibatch error: 15.0%
+Validation error: 47.8%
+--------------------------------
+CNN 4 Channels: Step 700 (epoch 7.44): 51.63s
+CNN 4 Channels: Total time: 6.79m
+Minibatch loss: 6.272, learning rate: 0.000311
+Minibatch error: 9.0%
+Validation error: 47.5%
+--------------------------------
+CNN 4 Channels: Step 800 (epoch 8.50): 51.54s
+CNN 4 Channels: Total time: 7.65m
+Minibatch loss: 6.416, learning rate: 0.000291
+Minibatch error: 16.0%
+Validation error: 44.4%
+--------------------------------
+CNN 4 Channels: Step 900 (epoch 9.57): 52.77s
+CNN 4 Channels: Total time: 8.53m
+Minibatch loss: 6.196, learning rate: 0.000271
+Minibatch error: 7.0%
+Validation error: 46.2%
+--------------------------------
+CNN 4 Channels: Step 1000 (epoch 10.63): 51.57s
+CNN 4 Channels: Total time: 9.39m
+Minibatch loss: 6.258, learning rate: 0.000254
+Minibatch error: 10.0%
+Validation error: 45.7%
+--------------------------------
+CNN 4 Channels: Step 1100 (epoch 11.69): 51.45s
+CNN 4 Channels: Total time: 10.25m
+Minibatch loss: 6.202, learning rate: 0.000237
+Minibatch error: 7.0%
+Validation error: 48.1%
+--------------------------------
+CNN 4 Channels: Step 1200 (epoch 12.76): 52.67s
+CNN 4 Channels: Total time: 11.12m
+Minibatch loss: 6.191, learning rate: 0.000221
+Minibatch error: 6.0%
+Validation error: 48.1%
+--------------------------------
+CNN 4 Channels: Training the model: 15.98s
+CNN 4 Channels: Total time: 11.39m
+
+RESULTS:
+Time per epoch: 52.23 secs
+Number of epochs: 13.1
+Min validation error: 43.6%
+Validation error: 43.6%
++----------+------+-----+-----+------+------+------+------+-------+
+|          | Blue | Box | Can | Chem | Colo | Gree | Whit | Pred  |
++==========+======+=====+=====+======+======+======+======+=======+
+| Blue     | 27   | 4   | 2   | 3    | 0    | 2    | 17   | 49.1% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Box      | 5    | 24  | 9   | 10   | 4    | 0    | 3    | 43.6% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Can      | 8    | 10  | 30  | 2    | 5    | 0    | 0    | 54.5% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Chemical | 5    | 14  | 5   | 27   | 4    | 0    | 0    | 49.1% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Colorful | 0    | 0   | 3   | 0    | 45   | 0    | 7    | 81.8% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Green    | 6    | 0   | 0   | 1    | 0    | 46   | 2    | 83.6% |
++----------+------+-----+-----+------+------+------+------+-------+
+| White    | 21   | 8   | 4   | 2    | 1    | 1    | 18   | 32.7% |
++----------+------+-----+-----+------+------+------+------+-------+
+
+COMPUTE 5. CROSSVALIDATION:
+
+(10440, 10440)
+[42 36 23 23 17 55 52]
+[1037  230 1021 ...,  265  841  659]
+--------------------------------
+CNN 4 Channels: Model creation: 0.82s
+CNN 4 Channels: Total time: 0.82s
+--------------------------------
+CNN 4 Channels: Start: 0.00s
+CNN 4 Channels: Total time: 0.82s
+--------------------------------
+CNN 4 Channels: Variable initialization: 1.35s
+CNN 4 Channels: Total time: 2.17s
+--------------------------------
+CNN 4 Channels: Step 0 (epoch 0.00): 1.48s
+CNN 4 Channels: Total time: 3.65s
+Minibatch loss: 60.119, learning rate: 0.000500
+Minibatch error: 82.0%
+Validation error: 84.2%
+--------------------------------
+CNN 4 Channels: Step 100 (epoch 1.06): 51.15s
+CNN 4 Channels: Total time: 54.80s
+Minibatch loss: 7.672, learning rate: 0.000467
+Minibatch error: 54.0%
+Validation error: 53.2%
+--------------------------------
+CNN 4 Channels: Step 200 (epoch 2.13): 51.52s
+CNN 4 Channels: Total time: 1.77m
+Minibatch loss: 7.018, learning rate: 0.000437
+Minibatch error: 38.0%
+Validation error: 46.0%
+--------------------------------
+CNN 4 Channels: Step 300 (epoch 3.19): 52.63s
+CNN 4 Channels: Total time: 2.65m
+Minibatch loss: 6.750, learning rate: 0.000408
+Minibatch error: 23.0%
+Validation error: 49.4%
+--------------------------------
+CNN 4 Channels: Step 400 (epoch 4.25): 51.29s
+CNN 4 Channels: Total time: 3.50m
+Minibatch loss: 6.485, learning rate: 0.000381
+Minibatch error: 16.0%
+Validation error: 47.0%
+--------------------------------
+CNN 4 Channels: Step 500 (epoch 5.31): 51.52s
+CNN 4 Channels: Total time: 4.36m
+Minibatch loss: 6.387, learning rate: 0.000356
+Minibatch error: 13.0%
+Validation error: 42.6%
+--------------------------------
+CNN 4 Channels: Step 600 (epoch 6.38): 52.85s
+CNN 4 Channels: Total time: 5.24m
+Minibatch loss: 6.281, learning rate: 0.000333
+Minibatch error: 12.0%
+Validation error: 45.7%
+--------------------------------
+CNN 4 Channels: Step 700 (epoch 7.44): 51.76s
+CNN 4 Channels: Total time: 6.11m
+Minibatch loss: 6.241, learning rate: 0.000311
+Minibatch error: 7.0%
+Validation error: 43.6%
+--------------------------------
+CNN 4 Channels: Step 800 (epoch 8.50): 51.98s
+CNN 4 Channels: Total time: 6.97m
+Minibatch loss: 6.206, learning rate: 0.000291
+Minibatch error: 8.0%
+Validation error: 44.7%
+--------------------------------
+CNN 4 Channels: Step 900 (epoch 9.57): 52.69s
+CNN 4 Channels: Total time: 7.85m
+Minibatch loss: 6.233, learning rate: 0.000271
+Minibatch error: 7.0%
+Validation error: 42.3%
+--------------------------------
+CNN 4 Channels: Step 1000 (epoch 10.63): 51.30s
+CNN 4 Channels: Total time: 8.71m
+Minibatch loss: 6.125, learning rate: 0.000254
+Minibatch error: 3.0%
+Validation error: 42.6%
+--------------------------------
+CNN 4 Channels: Step 1100 (epoch 11.69): 51.62s
+CNN 4 Channels: Total time: 9.57m
+Minibatch loss: 6.152, learning rate: 0.000237
+Minibatch error: 6.0%
+Validation error: 42.6%
+--------------------------------
+CNN 4 Channels: Step 1200 (epoch 12.76): 52.78s
+CNN 4 Channels: Total time: 10.45m
+Minibatch loss: 6.176, learning rate: 0.000221
+Minibatch error: 6.0%
+Validation error: 44.4%
+--------------------------------
+CNN 4 Channels: Step 1300 (epoch 13.82): 51.47s
+CNN 4 Channels: Total time: 11.30m
+Minibatch loss: 6.093, learning rate: 0.000207
+Minibatch error: 1.0%
+Validation error: 43.4%
+--------------------------------
+CNN 4 Channels: Step 1400 (epoch 14.88): 51.60s
+CNN 4 Channels: Total time: 12.16m
+Minibatch loss: 6.141, learning rate: 0.000193
+Minibatch error: 4.0%
+Validation error: 43.1%
+--------------------------------
+CNN 4 Channels: Step 1500 (epoch 15.94): 47.58s
+CNN 4 Channels: Total time: 12.96m
+Minibatch loss: 6.118, learning rate: 0.000181
+Minibatch error: 5.0%
+Validation error: 43.1%
+--------------------------------
+CNN 4 Channels: Step 1600 (epoch 17.01): 51.66s
+CNN 4 Channels: Total time: 13.82m
+Minibatch loss: 6.119, learning rate: 0.000169
+Minibatch error: 5.0%
+Validation error: 42.9%
+--------------------------------
+CNN 4 Channels: Step 1700 (epoch 18.07): 51.33s
+CNN 4 Channels: Total time: 14.67m
+Minibatch loss: 6.050, learning rate: 0.000158
+Minibatch error: 1.0%
+Validation error: 44.2%
+--------------------------------
+CNN 4 Channels: Step 1800 (epoch 19.13): 47.96s
+CNN 4 Channels: Total time: 15.47m
+Minibatch loss: 6.109, learning rate: 0.000147
+Minibatch error: 2.0%
+Validation error: 41.8%
+--------------------------------
+CNN 4 Channels: Step 1900 (epoch 20.20): 51.64s
+CNN 4 Channels: Total time: 16.33m
+Minibatch loss: 6.079, learning rate: 0.000138
+Minibatch error: 2.0%
+Validation error: 43.1%
+--------------------------------
+CNN 4 Channels: Step 2000 (epoch 21.26): 51.99s
+CNN 4 Channels: Total time: 17.20m
+Minibatch loss: 6.100, learning rate: 0.000129
+Minibatch error: 5.0%
+Validation error: 41.3%
+--------------------------------
+CNN 4 Channels: Step 2100 (epoch 22.32): 52.40s
+CNN 4 Channels: Total time: 18.07m
+Minibatch loss: 6.036, learning rate: 0.000120
+Minibatch error: 1.0%
+Validation error: 41.0%
+--------------------------------
+CNN 4 Channels: Step 2200 (epoch 23.38): 51.47s
+CNN 4 Channels: Total time: 18.93m
+Minibatch loss: 6.051, learning rate: 0.000112
+Minibatch error: 2.0%
+Validation error: 42.6%
+--------------------------------
+CNN 4 Channels: Step 2300 (epoch 24.45): 51.93s
+CNN 4 Channels: Total time: 19.80m
+Minibatch loss: 6.112, learning rate: 0.000105
+Minibatch error: 5.0%
+Validation error: 41.6%
+--------------------------------
+CNN 4 Channels: Step 2400 (epoch 25.51): 53.12s
+CNN 4 Channels: Total time: 20.68m
+Minibatch loss: 6.072, learning rate: 0.000098
+Minibatch error: 3.0%
+Validation error: 42.9%
+--------------------------------
+CNN 4 Channels: Step 2500 (epoch 26.57): 51.73s
+CNN 4 Channels: Total time: 21.54m
+Minibatch loss: 6.068, learning rate: 0.000092
+Minibatch error: 4.0%
+Validation error: 43.6%
+--------------------------------
+CNN 4 Channels: Step 2600 (epoch 27.64): 51.69s
+CNN 4 Channels: Total time: 22.41m
+Minibatch loss: 6.075, learning rate: 0.000086
+Minibatch error: 4.0%
+Validation error: 43.4%
+--------------------------------
+CNN 4 Channels: Step 2700 (epoch 28.70): 52.43s
+CNN 4 Channels: Total time: 23.28m
+Minibatch loss: 6.090, learning rate: 0.000080
+Minibatch error: 2.0%
+Validation error: 43.4%
+--------------------------------
+CNN 4 Channels: Step 2800 (epoch 29.76): 51.89s
+CNN 4 Channels: Total time: 24.14m
+Minibatch loss: 6.057, learning rate: 0.000075
+Minibatch error: 3.0%
+Validation error: 43.9%
+--------------------------------
+CNN 4 Channels: Step 2900 (epoch 30.82): 51.61s
+CNN 4 Channels: Total time: 25.00m
+Minibatch loss: 6.032, learning rate: 0.000070
+Minibatch error: 2.0%
+Validation error: 43.6%
+--------------------------------
+CNN 4 Channels: Training the model: 21.70s
+CNN 4 Channels: Total time: 25.37m
+
+RESULTS:
+Time per epoch: 48.69 secs
+Number of epochs: 31.3
+Min validation error: 40.8%
+Validation error: 40.8%
++----------+------+-----+-----+------+------+------+------+-------+
+|          | Blue | Box | Can | Chem | Colo | Gree | Whit | Pred  |
++==========+======+=====+=====+======+======+======+======+=======+
+| Blue     | 40   | 0   | 2   | 2    | 0    | 4    | 7    | 72.7% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Box      | 3    | 35  | 8   | 4    | 0    | 1    | 4    | 63.6% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Can      | 2    | 7   | 29  | 0    | 5    | 3    | 9    | 52.7% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Chemical | 7    | 11  | 0   | 11   | 3    | 4    | 19   | 20.0% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Colorful | 0    | 3   | 3   | 0    | 27   | 3    | 19   | 49.1% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Green    | 2    | 1   | 0   | 0    | 0    | 52   | 0    | 94.5% |
++----------+------+-----+-----+------+------+------+------+-------+
+| White    | 10   | 4   | 3   | 1    | 2    | 1    | 34   | 61.8% |
++----------+------+-----+-----+------+------+------+------+-------+
+
+
+ Full Cross Validation results:
+
+Validation error: 41.6%
++----------+------+-----+-----+------+------+------+------+-------+
+|          | Blue | Box | Can | Chem | Colo | Gree | Whit | Pred  |
++==========+======+=====+=====+======+======+======+======+=======+
+| Blue     | 163  | 11  | 7   | 10   | 0    | 12   | 72   | 59.3% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Box      | 12   | 176 | 27  | 24   | 7    | 4    | 25   | 64.0% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Can      | 18   | 53  | 147 | 6    | 24   | 3    | 24   | 53.5% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Chemical | 33   | 69  | 9   | 79   | 14   | 14   | 57   | 28.7% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Colorful | 9    | 10  | 13  | 0    | 158  | 3    | 82   | 57.5% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Green    | 13   | 2   | 0   | 3    | 1    | 248  | 8    | 90.2% |
++----------+------+-----+-----+------+------+------+------+-------+
+| White    | 55   | 17  | 18  | 11   | 12   | 8    | 154  | 56.0% |
++----------+------+-----+-----+------+------+------+------+-------+
