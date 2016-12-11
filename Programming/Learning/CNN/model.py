@@ -102,7 +102,7 @@ class Model(object):
         # Add a 50% dropout during training only. Dropout also scales
         # activations such that no rescaling is needed at evaluation time.
         if train:
-            hidden = tf.nn.dropout(hidden, self.configuration_specific.DROPOUT_PROBABILITY, seed=conf_global.SEED)
+            hidden = tf.nn.dropout(hidden, 1 - self.configuration_specific.DROPOUT_PROBABILITY, seed=conf_global.SEED)
         return tf.matmul(hidden, self.fc2_weights) + self.fc2_biases
 
     def create_train_model(self):
