@@ -1,7 +1,8 @@
 from texttable import Texttable
-import Programming.configuration as conf
 from os import listdir
 from os.path import join
+import Programming.configuration as conf
+
 
 def get_label_index(path, data_types):
     for i in range(len(data_types)):

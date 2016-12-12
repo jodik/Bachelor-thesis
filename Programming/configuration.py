@@ -32,3 +32,8 @@ ALL_DATA_TYPES = sorted(['Blue',
  'Multiple Objects',
  'Nothing',
  'White'])
+
+
+def update_simplified_categories(self, val):
+    self.SIMPLIFIED_CATEGORIES = val
+    self.NUM_LABELS = 3 if self.SIMPLIFIED_CATEGORIES else len(self.DATA_TYPES_USED)
