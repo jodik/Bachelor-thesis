@@ -49,6 +49,8 @@ class CNNDefault(object):
     def clear(self):
         self.past_validation_errors = []
         self.past_eval_results = []
+        # Create a session to run the training.
+        self.sess = tf.Session()
 
     def init_data(self, data_sets):
         self.test_data = data_sets.test.images
@@ -156,14 +158,14 @@ class CNNDefault(object):
     def run(self):
         self.clear()
         self.time_logger.show("Start")
-        # Create a local session to run the training.
-        with tf.Session() as sess:
-            # Run all the initializers to prepare the trainable parameters.
+
+        # Run all the initializers to prepare the trainable parameters.
+        with self.sess.as_default():
             tf.initialize_all_variables().run()
-            self.time_logger.show("Variable initialization")
+        self.time_logger.show("Variable initialization")
 
-            steps = self.train_in_batches(sess)
-            self.time_logger.show("Training the model")
+        steps = self.train_in_batches(self.sess)
+        self.time_logger.show("Training the model")
 
-            eval_error, eval_confusion_matrix = self.final_results(steps)
-            return eval_error, eval_confusion_matrix
+        eval_error, eval_confusion_matrix = self.final_results(steps)
+        return eval_error, eval_confusion_matrix
