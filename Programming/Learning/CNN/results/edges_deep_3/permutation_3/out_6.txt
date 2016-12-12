@@ -1,0 +1,155 @@
+CONFIGURATION LOCAL:
+FC1_FEATURES = 1300
+BASE_LEARNING_RATE = 0.0001
+DECAY_RATE = 0.6
+MOMENTUM = 0.95
+DROPOUT_PROBABILITY = 0.5
+DECAY_STEP_X_TIMES_TRAIN_SIZE = 6
+CON_FIRST_STRIDE = 2
+CONV_FIRST_FILTER_SIZE = 3
+CONV_SECOND_FILTER_SIZE = 3
+CONV_THIRD_FILTER_SIZE = 3
+CONV_FIRST_DEPTH = 30
+POOL_FIRST_SIZE = 2
+CONV_SECOND_DEPTH = 30
+CONV_THIRD_DEPTH = 30
+POOL_SEC_SIZE = 2
+POOL_THIRD_SIZE = 2
+EVAL_FREQUENCY = 200
+VALIDATION_FREQUENCY = 30
+TRAIN_VALIDATION_CONDITION = 30
+BATCH_SIZE = 100
+--------------------------------
+CONFIGURATION GLOBAL:
+EXTENDED_DATASET = True
+BLACK_BORDER = True
+HARD_DIFFICULTY = True
+SIMPLIFIED_CATEGORIES = True
+CROPPED_VERSION = True
+WRITE_TO_FILE = True
+FULL_CROSS_VALIDATION = False
+CROSS_VALIDATION_ITERATIONS = 5
+SEED = 66478
+TEST_PERCENTAGE = 20
+VALIDATION_PERCENTAGE = 20
+--------------------------------
+(10440, 10440)
+[204  35  22]
+[ 821  415  846 ...,  427 1191   68]
+--------------------------------
+CNN Edges Deep 3: Model creation: 0.30s
+CNN Edges Deep 3: Total time: 0.30s
+--------------------------------
+CNN Edges Deep 3: Start: 0.00s
+CNN Edges Deep 3: Total time: 0.30s
+--------------------------------
+CNN Edges Deep 3: Variable initialization: 0.12s
+CNN Edges Deep 3: Total time: 0.42s
+--------------------------------
+CNN Edges Deep 3: Step 0 (epoch 0.00): 0.09s
+CNN Edges Deep 3: Total time: 0.51s
+Minibatch loss: 3.685, learning rate: 0.000100
+Minibatch error: 63.0%
+Validation error: 66.7%
+--------------------------------
+CNN Edges Deep 3: Step 200 (epoch 1.37): 4.30s
+CNN Edges Deep 3: Total time: 4.80s
+Minibatch loss: 1.478, learning rate: 0.000089
+Minibatch error: 56.0%
+Validation error: 39.4%
+--------------------------------
+CNN Edges Deep 3: Step 400 (epoch 2.74): 4.61s
+CNN Edges Deep 3: Total time: 9.41s
+Minibatch loss: 1.282, learning rate: 0.000079
+Minibatch error: 49.0%
+Validation error: 37.3%
+--------------------------------
+CNN Edges Deep 3: Step 600 (epoch 4.11): 4.59s
+CNN Edges Deep 3: Total time: 14.00s
+Minibatch loss: 1.194, learning rate: 0.000071
+Minibatch error: 41.0%
+Validation error: 37.3%
+--------------------------------
+CNN Edges Deep 3: Step 800 (epoch 5.47): 4.52s
+CNN Edges Deep 3: Total time: 18.51s
+Minibatch loss: 1.007, learning rate: 0.000063
+Minibatch error: 26.0%
+Validation error: 34.8%
+--------------------------------
+CNN Edges Deep 3: Step 1000 (epoch 6.84): 4.59s
+CNN Edges Deep 3: Total time: 23.10s
+Minibatch loss: 1.026, learning rate: 0.000056
+Minibatch error: 32.0%
+Validation error: 35.8%
+--------------------------------
+CNN Edges Deep 3: Step 1200 (epoch 8.21): 4.60s
+CNN Edges Deep 3: Total time: 27.70s
+Minibatch loss: 1.109, learning rate: 0.000050
+Minibatch error: 33.0%
+Validation error: 34.3%
+--------------------------------
+CNN Edges Deep 3: Step 1400 (epoch 9.58): 4.53s
+CNN Edges Deep 3: Total time: 32.23s
+Minibatch loss: 0.983, learning rate: 0.000044
+Minibatch error: 25.0%
+Validation error: 35.0%
+--------------------------------
+CNN Edges Deep 3: Step 1600 (epoch 10.95): 4.59s
+CNN Edges Deep 3: Total time: 36.82s
+Minibatch loss: 1.025, learning rate: 0.000039
+Minibatch error: 28.0%
+Validation error: 33.2%
+--------------------------------
+CNN Edges Deep 3: Step 1800 (epoch 12.32): 4.59s
+CNN Edges Deep 3: Total time: 41.41s
+Minibatch loss: 0.832, learning rate: 0.000035
+Minibatch error: 19.0%
+Validation error: 32.2%
+--------------------------------
+CNN Edges Deep 3: Step 2000 (epoch 13.68): 4.52s
+CNN Edges Deep 3: Total time: 45.93s
+Minibatch loss: 0.900, learning rate: 0.000031
+Minibatch error: 24.0%
+Validation error: 33.0%
+--------------------------------
+CNN Edges Deep 3: Step 2200 (epoch 15.05): 4.61s
+CNN Edges Deep 3: Total time: 50.54s
+Minibatch loss: 0.896, learning rate: 0.000028
+Minibatch error: 23.0%
+Validation error: 31.9%
+--------------------------------
+CNN Edges Deep 3: Step 2400 (epoch 16.42): 4.61s
+CNN Edges Deep 3: Total time: 55.15s
+Minibatch loss: 0.944, learning rate: 0.000025
+Minibatch error: 22.0%
+Validation error: 33.2%
+--------------------------------
+CNN Edges Deep 3: Step 2600 (epoch 17.79): 4.53s
+CNN Edges Deep 3: Total time: 59.68s
+Minibatch loss: 0.757, learning rate: 0.000022
+Minibatch error: 12.0%
+Validation error: 35.0%
+--------------------------------
+CNN Edges Deep 3: Step 2800 (epoch 19.16): 4.58s
+CNN Edges Deep 3: Total time: 64.26s
+Minibatch loss: 0.759, learning rate: 0.000020
+Minibatch error: 16.0%
+Validation error: 32.5%
+--------------------------------
+CNN Edges Deep 3: Training the model: 3.92s
+CNN Edges Deep 3: Total time: 68.18s
+
+RESULTS:
+Time per epoch: 3.35 secs
+Number of epochs: 20.3
+Min validation error: 31.5%
+Validation error: 31.5%
++---------+------+-----+-----+-------+
+|         | Bott | Box | Can | Pred  |
++=========+======+=====+=====+=======+
+| Bottles | 154  | 26  | 24  | 75.5% |
++---------+------+-----+-----+-------+
+| Box     | 60   | 97  | 47  | 47.5% |
++---------+------+-----+-----+-------+
+| Can     | 0    | 36  | 168 | 82.4% |
++---------+------+-----+-----+-------+
