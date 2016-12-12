@@ -7,13 +7,13 @@ class Model(object):
         self.configuration_specific = configuration_specific
 
     def init(self, train_size, eval_size):
-        self.init_input_nodes(eval_size)
+        self.init_input_nodes(eval_size, train_size)
         self.init_convolutional_layers()
         self.init_normal_layers()
         self.init_predictions()
         self.init_optimizer(train_size)
 
-    def init_input_nodes(self, eval_size):
+    def init_input_nodes(self, eval_size, train_size):
         self.train_data_node = tf.placeholder(
             tf.float32,
             shape=(self.configuration_specific.BATCH_SIZE, self.configuration_specific.IMAGE_HEIGHT,
@@ -22,6 +22,10 @@ class Model(object):
         self.eval_data_node = tf.placeholder(
             tf.float32,
             shape=(eval_size, self.configuration_specific.IMAGE_HEIGHT,
+                   self.configuration_specific.IMAGE_WIDTH, self.configuration_specific.NUM_CHANNELS))
+        self.train_eval_data_node = tf.placeholder(
+            tf.float32,
+            shape=(train_size, self.configuration_specific.IMAGE_HEIGHT,
                    self.configuration_specific.IMAGE_WIDTH, self.configuration_specific.NUM_CHANNELS))
 
     def init_convolutional_layers(self):
@@ -39,14 +43,18 @@ class Model(object):
                 seed=conf_global.SEED))
         self.conv2_biases = tf.Variable(tf.constant(0.1, shape=[self.configuration_specific.CONV_SECOND_DEPTH]))
 
-    def init_normal_layers(self):
-        self.fc1_weights = tf.Variable(  # fully connected, depth 512.
-            tf.truncated_normal(
-                [int((
+    def count_fc1_input_size(self):
+        res = int((
                      self.configuration_specific.IMAGE_HEIGHT * self.configuration_specific.IMAGE_WIDTH * self.configuration_specific.CONV_SECOND_DEPTH) / (
                          pow(self.configuration_specific.CON_FIRST_STRIDE, 2) * pow(
                              self.configuration_specific.POOL_SEC_SIZE, 2) * pow(
-                             self.configuration_specific.POOL_FIRST_SIZE, 2))),
+                             self.configuration_specific.POOL_FIRST_SIZE, 2)))
+        return res
+
+    def init_normal_layers(self):
+        self.fc1_weights = tf.Variable(  # fully connected, depth 512.
+            tf.truncated_normal(
+                [self.count_fc1_input_size(),
                  self.configuration_specific.FC1_FEATURES],
                 stddev=0.1,
                 seed=conf_global.SEED))
@@ -57,10 +65,11 @@ class Model(object):
                                 seed=conf_global.SEED))
         self.fc2_biases = tf.Variable(tf.constant(0.1, shape=[conf_global.NUM_LABELS]))
 
+
+
     """Connect layers"""
 
-    def create_model(self, input_node, train=False):
-        """The Model definition."""
+    def connect_conv_layers(self, input_node):
         # 2D convolution, with 'SAME' padding (i.e. the output feature map has
         # the same size as the input). Note that {strides} is a 4D array whose
         # shape matches the data layout: [image index, y, x, depth].
@@ -90,6 +99,11 @@ class Model(object):
                               strides=[1, self.configuration_specific.POOL_SEC_SIZE,
                                        self.configuration_specific.POOL_SEC_SIZE, 1],
                               padding='SAME')
+        return pool
+
+    def create_model(self, input_node, train=False):
+        """The Model definition."""
+        pool = self.connect_conv_layers(input_node)
         # Reshape the feature map cuboid into a 2D matrix to feed it to the
         # fully connected layers.
         pool_shape = pool.get_shape().as_list()
@@ -111,6 +125,9 @@ class Model(object):
     def create_eval_model(self):
         return self.create_model(self.eval_data_node)
 
+    def create_train_eval_model(self):
+        return self.create_model(self.train_eval_data_node)
+
     def init_predictions(self):
         # Training computation: logits + cross-entropy loss.
         self.train_logits = self.create_train_model()
@@ -118,6 +135,7 @@ class Model(object):
         self.train_prediction = tf.nn.softmax(self.train_logits)
         # Predictions for the test and validation, which we'll compute less often.
         self.eval_prediction = tf.nn.softmax(self.create_eval_model())
+        self.train_eval_prediction = tf.nn.softmax(self.create_train_eval_model())
 
     def init_optimizer(self, train_size):
         self.loss = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(
