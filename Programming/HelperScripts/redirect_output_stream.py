@@ -8,12 +8,18 @@ from Programming.HelperScripts import helper
 OUTPUT_PATHS = {WhatToRun.cnn_default: 'CNN/results/default/',
                 WhatToRun.cnn_edges: 'CNN/results/edges/',
                 WhatToRun.cnn_4_channels: 'CNN/results/4_channels/',
+                WhatToRun.cnn_wide: 'CNN/results/wide/',
+                WhatToRun.cnn_edges_deep_3: 'CNN/results/edges_deep_3/',
+                WhatToRun.cnn_default_deep_3: 'CNN/results/edges_default_3/',
                 WhatToRun.pca_svm: 'PCA_SVM/results/default/',
                 WhatToRun.pca_svm_edges: 'PCA_SVM/results/edges/'}
 
 CONFIGURATION_PATHS = {WhatToRun.cnn_default: 'CNN/configuration_default.py',
                        WhatToRun.cnn_edges: 'CNN/configuration_edges.py',
                        WhatToRun.cnn_4_channels: 'CNN/configuration_4_channels.py',
+                       WhatToRun.cnn_wide: 'CNN/configuration_default.py',
+                       WhatToRun.cnn_edges_deep_3: 'CNN/configuration_edges_deep_3.py',
+                       WhatToRun.cnn_default_deep_3: 'CNN/configuration_default_deep_3.py',
                        WhatToRun.pca_svm: 'PCA_SVM/results/default/',
                        WhatToRun.pca_svm_edges: 'PCA_SVM/results/edges/'}
 
