@@ -10,7 +10,7 @@ OUTPUT_PATHS = {WhatToRun.cnn_default: 'CNN/results/default/',
                 WhatToRun.cnn_4_channels: 'CNN/results/4_channels/',
                 WhatToRun.cnn_wide: 'CNN/results/wide/',
                 WhatToRun.cnn_edges_deep_3: 'CNN/results/edges_deep_3/',
-                WhatToRun.cnn_default_deep_3: 'CNN/results/edges_default_3/',
+                WhatToRun.cnn_default_deep_3: 'CNN/results/default_deep_3/',
                 WhatToRun.pca_svm: 'PCA_SVM/results/default/',
                 WhatToRun.pca_svm_edges: 'PCA_SVM/results/edges/'}
 
