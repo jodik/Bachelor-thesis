@@ -1,0 +1,1360 @@
+CONFIGURATION LOCAL:
+FC1_FEATURES = 1300
+BASE_LEARNING_RATE = 0.0005
+DECAY_RATE = 0.6
+MOMENTUM = 0.95
+DROPOUT_PROBABILITY = 0.6
+DECAY_STEP_X_TIMES_TRAIN_SIZE = 8
+CON_FIRST_STRIDE = 2
+CONV_FIRST_FILTER_SIZE = 3
+CONV_SECOND_FILTER_SIZE = 3
+CONV_THIRD_FILTER_SIZE = 3
+CONV_FIRST_DEPTH = 33
+POOL_FIRST_SIZE = 2
+CONV_SECOND_DEPTH = CONV_FIRST_DEPTH * 2
+CONV_THIRD_DEPTH = CONV_SECOND_DEPTH * 2
+POOL_SEC_SIZE = 2
+POOL_THIRD_SIZE = 2
+EVAL_FREQUENCY = 100
+VALIDATION_FREQUENCY = 30
+TRAIN_VALIDATION_CONDITION = 30
+BATCH_SIZE = 100
+--------------------------------
+CONFIGURATION GLOBAL:
+EXTENDED_DATASET = True
+BLACK_BORDER = True
+HARD_DIFFICULTY = True
+SIMPLIFIED_CATEGORIES = False
+CROPPED_VERSION = True
+WRITE_TO_FILE = True
+FULL_CROSS_VALIDATION = True
+CROSS_VALIDATION_ITERATIONS = 5
+SEED = 66478
+TEST_PERCENTAGE = 20
+VALIDATION_PERCENTAGE = 20
+--------------------------------
+
+COMPUTE 1. CROSSVALIDATION:
+
+(10440, 10440)
+[42 36 23 23 17 55 52]
+[1094 1050  851 ..., 1136  131  465]
+--------------------------------
+CNN Default Deep 3: Model creation: 0.58s
+CNN Default Deep 3: Total time: 0.58s
+--------------------------------
+CNN Default Deep 3: Start: 0.00s
+CNN Default Deep 3: Total time: 0.58s
+--------------------------------
+CNN Default Deep 3: Variable initialization: 0.25s
+CNN Default Deep 3: Total time: 0.83s
+--------------------------------
+CNN Default Deep 3: Step 0 (epoch 0.00): 0.45s
+CNN Default Deep 3: Total time: 1.28s
+Minibatch loss: 12.311, learning rate: 0.000500
+Minibatch error: 86.0%
+Validation error: 86.8%
+--------------------------------
+CNN Default Deep 3: Step 100 (epoch 1.06): 15.18s
+CNN Default Deep 3: Total time: 16.46s
+Minibatch loss: 3.018, learning rate: 0.000467
+Minibatch error: 64.0%
+Validation error: 47.3%
+--------------------------------
+CNN Default Deep 3: Step 200 (epoch 2.13): 17.18s
+CNN Default Deep 3: Total time: 33.64s
+Minibatch loss: 2.713, learning rate: 0.000437
+Minibatch error: 55.0%
+Validation error: 41.6%
+--------------------------------
+CNN Default Deep 3: Step 300 (epoch 3.19): 18.83s
+CNN Default Deep 3: Total time: 52.47s
+Minibatch loss: 2.626, learning rate: 0.000408
+Minibatch error: 47.0%
+Validation error: 36.6%
+--------------------------------
+CNN Default Deep 3: Step 400 (epoch 4.25): 18.52s
+CNN Default Deep 3: Total time: 70.99s
+Minibatch loss: 2.458, learning rate: 0.000381
+Minibatch error: 44.0%
+Validation error: 34.5%
+--------------------------------
+CNN Default Deep 3: Step 500 (epoch 5.31): 18.19s
+CNN Default Deep 3: Total time: 89.17s
+Minibatch loss: 2.647, learning rate: 0.000356
+Minibatch error: 48.0%
+Validation error: 32.7%
+--------------------------------
+CNN Default Deep 3: Step 600 (epoch 6.38): 18.86s
+CNN Default Deep 3: Total time: 1.80m
+Minibatch loss: 2.536, learning rate: 0.000333
+Minibatch error: 43.0%
+Validation error: 31.7%
+--------------------------------
+CNN Default Deep 3: Step 700 (epoch 7.44): 18.01s
+CNN Default Deep 3: Total time: 2.10m
+Minibatch loss: 2.424, learning rate: 0.000311
+Minibatch error: 41.0%
+Validation error: 30.9%
+--------------------------------
+CNN Default Deep 3: Step 800 (epoch 8.50): 18.01s
+CNN Default Deep 3: Total time: 2.40m
+Minibatch loss: 2.437, learning rate: 0.000291
+Minibatch error: 48.0%
+Validation error: 29.4%
+--------------------------------
+CNN Default Deep 3: Step 900 (epoch 9.57): 18.56s
+CNN Default Deep 3: Total time: 2.71m
+Minibatch loss: 2.169, learning rate: 0.000271
+Minibatch error: 28.0%
+Validation error: 26.8%
+--------------------------------
+CNN Default Deep 3: Step 1000 (epoch 10.63): 18.35s
+CNN Default Deep 3: Total time: 3.02m
+Minibatch loss: 2.285, learning rate: 0.000254
+Minibatch error: 38.0%
+Validation error: 28.3%
+--------------------------------
+CNN Default Deep 3: Step 1100 (epoch 11.69): 18.27s
+CNN Default Deep 3: Total time: 3.32m
+Minibatch loss: 2.367, learning rate: 0.000237
+Minibatch error: 36.0%
+Validation error: 24.7%
+--------------------------------
+CNN Default Deep 3: Step 1200 (epoch 12.76): 18.64s
+CNN Default Deep 3: Total time: 3.63m
+Minibatch loss: 2.188, learning rate: 0.000221
+Minibatch error: 30.0%
+Validation error: 25.2%
+--------------------------------
+CNN Default Deep 3: Step 1300 (epoch 13.82): 18.22s
+CNN Default Deep 3: Total time: 3.94m
+Minibatch loss: 2.030, learning rate: 0.000207
+Minibatch error: 27.0%
+Validation error: 23.9%
+--------------------------------
+CNN Default Deep 3: Step 1400 (epoch 14.88): 18.26s
+CNN Default Deep 3: Total time: 4.24m
+Minibatch loss: 2.160, learning rate: 0.000193
+Minibatch error: 35.0%
+Validation error: 22.9%
+--------------------------------
+CNN Default Deep 3: Step 1500 (epoch 15.94): 17.40s
+CNN Default Deep 3: Total time: 4.53m
+Minibatch loss: 2.357, learning rate: 0.000181
+Minibatch error: 39.0%
+Validation error: 23.4%
+--------------------------------
+CNN Default Deep 3: Step 1600 (epoch 17.01): 16.41s
+CNN Default Deep 3: Total time: 4.80m
+Minibatch loss: 2.068, learning rate: 0.000169
+Minibatch error: 26.0%
+Validation error: 25.5%
+--------------------------------
+CNN Default Deep 3: Step 1700 (epoch 18.07): 17.48s
+CNN Default Deep 3: Total time: 5.09m
+Minibatch loss: 1.946, learning rate: 0.000158
+Minibatch error: 23.0%
+Validation error: 22.6%
+--------------------------------
+CNN Default Deep 3: Step 1800 (epoch 19.13): 18.61s
+CNN Default Deep 3: Total time: 5.40m
+Minibatch loss: 2.020, learning rate: 0.000147
+Minibatch error: 25.0%
+Validation error: 23.1%
+--------------------------------
+CNN Default Deep 3: Step 1900 (epoch 20.20): 18.48s
+CNN Default Deep 3: Total time: 5.71m
+Minibatch loss: 2.047, learning rate: 0.000138
+Minibatch error: 30.0%
+Validation error: 23.4%
+--------------------------------
+CNN Default Deep 3: Step 2000 (epoch 21.26): 18.19s
+CNN Default Deep 3: Total time: 6.02m
+Minibatch loss: 1.989, learning rate: 0.000129
+Minibatch error: 25.0%
+Validation error: 23.1%
+--------------------------------
+CNN Default Deep 3: Step 2100 (epoch 22.32): 18.59s
+CNN Default Deep 3: Total time: 6.33m
+Minibatch loss: 2.027, learning rate: 0.000120
+Minibatch error: 28.0%
+Validation error: 23.4%
+--------------------------------
+CNN Default Deep 3: Step 2200 (epoch 23.38): 18.24s
+CNN Default Deep 3: Total time: 6.63m
+Minibatch loss: 2.050, learning rate: 0.000112
+Minibatch error: 25.0%
+Validation error: 23.1%
+--------------------------------
+CNN Default Deep 3: Step 2300 (epoch 24.45): 18.37s
+CNN Default Deep 3: Total time: 6.94m
+Minibatch loss: 1.874, learning rate: 0.000105
+Minibatch error: 19.0%
+Validation error: 21.3%
+--------------------------------
+CNN Default Deep 3: Step 2400 (epoch 25.51): 18.97s
+CNN Default Deep 3: Total time: 7.25m
+Minibatch loss: 2.108, learning rate: 0.000098
+Minibatch error: 32.0%
+Validation error: 22.9%
+--------------------------------
+CNN Default Deep 3: Step 2500 (epoch 26.57): 18.53s
+CNN Default Deep 3: Total time: 7.56m
+Minibatch loss: 2.061, learning rate: 0.000092
+Minibatch error: 28.0%
+Validation error: 22.9%
+--------------------------------
+CNN Default Deep 3: Step 2600 (epoch 27.64): 18.14s
+CNN Default Deep 3: Total time: 7.86m
+Minibatch loss: 2.044, learning rate: 0.000086
+Minibatch error: 25.0%
+Validation error: 21.8%
+--------------------------------
+CNN Default Deep 3: Step 2700 (epoch 28.70): 18.62s
+CNN Default Deep 3: Total time: 8.17m
+Minibatch loss: 1.994, learning rate: 0.000080
+Minibatch error: 27.0%
+Validation error: 22.3%
+--------------------------------
+CNN Default Deep 3: Training the model: 10.23s
+CNN Default Deep 3: Total time: 8.34m
+
+RESULTS:
+Time per epoch: 17.06 secs
+Number of epochs: 29.3
+Min validation error: 20.8%
+Validation error: 20.8%
++----------+------+-----+-----+------+------+------+------+-------+
+|          | Blue | Box | Can | Chem | Colo | Gree | Whit | Pred  |
++==========+======+=====+=====+======+======+======+======+=======+
+| Blue     | 48   | 5   | 0   | 0    | 0    | 1    | 1    | 87.3% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Box      | 0    | 43  | 4   | 4    | 0    | 3    | 1    | 78.2% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Can      | 0    | 8   | 41  | 2    | 4    | 0    | 0    | 74.5% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Chemical | 5    | 6   | 5   | 31   | 2    | 2    | 4    | 56.4% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Colorful | 6    | 0   | 0   | 0    | 49   | 0    | 0    | 89.1% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Green    | 0    | 0   | 0   | 1    | 0    | 54   | 0    | 98.2% |
++----------+------+-----+-----+------+------+------+------+-------+
+| White    | 5    | 2   | 6   | 1    | 2    | 0    | 39   | 70.9% |
++----------+------+-----+-----+------+------+------+------+-------+
+
+COMPUTE 2. CROSSVALIDATION:
+
+(10440, 10440)
+[42 36 23 23 17 55 52]
+[960 389 255 ..., 525 330 878]
+--------------------------------
+CNN Default Deep 3: Model creation: 0.60s
+CNN Default Deep 3: Total time: 0.60s
+--------------------------------
+CNN Default Deep 3: Start: 0.00s
+CNN Default Deep 3: Total time: 0.60s
+--------------------------------
+CNN Default Deep 3: Variable initialization: 0.95s
+CNN Default Deep 3: Total time: 1.55s
+--------------------------------
+CNN Default Deep 3: Step 0 (epoch 0.00): 0.59s
+CNN Default Deep 3: Total time: 2.14s
+Minibatch loss: 12.578, learning rate: 0.000500
+Minibatch error: 87.0%
+Validation error: 87.0%
+--------------------------------
+CNN Default Deep 3: Step 100 (epoch 1.06): 16.78s
+CNN Default Deep 3: Total time: 18.92s
+Minibatch loss: 3.113, learning rate: 0.000467
+Minibatch error: 64.0%
+Validation error: 44.2%
+--------------------------------
+CNN Default Deep 3: Step 200 (epoch 2.13): 16.83s
+CNN Default Deep 3: Total time: 35.75s
+Minibatch loss: 2.818, learning rate: 0.000437
+Minibatch error: 54.0%
+Validation error: 42.3%
+--------------------------------
+CNN Default Deep 3: Step 300 (epoch 3.19): 18.48s
+CNN Default Deep 3: Total time: 54.22s
+Minibatch loss: 2.520, learning rate: 0.000408
+Minibatch error: 46.0%
+Validation error: 37.9%
+--------------------------------
+CNN Default Deep 3: Step 400 (epoch 4.25): 16.31s
+CNN Default Deep 3: Total time: 70.53s
+Minibatch loss: 2.737, learning rate: 0.000381
+Minibatch error: 47.0%
+Validation error: 38.7%
+--------------------------------
+CNN Default Deep 3: Step 500 (epoch 5.31): 15.03s
+CNN Default Deep 3: Total time: 85.56s
+Minibatch loss: 2.497, learning rate: 0.000356
+Minibatch error: 46.0%
+Validation error: 38.7%
+--------------------------------
+CNN Default Deep 3: Step 600 (epoch 6.38): 17.60s
+CNN Default Deep 3: Total time: 1.72m
+Minibatch loss: 2.442, learning rate: 0.000333
+Minibatch error: 38.0%
+Validation error: 36.9%
+--------------------------------
+CNN Default Deep 3: Step 700 (epoch 7.44): 18.05s
+CNN Default Deep 3: Total time: 2.02m
+Minibatch loss: 2.373, learning rate: 0.000311
+Minibatch error: 39.0%
+Validation error: 36.9%
+--------------------------------
+CNN Default Deep 3: Step 800 (epoch 8.50): 18.14s
+CNN Default Deep 3: Total time: 2.32m
+Minibatch loss: 2.384, learning rate: 0.000291
+Minibatch error: 39.0%
+Validation error: 34.8%
+--------------------------------
+CNN Default Deep 3: Step 900 (epoch 9.57): 18.61s
+CNN Default Deep 3: Total time: 2.63m
+Minibatch loss: 2.406, learning rate: 0.000271
+Minibatch error: 41.0%
+Validation error: 35.6%
+--------------------------------
+CNN Default Deep 3: Step 1000 (epoch 10.63): 17.98s
+CNN Default Deep 3: Total time: 2.93m
+Minibatch loss: 2.222, learning rate: 0.000254
+Minibatch error: 34.0%
+Validation error: 34.8%
+--------------------------------
+CNN Default Deep 3: Step 1100 (epoch 11.69): 17.79s
+CNN Default Deep 3: Total time: 3.23m
+Minibatch loss: 2.145, learning rate: 0.000237
+Minibatch error: 26.0%
+Validation error: 29.4%
+--------------------------------
+CNN Default Deep 3: Step 1200 (epoch 12.76): 16.73s
+CNN Default Deep 3: Total time: 3.51m
+Minibatch loss: 2.113, learning rate: 0.000221
+Minibatch error: 29.0%
+Validation error: 30.9%
+--------------------------------
+CNN Default Deep 3: Step 1300 (epoch 13.82): 17.12s
+CNN Default Deep 3: Total time: 3.79m
+Minibatch loss: 2.249, learning rate: 0.000207
+Minibatch error: 31.0%
+Validation error: 30.9%
+--------------------------------
+CNN Default Deep 3: Step 1400 (epoch 14.88): 18.16s
+CNN Default Deep 3: Total time: 4.10m
+Minibatch loss: 2.045, learning rate: 0.000193
+Minibatch error: 30.0%
+Validation error: 29.9%
+--------------------------------
+CNN Default Deep 3: Step 1500 (epoch 15.94): 18.07s
+CNN Default Deep 3: Total time: 4.40m
+Minibatch loss: 2.205, learning rate: 0.000181
+Minibatch error: 35.0%
+Validation error: 28.6%
+--------------------------------
+CNN Default Deep 3: Step 1600 (epoch 17.01): 16.46s
+CNN Default Deep 3: Total time: 4.67m
+Minibatch loss: 2.126, learning rate: 0.000169
+Minibatch error: 27.0%
+Validation error: 31.2%
+--------------------------------
+CNN Default Deep 3: Step 1700 (epoch 18.07): 17.64s
+CNN Default Deep 3: Total time: 4.97m
+Minibatch loss: 2.076, learning rate: 0.000158
+Minibatch error: 27.0%
+Validation error: 28.8%
+--------------------------------
+CNN Default Deep 3: Step 1800 (epoch 19.13): 18.48s
+CNN Default Deep 3: Total time: 5.27m
+Minibatch loss: 2.189, learning rate: 0.000147
+Minibatch error: 36.0%
+Validation error: 27.0%
+--------------------------------
+CNN Default Deep 3: Step 1900 (epoch 20.20): 18.37s
+CNN Default Deep 3: Total time: 5.58m
+Minibatch loss: 1.977, learning rate: 0.000138
+Minibatch error: 22.0%
+Validation error: 26.2%
+--------------------------------
+CNN Default Deep 3: Step 2000 (epoch 21.26): 15.45s
+CNN Default Deep 3: Total time: 5.84m
+Minibatch loss: 2.103, learning rate: 0.000129
+Minibatch error: 31.0%
+Validation error: 28.8%
+--------------------------------
+CNN Default Deep 3: Step 2100 (epoch 22.32): 15.48s
+CNN Default Deep 3: Total time: 6.10m
+Minibatch loss: 2.027, learning rate: 0.000120
+Minibatch error: 23.0%
+Validation error: 29.4%
+--------------------------------
+CNN Default Deep 3: Step 2200 (epoch 23.38): 18.39s
+CNN Default Deep 3: Total time: 6.40m
+Minibatch loss: 2.336, learning rate: 0.000112
+Minibatch error: 39.0%
+Validation error: 30.4%
+--------------------------------
+CNN Default Deep 3: Step 2300 (epoch 24.45): 18.18s
+CNN Default Deep 3: Total time: 6.70m
+Minibatch loss: 2.119, learning rate: 0.000105
+Minibatch error: 22.0%
+Validation error: 30.1%
+--------------------------------
+CNN Default Deep 3: Step 2400 (epoch 25.51): 18.92s
+CNN Default Deep 3: Total time: 7.02m
+Minibatch loss: 2.016, learning rate: 0.000098
+Minibatch error: 23.0%
+Validation error: 28.1%
+--------------------------------
+CNN Default Deep 3: Step 2500 (epoch 26.57): 18.31s
+CNN Default Deep 3: Total time: 7.32m
+Minibatch loss: 2.052, learning rate: 0.000092
+Minibatch error: 28.0%
+Validation error: 27.5%
+--------------------------------
+CNN Default Deep 3: Step 2600 (epoch 27.64): 18.04s
+CNN Default Deep 3: Total time: 7.63m
+Minibatch loss: 1.982, learning rate: 0.000086
+Minibatch error: 22.0%
+Validation error: 28.1%
+--------------------------------
+CNN Default Deep 3: Step 2700 (epoch 28.70): 18.74s
+CNN Default Deep 3: Total time: 7.94m
+Minibatch loss: 1.992, learning rate: 0.000080
+Minibatch error: 22.0%
+Validation error: 27.5%
+--------------------------------
+CNN Default Deep 3: Step 2800 (epoch 29.76): 18.05s
+CNN Default Deep 3: Total time: 8.24m
+Minibatch loss: 2.004, learning rate: 0.000075
+Minibatch error: 28.0%
+Validation error: 26.8%
+--------------------------------
+CNN Default Deep 3: Step 2900 (epoch 30.82): 18.10s
+CNN Default Deep 3: Total time: 8.54m
+Minibatch loss: 2.053, learning rate: 0.000070
+Minibatch error: 25.0%
+Validation error: 28.3%
+--------------------------------
+CNN Default Deep 3: Step 3000 (epoch 31.89): 18.20s
+CNN Default Deep 3: Total time: 8.84m
+Minibatch loss: 1.980, learning rate: 0.000065
+Minibatch error: 24.0%
+Validation error: 26.8%
+--------------------------------
+CNN Default Deep 3: Step 3100 (epoch 32.95): 16.35s
+CNN Default Deep 3: Total time: 9.12m
+Minibatch loss: 1.995, learning rate: 0.000061
+Minibatch error: 16.0%
+Validation error: 24.9%
+--------------------------------
+CNN Default Deep 3: Step 3200 (epoch 34.01): 17.26s
+CNN Default Deep 3: Total time: 9.40m
+Minibatch loss: 2.088, learning rate: 0.000057
+Minibatch error: 28.0%
+Validation error: 25.7%
+--------------------------------
+CNN Default Deep 3: Step 3300 (epoch 35.08): 17.27s
+CNN Default Deep 3: Total time: 9.69m
+Minibatch loss: 2.034, learning rate: 0.000053
+Minibatch error: 25.0%
+Validation error: 24.7%
+--------------------------------
+CNN Default Deep 3: Step 3400 (epoch 36.14): 16.65s
+CNN Default Deep 3: Total time: 9.97m
+Minibatch loss: 1.958, learning rate: 0.000050
+Minibatch error: 20.0%
+Validation error: 25.5%
+--------------------------------
+CNN Default Deep 3: Step 3500 (epoch 37.20): 18.26s
+CNN Default Deep 3: Total time: 10.27m
+Minibatch loss: 1.830, learning rate: 0.000046
+Minibatch error: 17.0%
+Validation error: 25.7%
+--------------------------------
+CNN Default Deep 3: Step 3600 (epoch 38.27): 18.69s
+CNN Default Deep 3: Total time: 10.58m
+Minibatch loss: 1.889, learning rate: 0.000043
+Minibatch error: 20.0%
+Validation error: 28.1%
+--------------------------------
+CNN Default Deep 3: Step 3700 (epoch 39.33): 18.26s
+CNN Default Deep 3: Total time: 10.89m
+Minibatch loss: 1.878, learning rate: 0.000041
+Minibatch error: 22.0%
+Validation error: 27.0%
+--------------------------------
+CNN Default Deep 3: Step 3800 (epoch 40.39): 18.44s
+CNN Default Deep 3: Total time: 11.20m
+Minibatch loss: 2.149, learning rate: 0.000038
+Minibatch error: 31.0%
+Validation error: 28.1%
+--------------------------------
+CNN Default Deep 3: Step 3900 (epoch 41.45): 18.60s
+CNN Default Deep 3: Total time: 11.51m
+Minibatch loss: 2.014, learning rate: 0.000035
+Minibatch error: 24.0%
+Validation error: 28.1%
+--------------------------------
+CNN Default Deep 3: Step 4000 (epoch 42.52): 17.81s
+CNN Default Deep 3: Total time: 11.80m
+Minibatch loss: 1.866, learning rate: 0.000033
+Minibatch error: 19.0%
+Validation error: 28.1%
+--------------------------------
+CNN Default Deep 3: Training the model: 3.55s
+CNN Default Deep 3: Total time: 11.86m
+
+RESULTS:
+Time per epoch: 16.65 secs
+Number of epochs: 42.7
+Min validation error: 24.2%
+Validation error: 24.2%
++----------+------+-----+-----+------+------+------+------+-------+
+|          | Blue | Box | Can | Chem | Colo | Gree | Whit | Pred  |
++==========+======+=====+=====+======+======+======+======+=======+
+| Blue     | 50   | 0   | 0   | 0    | 0    | 0    | 5    | 90.9% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Box      | 0    | 36  | 10  | 3    | 0    | 0    | 6    | 65.5% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Can      | 2    | 0   | 42  | 5    | 4    | 0    | 2    | 76.4% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Chemical | 2    | 16  | 7   | 23   | 2    | 0    | 5    | 41.8% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Colorful | 0    | 0   | 0   | 0    | 49   | 0    | 6    | 89.1% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Green    | 1    | 0   | 0   | 0    | 0    | 53   | 1    | 96.4% |
++----------+------+-----+-----+------+------+------+------+-------+
+| White    | 6    | 2   | 4   | 2    | 2    | 0    | 39   | 70.9% |
++----------+------+-----+-----+------+------+------+------+-------+
+
+COMPUTE 3. CROSSVALIDATION:
+
+(10440, 10440)
+[42 36 23 23 17 55 52]
+[ 601   56  503 ..., 1057  549  883]
+--------------------------------
+CNN Default Deep 3: Model creation: 0.96s
+CNN Default Deep 3: Total time: 0.96s
+--------------------------------
+CNN Default Deep 3: Start: 0.00s
+CNN Default Deep 3: Total time: 0.96s
+--------------------------------
+CNN Default Deep 3: Variable initialization: 0.80s
+CNN Default Deep 3: Total time: 1.76s
+--------------------------------
+CNN Default Deep 3: Step 0 (epoch 0.00): 0.55s
+CNN Default Deep 3: Total time: 2.31s
+Minibatch loss: 13.883, learning rate: 0.000500
+Minibatch error: 91.0%
+Validation error: 87.8%
+--------------------------------
+CNN Default Deep 3: Step 100 (epoch 1.06): 18.32s
+CNN Default Deep 3: Total time: 20.63s
+Minibatch loss: 3.233, learning rate: 0.000467
+Minibatch error: 71.0%
+Validation error: 45.7%
+--------------------------------
+CNN Default Deep 3: Step 200 (epoch 2.13): 18.47s
+CNN Default Deep 3: Total time: 39.09s
+Minibatch loss: 2.893, learning rate: 0.000437
+Minibatch error: 62.0%
+Validation error: 44.2%
+--------------------------------
+CNN Default Deep 3: Step 300 (epoch 3.19): 18.52s
+CNN Default Deep 3: Total time: 57.62s
+Minibatch loss: 2.620, learning rate: 0.000408
+Minibatch error: 40.0%
+Validation error: 38.7%
+--------------------------------
+CNN Default Deep 3: Step 400 (epoch 4.25): 17.88s
+CNN Default Deep 3: Total time: 75.49s
+Minibatch loss: 2.631, learning rate: 0.000381
+Minibatch error: 45.0%
+Validation error: 37.1%
+--------------------------------
+CNN Default Deep 3: Step 500 (epoch 5.31): 15.52s
+CNN Default Deep 3: Total time: 1.52m
+Minibatch loss: 2.532, learning rate: 0.000356
+Minibatch error: 48.0%
+Validation error: 36.9%
+--------------------------------
+CNN Default Deep 3: Step 600 (epoch 6.38): 16.67s
+CNN Default Deep 3: Total time: 1.79m
+Minibatch loss: 2.512, learning rate: 0.000333
+Minibatch error: 39.0%
+Validation error: 36.9%
+--------------------------------
+CNN Default Deep 3: Step 700 (epoch 7.44): 18.20s
+CNN Default Deep 3: Total time: 2.10m
+Minibatch loss: 2.311, learning rate: 0.000311
+Minibatch error: 37.0%
+Validation error: 37.7%
+--------------------------------
+CNN Default Deep 3: Step 800 (epoch 8.50): 18.37s
+CNN Default Deep 3: Total time: 2.40m
+Minibatch loss: 2.327, learning rate: 0.000291
+Minibatch error: 36.0%
+Validation error: 34.8%
+--------------------------------
+CNN Default Deep 3: Step 900 (epoch 9.57): 17.22s
+CNN Default Deep 3: Total time: 2.69m
+Minibatch loss: 2.418, learning rate: 0.000271
+Minibatch error: 34.0%
+Validation error: 31.9%
+--------------------------------
+CNN Default Deep 3: Step 1000 (epoch 10.63): 16.49s
+CNN Default Deep 3: Total time: 2.97m
+Minibatch loss: 2.176, learning rate: 0.000254
+Minibatch error: 25.0%
+Validation error: 31.4%
+--------------------------------
+CNN Default Deep 3: Step 1100 (epoch 11.69): 18.15s
+CNN Default Deep 3: Total time: 3.27m
+Minibatch loss: 2.250, learning rate: 0.000237
+Minibatch error: 32.0%
+Validation error: 31.2%
+--------------------------------
+CNN Default Deep 3: Step 1200 (epoch 12.76): 18.85s
+CNN Default Deep 3: Total time: 3.58m
+Minibatch loss: 2.221, learning rate: 0.000221
+Minibatch error: 36.0%
+Validation error: 30.1%
+--------------------------------
+CNN Default Deep 3: Step 1300 (epoch 13.82): 18.29s
+CNN Default Deep 3: Total time: 3.89m
+Minibatch loss: 2.134, learning rate: 0.000207
+Minibatch error: 27.0%
+Validation error: 31.7%
+--------------------------------
+CNN Default Deep 3: Step 1400 (epoch 14.88): 16.85s
+CNN Default Deep 3: Total time: 4.17m
+Minibatch loss: 2.155, learning rate: 0.000193
+Minibatch error: 33.0%
+Validation error: 32.5%
+--------------------------------
+CNN Default Deep 3: Step 1500 (epoch 15.94): 16.96s
+CNN Default Deep 3: Total time: 4.45m
+Minibatch loss: 2.241, learning rate: 0.000181
+Minibatch error: 33.0%
+Validation error: 30.6%
+--------------------------------
+CNN Default Deep 3: Step 1600 (epoch 17.01): 17.15s
+CNN Default Deep 3: Total time: 4.74m
+Minibatch loss: 1.911, learning rate: 0.000169
+Minibatch error: 15.0%
+Validation error: 31.7%
+--------------------------------
+CNN Default Deep 3: Step 1700 (epoch 18.07): 15.86s
+CNN Default Deep 3: Total time: 5.00m
+Minibatch loss: 2.032, learning rate: 0.000158
+Minibatch error: 27.0%
+Validation error: 29.9%
+--------------------------------
+CNN Default Deep 3: Step 1800 (epoch 19.13): 15.86s
+CNN Default Deep 3: Total time: 5.27m
+Minibatch loss: 1.988, learning rate: 0.000147
+Minibatch error: 21.0%
+Validation error: 29.9%
+--------------------------------
+CNN Default Deep 3: Step 1900 (epoch 20.20): 14.31s
+CNN Default Deep 3: Total time: 5.50m
+Minibatch loss: 1.921, learning rate: 0.000138
+Minibatch error: 19.0%
+Validation error: 30.4%
+--------------------------------
+CNN Default Deep 3: Step 2000 (epoch 21.26): 15.90s
+CNN Default Deep 3: Total time: 5.77m
+Minibatch loss: 2.149, learning rate: 0.000129
+Minibatch error: 34.0%
+Validation error: 31.7%
+--------------------------------
+CNN Default Deep 3: Step 2100 (epoch 22.32): 16.38s
+CNN Default Deep 3: Total time: 6.04m
+Minibatch loss: 2.003, learning rate: 0.000120
+Minibatch error: 24.0%
+Validation error: 32.5%
+--------------------------------
+CNN Default Deep 3: Step 2200 (epoch 23.38): 15.64s
+CNN Default Deep 3: Total time: 6.30m
+Minibatch loss: 1.997, learning rate: 0.000112
+Minibatch error: 23.0%
+Validation error: 31.9%
+--------------------------------
+CNN Default Deep 3: Step 2300 (epoch 24.45): 15.00s
+CNN Default Deep 3: Total time: 6.55m
+Minibatch loss: 2.064, learning rate: 0.000105
+Minibatch error: 25.0%
+Validation error: 31.7%
+--------------------------------
+CNN Default Deep 3: Step 2400 (epoch 25.51): 14.54s
+CNN Default Deep 3: Total time: 6.80m
+Minibatch loss: 2.025, learning rate: 0.000098
+Minibatch error: 14.0%
+Validation error: 29.1%
+--------------------------------
+CNN Default Deep 3: Step 2500 (epoch 26.57): 15.81s
+CNN Default Deep 3: Total time: 7.06m
+Minibatch loss: 2.090, learning rate: 0.000092
+Minibatch error: 30.0%
+Validation error: 28.1%
+--------------------------------
+CNN Default Deep 3: Step 2600 (epoch 27.64): 16.02s
+CNN Default Deep 3: Total time: 7.33m
+Minibatch loss: 2.064, learning rate: 0.000086
+Minibatch error: 25.0%
+Validation error: 28.6%
+--------------------------------
+CNN Default Deep 3: Step 2700 (epoch 28.70): 16.24s
+CNN Default Deep 3: Total time: 7.60m
+Minibatch loss: 2.075, learning rate: 0.000080
+Minibatch error: 28.0%
+Validation error: 28.3%
+--------------------------------
+CNN Default Deep 3: Step 2800 (epoch 29.76): 16.25s
+CNN Default Deep 3: Total time: 7.87m
+Minibatch loss: 2.195, learning rate: 0.000075
+Minibatch error: 30.0%
+Validation error: 29.1%
+--------------------------------
+CNN Default Deep 3: Training the model: 13.13s
+CNN Default Deep 3: Total time: 8.09m
+
+RESULTS:
+Time per epoch: 15.84 secs
+Number of epochs: 30.6
+Min validation error: 27.8%
+Validation error: 27.8%
++----------+------+-----+-----+------+------+------+------+-------+
+|          | Blue | Box | Can | Chem | Colo | Gree | Whit | Pred  |
++==========+======+=====+=====+======+======+======+======+=======+
+| Blue     | 46   | 3   | 0   | 1    | 0    | 0    | 5    | 83.6% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Box      | 0    | 36  | 9   | 7    | 1    | 0    | 2    | 65.5% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Can      | 0    | 3   | 37  | 0    | 7    | 0    | 8    | 67.3% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Chemical | 0    | 13  | 4   | 23   | 2    | 3    | 10   | 41.8% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Colorful | 0    | 3   | 8   | 0    | 44   | 0    | 0    | 80.0% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Green    | 1    | 0   | 1   | 0    | 0    | 53   | 0    | 96.4% |
++----------+------+-----+-----+------+------+------+------+-------+
+| White    | 8    | 3   | 3   | 2    | 0    | 0    | 39   | 70.9% |
++----------+------+-----+-----+------+------+------+------+-------+
+
+COMPUTE 4. CROSSVALIDATION:
+
+(10440, 10440)
+[42 36 23 23 17 55 52]
+[ 448  123  202 ...,  321 1049  404]
+--------------------------------
+CNN Default Deep 3: Model creation: 0.75s
+CNN Default Deep 3: Total time: 0.75s
+--------------------------------
+CNN Default Deep 3: Start: 0.00s
+CNN Default Deep 3: Total time: 0.75s
+--------------------------------
+CNN Default Deep 3: Variable initialization: 1.09s
+CNN Default Deep 3: Total time: 1.84s
+--------------------------------
+CNN Default Deep 3: Step 0 (epoch 0.00): 0.49s
+CNN Default Deep 3: Total time: 2.33s
+Minibatch loss: 13.544, learning rate: 0.000500
+Minibatch error: 87.0%
+Validation error: 88.3%
+--------------------------------
+CNN Default Deep 3: Step 100 (epoch 1.06): 16.06s
+CNN Default Deep 3: Total time: 18.39s
+Minibatch loss: 3.081, learning rate: 0.000467
+Minibatch error: 69.0%
+Validation error: 54.8%
+--------------------------------
+CNN Default Deep 3: Step 200 (epoch 2.13): 15.71s
+CNN Default Deep 3: Total time: 34.11s
+Minibatch loss: 2.857, learning rate: 0.000437
+Minibatch error: 56.0%
+Validation error: 42.1%
+--------------------------------
+CNN Default Deep 3: Step 300 (epoch 3.19): 16.22s
+CNN Default Deep 3: Total time: 50.33s
+Minibatch loss: 2.738, learning rate: 0.000408
+Minibatch error: 53.0%
+Validation error: 37.9%
+--------------------------------
+CNN Default Deep 3: Step 400 (epoch 4.25): 15.47s
+CNN Default Deep 3: Total time: 65.80s
+Minibatch loss: 2.454, learning rate: 0.000381
+Minibatch error: 44.0%
+Validation error: 40.0%
+--------------------------------
+CNN Default Deep 3: Step 500 (epoch 5.31): 14.25s
+CNN Default Deep 3: Total time: 80.05s
+Minibatch loss: 2.674, learning rate: 0.000356
+Minibatch error: 52.0%
+Validation error: 38.7%
+--------------------------------
+CNN Default Deep 3: Step 600 (epoch 6.38): 15.73s
+CNN Default Deep 3: Total time: 1.60m
+Minibatch loss: 2.339, learning rate: 0.000333
+Minibatch error: 35.0%
+Validation error: 39.2%
+--------------------------------
+CNN Default Deep 3: Step 700 (epoch 7.44): 15.68s
+CNN Default Deep 3: Total time: 1.86m
+Minibatch loss: 2.287, learning rate: 0.000311
+Minibatch error: 37.0%
+Validation error: 34.0%
+--------------------------------
+CNN Default Deep 3: Step 800 (epoch 8.50): 13.15s
+CNN Default Deep 3: Total time: 2.08m
+Minibatch loss: 2.376, learning rate: 0.000291
+Minibatch error: 37.0%
+Validation error: 34.8%
+--------------------------------
+CNN Default Deep 3: Step 900 (epoch 9.57): 13.13s
+CNN Default Deep 3: Total time: 2.30m
+Minibatch loss: 2.151, learning rate: 0.000271
+Minibatch error: 32.0%
+Validation error: 35.1%
+--------------------------------
+CNN Default Deep 3: Step 1000 (epoch 10.63): 15.69s
+CNN Default Deep 3: Total time: 2.56m
+Minibatch loss: 2.122, learning rate: 0.000254
+Minibatch error: 30.0%
+Validation error: 36.4%
+--------------------------------
+CNN Default Deep 3: Step 1100 (epoch 11.69): 15.97s
+CNN Default Deep 3: Total time: 2.82m
+Minibatch loss: 2.035, learning rate: 0.000237
+Minibatch error: 21.0%
+Validation error: 36.1%
+--------------------------------
+CNN Default Deep 3: Step 1200 (epoch 12.76): 16.14s
+CNN Default Deep 3: Total time: 3.09m
+Minibatch loss: 2.356, learning rate: 0.000221
+Minibatch error: 37.0%
+Validation error: 35.6%
+--------------------------------
+CNN Default Deep 3: Step 1300 (epoch 13.82): 15.90s
+CNN Default Deep 3: Total time: 3.36m
+Minibatch loss: 2.165, learning rate: 0.000207
+Minibatch error: 31.0%
+Validation error: 34.5%
+--------------------------------
+CNN Default Deep 3: Step 1400 (epoch 14.88): 15.96s
+CNN Default Deep 3: Total time: 3.62m
+Minibatch loss: 2.165, learning rate: 0.000193
+Minibatch error: 26.0%
+Validation error: 31.7%
+--------------------------------
+CNN Default Deep 3: Step 1500 (epoch 15.94): 16.17s
+CNN Default Deep 3: Total time: 3.89m
+Minibatch loss: 2.129, learning rate: 0.000181
+Minibatch error: 30.0%
+Validation error: 34.8%
+--------------------------------
+CNN Default Deep 3: Step 1600 (epoch 17.01): 15.85s
+CNN Default Deep 3: Total time: 4.16m
+Minibatch loss: 2.062, learning rate: 0.000169
+Minibatch error: 28.0%
+Validation error: 35.6%
+--------------------------------
+CNN Default Deep 3: Step 1700 (epoch 18.07): 15.82s
+CNN Default Deep 3: Total time: 4.42m
+Minibatch loss: 2.048, learning rate: 0.000158
+Minibatch error: 27.0%
+Validation error: 34.0%
+--------------------------------
+CNN Default Deep 3: Step 1800 (epoch 19.13): 16.13s
+CNN Default Deep 3: Total time: 4.69m
+Minibatch loss: 1.963, learning rate: 0.000147
+Minibatch error: 27.0%
+Validation error: 33.2%
+--------------------------------
+CNN Default Deep 3: Step 1900 (epoch 20.20): 15.71s
+CNN Default Deep 3: Total time: 4.95m
+Minibatch loss: 2.036, learning rate: 0.000138
+Minibatch error: 28.0%
+Validation error: 32.5%
+--------------------------------
+CNN Default Deep 3: Step 2000 (epoch 21.26): 14.68s
+CNN Default Deep 3: Total time: 5.20m
+Minibatch loss: 2.258, learning rate: 0.000129
+Minibatch error: 32.0%
+Validation error: 33.2%
+--------------------------------
+CNN Default Deep 3: Step 2100 (epoch 22.32): 15.01s
+CNN Default Deep 3: Total time: 5.45m
+Minibatch loss: 2.216, learning rate: 0.000120
+Minibatch error: 29.0%
+Validation error: 34.5%
+--------------------------------
+CNN Default Deep 3: Step 2200 (epoch 23.38): 15.71s
+CNN Default Deep 3: Total time: 5.71m
+Minibatch loss: 2.096, learning rate: 0.000112
+Minibatch error: 28.0%
+Validation error: 33.0%
+--------------------------------
+CNN Default Deep 3: Step 2300 (epoch 24.45): 16.15s
+CNN Default Deep 3: Total time: 5.98m
+Minibatch loss: 1.871, learning rate: 0.000105
+Minibatch error: 22.0%
+Validation error: 32.2%
+--------------------------------
+CNN Default Deep 3: Step 2400 (epoch 25.51): 16.22s
+CNN Default Deep 3: Total time: 6.25m
+Minibatch loss: 2.048, learning rate: 0.000098
+Minibatch error: 30.0%
+Validation error: 32.5%
+--------------------------------
+CNN Default Deep 3: Step 2500 (epoch 26.57): 16.01s
+CNN Default Deep 3: Total time: 6.51m
+Minibatch loss: 1.953, learning rate: 0.000092
+Minibatch error: 26.0%
+Validation error: 32.2%
+--------------------------------
+CNN Default Deep 3: Step 2600 (epoch 27.64): 15.80s
+CNN Default Deep 3: Total time: 6.78m
+Minibatch loss: 1.897, learning rate: 0.000086
+Minibatch error: 17.0%
+Validation error: 32.7%
+--------------------------------
+CNN Default Deep 3: Step 2700 (epoch 28.70): 16.08s
+CNN Default Deep 3: Total time: 7.05m
+Minibatch loss: 2.010, learning rate: 0.000080
+Minibatch error: 26.0%
+Validation error: 31.7%
+--------------------------------
+CNN Default Deep 3: Step 2800 (epoch 29.76): 15.90s
+CNN Default Deep 3: Total time: 7.31m
+Minibatch loss: 2.023, learning rate: 0.000075
+Minibatch error: 22.0%
+Validation error: 30.6%
+--------------------------------
+CNN Default Deep 3: Step 2900 (epoch 30.82): 15.88s
+CNN Default Deep 3: Total time: 7.58m
+Minibatch loss: 1.996, learning rate: 0.000070
+Minibatch error: 25.0%
+Validation error: 30.6%
+--------------------------------
+CNN Default Deep 3: Step 3000 (epoch 31.89): 15.82s
+CNN Default Deep 3: Total time: 7.84m
+Minibatch loss: 2.116, learning rate: 0.000065
+Minibatch error: 29.0%
+Validation error: 30.4%
+--------------------------------
+CNN Default Deep 3: Step 3100 (epoch 32.95): 15.82s
+CNN Default Deep 3: Total time: 8.10m
+Minibatch loss: 2.106, learning rate: 0.000061
+Minibatch error: 31.0%
+Validation error: 29.4%
+--------------------------------
+CNN Default Deep 3: Step 3200 (epoch 34.01): 15.79s
+CNN Default Deep 3: Total time: 8.37m
+Minibatch loss: 1.931, learning rate: 0.000057
+Minibatch error: 22.0%
+Validation error: 30.6%
+--------------------------------
+CNN Default Deep 3: Step 3300 (epoch 35.08): 16.34s
+CNN Default Deep 3: Total time: 8.64m
+Minibatch loss: 1.995, learning rate: 0.000053
+Minibatch error: 26.0%
+Validation error: 30.9%
+--------------------------------
+CNN Default Deep 3: Step 3400 (epoch 36.14): 16.11s
+CNN Default Deep 3: Total time: 8.91m
+Minibatch loss: 1.841, learning rate: 0.000050
+Minibatch error: 18.0%
+Validation error: 30.6%
+--------------------------------
+CNN Default Deep 3: Step 3500 (epoch 37.20): 15.80s
+CNN Default Deep 3: Total time: 9.17m
+Minibatch loss: 1.939, learning rate: 0.000046
+Minibatch error: 21.0%
+Validation error: 30.6%
+--------------------------------
+CNN Default Deep 3: Step 3600 (epoch 38.27): 14.16s
+CNN Default Deep 3: Total time: 9.41m
+Minibatch loss: 1.986, learning rate: 0.000043
+Minibatch error: 24.0%
+Validation error: 30.6%
+--------------------------------
+CNN Default Deep 3: Step 3700 (epoch 39.33): 11.39s
+CNN Default Deep 3: Total time: 9.60m
+Minibatch loss: 1.908, learning rate: 0.000041
+Minibatch error: 23.0%
+Validation error: 30.9%
+--------------------------------
+CNN Default Deep 3: Step 3800 (epoch 40.39): 9.03s
+CNN Default Deep 3: Total time: 9.75m
+Minibatch loss: 1.876, learning rate: 0.000038
+Minibatch error: 20.0%
+Validation error: 31.2%
+--------------------------------
+CNN Default Deep 3: Step 3900 (epoch 41.45): 6.72s
+CNN Default Deep 3: Total time: 9.86m
+Minibatch loss: 2.028, learning rate: 0.000035
+Minibatch error: 24.0%
+Validation error: 30.6%
+--------------------------------
+CNN Default Deep 3: Step 4000 (epoch 42.52): 7.95s
+CNN Default Deep 3: Total time: 9.99m
+Minibatch loss: 1.973, learning rate: 0.000033
+Minibatch error: 25.0%
+Validation error: 30.6%
+--------------------------------
+CNN Default Deep 3: Step 4100 (epoch 43.58): 8.63s
+CNN Default Deep 3: Total time: 10.13m
+Minibatch loss: 2.083, learning rate: 0.000031
+Minibatch error: 32.0%
+Validation error: 31.2%
+--------------------------------
+CNN Default Deep 3: Step 4200 (epoch 44.64): 8.81s
+CNN Default Deep 3: Total time: 10.28m
+Minibatch loss: 1.965, learning rate: 0.000029
+Minibatch error: 22.0%
+Validation error: 30.1%
+--------------------------------
+CNN Default Deep 3: Step 4300 (epoch 45.71): 8.63s
+CNN Default Deep 3: Total time: 10.43m
+Minibatch loss: 1.843, learning rate: 0.000027
+Minibatch error: 17.0%
+Validation error: 30.6%
+--------------------------------
+CNN Default Deep 3: Training the model: 7.11s
+CNN Default Deep 3: Total time: 10.54m
+
+RESULTS:
+Time per epoch: 13.59 secs
+Number of epochs: 46.6
+Min validation error: 29.4%
+Validation error: 29.4%
++----------+------+-----+-----+------+------+------+------+-------+
+|          | Blue | Box | Can | Chem | Colo | Gree | Whit | Pred  |
++==========+======+=====+=====+======+======+======+======+=======+
+| Blue     | 49   | 2   | 0   | 0    | 0    | 0    | 4    | 89.1% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Box      | 1    | 31  | 15  | 6    | 0    | 0    | 2    | 56.4% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Can      | 5    | 0   | 39  | 8    | 3    | 0    | 0    | 70.9% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Chemical | 2    | 8   | 10  | 25   | 2    | 0    | 8    | 45.5% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Colorful | 0    | 0   | 6   | 0    | 49   | 0    | 0    | 89.1% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Green    | 1    | 0   | 0   | 0    | 0    | 53   | 1    | 96.4% |
++----------+------+-----+-----+------+------+------+------+-------+
+| White    | 13   | 3   | 7   | 4    | 1    | 1    | 26   | 47.3% |
++----------+------+-----+-----+------+------+------+------+-------+
+
+COMPUTE 5. CROSSVALIDATION:
+
+(10440, 10440)
+[42 36 23 23 17 55 52]
+[1037  230 1021 ...,  265  841  659]
+--------------------------------
+CNN Default Deep 3: Model creation: 0.59s
+CNN Default Deep 3: Total time: 0.59s
+--------------------------------
+CNN Default Deep 3: Start: 0.00s
+CNN Default Deep 3: Total time: 0.59s
+--------------------------------
+CNN Default Deep 3: Variable initialization: 0.87s
+CNN Default Deep 3: Total time: 1.46s
+--------------------------------
+CNN Default Deep 3: Step 0 (epoch 0.00): 0.29s
+CNN Default Deep 3: Total time: 1.75s
+Minibatch loss: 11.601, learning rate: 0.000500
+Minibatch error: 79.0%
+Validation error: 88.3%
+--------------------------------
+CNN Default Deep 3: Step 100 (epoch 1.06): 8.67s
+CNN Default Deep 3: Total time: 10.41s
+Minibatch loss: 3.132, learning rate: 0.000467
+Minibatch error: 65.0%
+Validation error: 44.2%
+--------------------------------
+CNN Default Deep 3: Step 200 (epoch 2.13): 8.63s
+CNN Default Deep 3: Total time: 19.04s
+Minibatch loss: 2.706, learning rate: 0.000437
+Minibatch error: 47.0%
+Validation error: 36.1%
+--------------------------------
+CNN Default Deep 3: Step 300 (epoch 3.19): 8.88s
+CNN Default Deep 3: Total time: 27.92s
+Minibatch loss: 2.668, learning rate: 0.000408
+Minibatch error: 50.0%
+Validation error: 33.5%
+--------------------------------
+CNN Default Deep 3: Step 400 (epoch 4.25): 8.60s
+CNN Default Deep 3: Total time: 36.52s
+Minibatch loss: 2.494, learning rate: 0.000381
+Minibatch error: 45.0%
+Validation error: 33.5%
+--------------------------------
+CNN Default Deep 3: Step 500 (epoch 5.31): 8.68s
+CNN Default Deep 3: Total time: 45.20s
+Minibatch loss: 2.427, learning rate: 0.000356
+Minibatch error: 41.0%
+Validation error: 29.1%
+--------------------------------
+CNN Default Deep 3: Step 600 (epoch 6.38): 8.77s
+CNN Default Deep 3: Total time: 53.97s
+Minibatch loss: 2.332, learning rate: 0.000333
+Minibatch error: 35.0%
+Validation error: 27.8%
+--------------------------------
+CNN Default Deep 3: Step 700 (epoch 7.44): 8.62s
+CNN Default Deep 3: Total time: 62.59s
+Minibatch loss: 2.237, learning rate: 0.000311
+Minibatch error: 37.0%
+Validation error: 30.4%
+--------------------------------
+CNN Default Deep 3: Step 800 (epoch 8.50): 8.65s
+CNN Default Deep 3: Total time: 71.24s
+Minibatch loss: 2.094, learning rate: 0.000291
+Minibatch error: 28.0%
+Validation error: 29.9%
+--------------------------------
+CNN Default Deep 3: Step 900 (epoch 9.57): 8.85s
+CNN Default Deep 3: Total time: 80.08s
+Minibatch loss: 2.277, learning rate: 0.000271
+Minibatch error: 32.0%
+Validation error: 29.4%
+--------------------------------
+CNN Default Deep 3: Step 1000 (epoch 10.63): 8.65s
+CNN Default Deep 3: Total time: 88.73s
+Minibatch loss: 2.208, learning rate: 0.000254
+Minibatch error: 32.0%
+Validation error: 29.4%
+--------------------------------
+CNN Default Deep 3: Step 1100 (epoch 11.69): 8.68s
+CNN Default Deep 3: Total time: 1.62m
+Minibatch loss: 2.295, learning rate: 0.000237
+Minibatch error: 39.0%
+Validation error: 27.5%
+--------------------------------
+CNN Default Deep 3: Step 1200 (epoch 12.76): 8.75s
+CNN Default Deep 3: Total time: 1.77m
+Minibatch loss: 2.267, learning rate: 0.000221
+Minibatch error: 34.0%
+Validation error: 28.8%
+--------------------------------
+CNN Default Deep 3: Step 1300 (epoch 13.82): 8.70s
+CNN Default Deep 3: Total time: 1.91m
+Minibatch loss: 2.226, learning rate: 0.000207
+Minibatch error: 29.0%
+Validation error: 28.8%
+--------------------------------
+CNN Default Deep 3: Step 1400 (epoch 14.88): 8.66s
+CNN Default Deep 3: Total time: 2.06m
+Minibatch loss: 2.113, learning rate: 0.000193
+Minibatch error: 29.0%
+Validation error: 27.3%
+--------------------------------
+CNN Default Deep 3: Step 1500 (epoch 15.94): 8.81s
+CNN Default Deep 3: Total time: 2.21m
+Minibatch loss: 2.094, learning rate: 0.000181
+Minibatch error: 30.0%
+Validation error: 26.2%
+--------------------------------
+CNN Default Deep 3: Step 1600 (epoch 17.01): 8.64s
+CNN Default Deep 3: Total time: 2.35m
+Minibatch loss: 2.052, learning rate: 0.000169
+Minibatch error: 29.0%
+Validation error: 24.4%
+--------------------------------
+CNN Default Deep 3: Step 1700 (epoch 18.07): 8.61s
+CNN Default Deep 3: Total time: 2.49m
+Minibatch loss: 2.002, learning rate: 0.000158
+Minibatch error: 25.0%
+Validation error: 24.9%
+--------------------------------
+CNN Default Deep 3: Step 1800 (epoch 19.13): 8.89s
+CNN Default Deep 3: Total time: 2.64m
+Minibatch loss: 2.062, learning rate: 0.000147
+Minibatch error: 26.0%
+Validation error: 26.0%
+--------------------------------
+CNN Default Deep 3: Step 1900 (epoch 20.20): 8.63s
+CNN Default Deep 3: Total time: 2.78m
+Minibatch loss: 2.212, learning rate: 0.000138
+Minibatch error: 37.0%
+Validation error: 24.9%
+--------------------------------
+CNN Default Deep 3: Step 2000 (epoch 21.26): 8.65s
+CNN Default Deep 3: Total time: 2.93m
+Minibatch loss: 2.103, learning rate: 0.000129
+Minibatch error: 26.0%
+Validation error: 25.7%
+--------------------------------
+CNN Default Deep 3: Step 2100 (epoch 22.32): 8.82s
+CNN Default Deep 3: Total time: 3.08m
+Minibatch loss: 1.998, learning rate: 0.000120
+Minibatch error: 27.0%
+Validation error: 25.5%
+--------------------------------
+CNN Default Deep 3: Step 2200 (epoch 23.38): 8.71s
+CNN Default Deep 3: Total time: 3.22m
+Minibatch loss: 2.111, learning rate: 0.000112
+Minibatch error: 33.0%
+Validation error: 26.8%
+--------------------------------
+CNN Default Deep 3: Step 2300 (epoch 24.45): 8.79s
+CNN Default Deep 3: Total time: 3.37m
+Minibatch loss: 2.169, learning rate: 0.000105
+Minibatch error: 28.0%
+Validation error: 26.8%
+--------------------------------
+CNN Default Deep 3: Step 2400 (epoch 25.51): 8.74s
+CNN Default Deep 3: Total time: 3.51m
+Minibatch loss: 1.977, learning rate: 0.000098
+Minibatch error: 17.0%
+Validation error: 26.8%
+--------------------------------
+CNN Default Deep 3: Step 2500 (epoch 26.57): 8.61s
+CNN Default Deep 3: Total time: 3.66m
+Minibatch loss: 1.892, learning rate: 0.000092
+Minibatch error: 20.0%
+Validation error: 25.7%
+--------------------------------
+CNN Default Deep 3: Step 2600 (epoch 27.64): 8.57s
+CNN Default Deep 3: Total time: 3.80m
+Minibatch loss: 2.065, learning rate: 0.000086
+Minibatch error: 22.0%
+Validation error: 24.9%
+--------------------------------
+CNN Default Deep 3: Step 2700 (epoch 28.70): 8.81s
+CNN Default Deep 3: Total time: 3.95m
+Minibatch loss: 2.069, learning rate: 0.000080
+Minibatch error: 31.0%
+Validation error: 25.5%
+--------------------------------
+CNN Default Deep 3: Step 2800 (epoch 29.76): 8.71s
+CNN Default Deep 3: Total time: 4.09m
+Minibatch loss: 1.847, learning rate: 0.000075
+Minibatch error: 18.0%
+Validation error: 26.8%
+--------------------------------
+CNN Default Deep 3: Step 2900 (epoch 30.82): 8.62s
+CNN Default Deep 3: Total time: 4.24m
+Minibatch loss: 1.991, learning rate: 0.000070
+Minibatch error: 22.0%
+Validation error: 25.5%
+--------------------------------
+CNN Default Deep 3: Step 3000 (epoch 31.89): 8.84s
+CNN Default Deep 3: Total time: 4.38m
+Minibatch loss: 1.955, learning rate: 0.000065
+Minibatch error: 21.0%
+Validation error: 24.7%
+--------------------------------
+CNN Default Deep 3: Step 3100 (epoch 32.95): 8.60s
+CNN Default Deep 3: Total time: 4.53m
+Minibatch loss: 1.931, learning rate: 0.000061
+Minibatch error: 23.0%
+Validation error: 22.9%
+--------------------------------
+CNN Default Deep 3: Step 3200 (epoch 34.01): 6.38s
+CNN Default Deep 3: Total time: 4.63m
+Minibatch loss: 1.931, learning rate: 0.000057
+Minibatch error: 21.0%
+Validation error: 24.7%
+--------------------------------
+CNN Default Deep 3: Step 3300 (epoch 35.08): 6.35s
+CNN Default Deep 3: Total time: 4.74m
+Minibatch loss: 1.888, learning rate: 0.000053
+Minibatch error: 22.0%
+Validation error: 23.4%
+--------------------------------
+CNN Default Deep 3: Step 3400 (epoch 36.14): 6.25s
+CNN Default Deep 3: Total time: 4.84m
+Minibatch loss: 1.900, learning rate: 0.000050
+Minibatch error: 24.0%
+Validation error: 25.5%
+--------------------------------
+CNN Default Deep 3: Step 3500 (epoch 37.20): 6.24s
+CNN Default Deep 3: Total time: 4.95m
+Minibatch loss: 1.911, learning rate: 0.000046
+Minibatch error: 21.0%
+Validation error: 24.4%
+--------------------------------
+CNN Default Deep 3: Step 3600 (epoch 38.27): 5.13s
+CNN Default Deep 3: Total time: 5.03m
+Minibatch loss: 1.935, learning rate: 0.000043
+Minibatch error: 16.0%
+Validation error: 24.7%
+--------------------------------
+CNN Default Deep 3: Step 3700 (epoch 39.33): 4.00s
+CNN Default Deep 3: Total time: 5.10m
+Minibatch loss: 2.000, learning rate: 0.000041
+Minibatch error: 27.0%
+Validation error: 25.7%
+--------------------------------
+CNN Default Deep 3: Step 3800 (epoch 40.39): 4.00s
+CNN Default Deep 3: Total time: 5.17m
+Minibatch loss: 1.757, learning rate: 0.000038
+Minibatch error: 13.0%
+Validation error: 26.0%
+--------------------------------
+CNN Default Deep 3: Step 3900 (epoch 41.45): 4.09s
+CNN Default Deep 3: Total time: 5.23m
+Minibatch loss: 1.935, learning rate: 0.000035
+Minibatch error: 19.0%
+Validation error: 27.0%
+--------------------------------
+CNN Default Deep 3: Step 4000 (epoch 42.52): 4.02s
+CNN Default Deep 3: Total time: 5.30m
+Minibatch loss: 1.854, learning rate: 0.000033
+Minibatch error: 18.0%
+Validation error: 26.2%
+--------------------------------
+CNN Default Deep 3: Training the model: 0.86s
+CNN Default Deep 3: Total time: 5.32m
+
+RESULTS:
+Time per epoch: 7.46 secs
+Number of epochs: 42.7
+Min validation error: 23.4%
+Validation error: 23.4%
++----------+------+-----+-----+------+------+------+------+--------+
+|          | Blue | Box | Can | Chem | Colo | Gree | Whit |  Pred  |
++==========+======+=====+=====+======+======+======+======+========+
+| Blue     | 48   | 3   | 0   | 0    | 0    | 0    | 4    | 87.3%  |
++----------+------+-----+-----+------+------+------+------+--------+
+| Box      | 0    | 44  | 4   | 3    | 0    | 1    | 3    | 80.0%  |
++----------+------+-----+-----+------+------+------+------+--------+
+| Can      | 0    | 0   | 41  | 2    | 2    | 3    | 7    | 74.5%  |
++----------+------+-----+-----+------+------+------+------+--------+
+| Chemical | 6    | 8   | 3   | 30   | 3    | 0    | 5    | 54.5%  |
++----------+------+-----+-----+------+------+------+------+--------+
+| Colorful | 3    | 0   | 0   | 0    | 37   | 0    | 15   | 67.3%  |
++----------+------+-----+-----+------+------+------+------+--------+
+| Green    | 0    | 0   | 0   | 0    | 0    | 55   | 0    | 100.0% |
++----------+------+-----+-----+------+------+------+------+--------+
+| White    | 6    | 2   | 3   | 2    | 2    | 0    | 40   | 72.7%  |
++----------+------+-----+-----+------+------+------+------+--------+
+
+
+ Full Cross Validation results:
+
+Validation error: 25.1%
++----------+------+-----+-----+------+------+------+------+-------+
+|          | Blue | Box | Can | Chem | Colo | Gree | Whit | Pred  |
++==========+======+=====+=====+======+======+======+======+=======+
+| Blue     | 241  | 13  | 0   | 1    | 0    | 1    | 19   | 87.6% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Box      | 1    | 190 | 42  | 23   | 1    | 4    | 14   | 69.1% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Can      | 7    | 11  | 200 | 17   | 20   | 3    | 17   | 72.7% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Chemical | 15   | 51  | 29  | 132  | 11   | 5    | 32   | 48.0% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Colorful | 9    | 3   | 14  | 0    | 228  | 0    | 21   | 82.9% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Green    | 3    | 0   | 1   | 1    | 0    | 268  | 2    | 97.5% |
++----------+------+-----+-----+------+------+------+------+-------+
+| White    | 38   | 12  | 23  | 11   | 7    | 1    | 183  | 66.5% |
++----------+------+-----+-----+------+------+------+------+-------+
