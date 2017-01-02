@@ -12,6 +12,8 @@ OUTPUT_PATHS = {WhatToRun.cnn_default: 'CNN/results/default/',
                 WhatToRun.cnn_edges_deep_3: 'CNN/results/edges_deep_3/',
                 WhatToRun.cnn_default_deep_3: 'CNN/results/default_deep_3/',
                 WhatToRun.simple_autoencoder: 'Autoencoder/results/encoding/simple/',
+                WhatToRun.deep_autoencoder: 'Autoencoder/results/encoding/deep/',
+                WhatToRun.simple_autoencoder_classifier: 'Autoencoder/results/prediction/simple/',
                 WhatToRun.pca_svm: 'PCA_SVM/results/default/',
                 WhatToRun.pca_svm_edges: 'PCA_SVM/results/edges/'}
 
@@ -22,6 +24,8 @@ CONFIGURATION_PATHS = {WhatToRun.cnn_default: 'CNN/configuration_default.py',
                        WhatToRun.cnn_edges_deep_3: 'CNN/configuration_edges_deep_3.py',
                        WhatToRun.cnn_default_deep_3: 'CNN/configuration_default_deep_3.py',
                        WhatToRun.simple_autoencoder: 'Autoencoder/configuration_simple.py',
+                       WhatToRun.deep_autoencoder: 'Autoencoder/configuration_deep.py',
+                       WhatToRun.simple_autoencoder_classifier: 'Autoencoder/configuration_classifier_simple.py',
                        WhatToRun.pca_svm: 'PCA_SVM/results/default/',
                        WhatToRun.pca_svm_edges: 'PCA_SVM/results/edges/'}
 
