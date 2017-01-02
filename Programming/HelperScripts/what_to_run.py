@@ -6,6 +6,7 @@ from Programming.Learning.CNN.cnn_edges_deep_3 import CNNEdgesDeep3
 from Programming.Learning.CNN.cnn_default_deep_3 import CNNDefaultDeep3
 from enum import Enum
 from Programming.Learning.PCA_SVM import pca_svm, pca_svm_edges
+from Programming.Learning.Autoencoder.autoencoder_simple import SimpleAutoEncoder
 
 
 class WhatToRun(Enum):
@@ -17,6 +18,7 @@ class WhatToRun(Enum):
     cnn_default_deep_3 = CNNDefaultDeep3
     pca_svm = pca_svm
     pca_svm_edges = pca_svm_edges
+    simple_autoencoder = SimpleAutoEncoder
 
     def __init__(self, val):
         self.val = val

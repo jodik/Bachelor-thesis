@@ -1,20 +1,15 @@
 import numpy as np
 import Programming.configuration as conf
-from Programming.DataScripts import data_normalization
-from Programming.DataScripts import data_process
-from Programming.DataScripts import data_reader
 from Programming.HelperScripts import helper
-from Programming.HelperScripts import redirect_output_stream
+import Programming.HelperScripts.redirect_output_stream as redirect_output_stream
 from Programming.HelperScripts.what_to_run import WhatToRun
+from DataScripts.data_sets_retrieval import get_new_data_sets
 
-
-WHAT_TO_RUN = WhatToRun.cnn_default
+WHAT_TO_RUN = WhatToRun.simple_autoencoder
 
 
 def compute(permutation_index):
-    full_data_set = data_reader.read_data()
-    data_sets = data_process.process(full_data_set, permutation_index)
-    data_sets = data_normalization.normalize_data_sets(data_sets)
+    data_sets = get_new_data_sets(permutation_index)
 
     run_object = WHAT_TO_RUN(data_sets)
     return run_object.run()
