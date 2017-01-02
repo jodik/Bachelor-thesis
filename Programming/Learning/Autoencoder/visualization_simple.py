@@ -22,7 +22,7 @@ class VisualisationSimpleAutoEncoder(SimpleAutoEncoder):
         self.name = "VisualizeSimpleAutoEncoder"
 
     def run(self):
-        autoencoder = load_model('Learning/Autoencoder/models/deep.h5')
+        autoencoder = load_model('Learning/Autoencoder/models/simple42.h5')
 
         decoded_imgs = autoencoder.predict(self.validation_data)
 
