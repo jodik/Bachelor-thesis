@@ -2,6 +2,7 @@ import array
 
 import numpy as np
 from cobs import cobs
+import copy
 
 import Programming.Learning.CNN.configuration_edges as conf_edges
 import Programming.Learning.CNN.configuration_default as conf_default
@@ -104,7 +105,7 @@ def extract_data():
     images, labels, names, is_hard, edge_descriptors = filter_unselected_categories(all_images, num_of_all_images,
                                                                                     all_labels, all_names, all_is_hard,
                                                                                     all_edge_descriptors)
-    return FullData(images, labels, names, is_hard, edge_descriptors)
+    return FullData(images, labels, names, is_hard, edge_descriptors, copy.deepcopy(images) + 0.5)
 
 
 def read_data():

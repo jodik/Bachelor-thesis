@@ -2,10 +2,11 @@ import Programming.configuration as conf
 
 
 class DataSet(object):
-    def __init__(self, images, labels, names, is_hard, edge_descriptors):
+    def __init__(self, images, labels, names, is_hard, edge_descriptors, original_images):
         assert len(images) == len(labels) == len(names) == len(is_hard) == len(edge_descriptors)
-        self._data = (images, labels, names, is_hard, edge_descriptors)
+        self._data = (images, labels, names, is_hard, edge_descriptors, original_images)
         self._images = images
+        self._original_images = original_images
         self._labels = labels
         self._names = names
         self._edge_descriptors = edge_descriptors
@@ -33,6 +34,10 @@ class DataSet(object):
     @property
     def names(self):
         return self._names
+
+    @property
+    def original_images(self):
+        return self._original_images
 
     @property
     def edge_descriptors(self):
