@@ -1,0 +1,108 @@
+CONFIGURATION LOCAL:
+NUM_OF_COMPONENTS = 12
+PARAM_GRID = {'C': [1, 3, 5, 8, 10],
+              'gamma': [0.0001, 0.0005, 0.001, 0.005, 0.01, 0.1],
+              'kernel': ['linear', 'rbf', 'poly', 'sigmoid']}
+PARAM_GRID = {'C': [1, 3, 5, 8, 10, 25, 50, 120, 230, 450],
+              'gamma': [0.0001, 0.0005, 0.001, 0.005, 0.01, 0.1],
+              'kernel': ['linear']}
+USE_TEST_DATA = False
+--------------------------------
+CONFIGURATION GLOBAL:
+EXTENDED_DATASET = True
+BLACK_BORDER = True
+HARD_DIFFICULTY = True
+SIMPLIFIED_CATEGORIES = False
+CROPPED_VERSION = True
+WRITE_TO_FILE = True
+FULL_CROSS_VALIDATION = True
+CROSS_VALIDATION_ITERATIONS = 5
+SEED = 66478
+TEST_PERCENTAGE = 20
+VALIDATION_PERCENTAGE = 20
+--------------------------------
+--------------------------------
+Full Cross-Validation: Started: 0.00s
+Full Cross-Validation: Total time: 0.00s
+
+COMPUTE 1. CROSSVALIDATION:
+
+(10440, 10440)
+[42 36 23 23 17 55 52]
+[1094 1050  851 ..., 1136  131  465]
+--------------------------------
+PCA & SVM: Start learning: 0.00s
+PCA & SVM: Total time: 0.00s
+--------------------------------
+PCA & SVM: PCA finished: 1.71m
+PCA & SVM: Total time: 1.71m
+--------------------------------
+PCA & SVM: Finished transforming data sets: 1.15s
+PCA & SVM: Total time: 1.73m
+--------------------------------
+PCA & SVM: Finished grid search: 2.47h
+PCA & SVM: Total time: 2.50h
+Best estimator found by grid search:
+SVC(C=1, cache_size=200, class_weight='balanced', coef0=0.0,
+  decision_function_shape=None, degree=3, gamma=0.0001, kernel='linear',
+  max_iter=-1, probability=False, random_state=66478, shrinking=True,
+  tol=0.001, verbose=False)
+             precision    recall  f1-score   support
+
+       Blue       0.34      0.36      0.35        55
+        Box       0.52      0.51      0.51        55
+        Can       0.45      0.62      0.52        55
+   Chemical       0.32      0.22      0.26        55
+   Colorful       0.51      0.60      0.55        55
+      Green       0.64      0.76      0.69        55
+      White       0.41      0.22      0.29        55
+
+avg / total       0.46      0.47      0.45       385
+
+[[20  5  4  4  0 18  4]
+ [ 9 28 10  3  4  0  1]
+ [ 0 10 34  0  9  0  2]
+ [18  2  8 12 10  0  5]
+ [ 0  3  6  7 33  3  3]
+ [ 6  0  1  0  4 42  2]
+ [ 5  6 13 11  5  3 12]]
+Validation error: 54.4%
++----------+------+-----+-----+------+------+------+------+-------+
+|          | Blue | Box | Can | Chem | Colo | Gree | Whit | Pred  |
++==========+======+=====+=====+======+======+======+======+=======+
+| Blue     | 20   | 5   | 4   | 4    | 0    | 18   | 4    | 36.4% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Box      | 9    | 28  | 10  | 3    | 4    | 0    | 1    | 50.9% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Can      | 0    | 10  | 34  | 0    | 9    | 0    | 2    | 61.8% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Chemical | 18   | 2   | 8   | 12   | 10   | 0    | 5    | 21.8% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Colorful | 0    | 3   | 6   | 7    | 33   | 3    | 3    | 60.0% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Green    | 6    | 0   | 1   | 0    | 4    | 42   | 2    | 76.4% |
++----------+------+-----+-----+------+------+------+------+-------+
+| White    | 5    | 6   | 13  | 11   | 5    | 3    | 12   | 21.8% |
++----------+------+-----+-----+------+------+------+------+-------+
+--------------------------------
+PCA & SVM: Finished validation prediction: 0.06s
+PCA & SVM: Total time: 2.50h
+
+COMPUTE 2. CROSSVALIDATION:
+
+(10440, 10440)
+[42 36 23 23 17 55 52]
+[ 906 1203  248 ...,  192  408  237]
+--------------------------------
+PCA & SVM: Start learning: 0.00s
+PCA & SVM: Total time: 0.00s
+--------------------------------
+PCA & SVM: PCA finished: 89.54s
+PCA & SVM: Total time: 89.54s
+--------------------------------
+PCA & SVM: Finished transforming data sets: 1.17s
+PCA & SVM: Total time: 1.51m
+--------------------------------
+PCA & SVM: Finished grid search: 2.31h
+PCA & SVM: Total time: 2.33h
+Best estimator fo
