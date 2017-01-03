@@ -1,0 +1,83 @@
+CONFIGURATION LOCAL:
+NUM_OF_COMPONENTS = 110
+PARAM_GRID = {'C': [1, 3, 5, 8, 10],
+              'gamma': [0.0001, 0.0005, 0.001, 0.005, 0.01, 0.1],
+              'kernel': ['linear', 'rbf', 'poly', 'sigmoid']}
+PARAM_GRID = {'C': [8, 10, 12],
+              'gamma': [0.005, 0.0075, 0.001],
+              'kernel': ['rbf']}
+USE_TEST_DATA = False
+--------------------------------
+CONFIGURATION GLOBAL:
+EXTENDED_DATASET = True
+BLACK_BORDER = True
+HARD_DIFFICULTY = True
+SIMPLIFIED_CATEGORIES = False
+CROPPED_VERSION = True
+WRITE_TO_FILE = True
+FULL_CROSS_VALIDATION = False
+CROSS_VALIDATION_ITERATIONS = 5
+SEED = 66478
+TEST_PERCENTAGE = 20
+VALIDATION_PERCENTAGE = 20
+--------------------------------
+(10440, 10440)
+[42 36 23 23 17 55 52]
+[ 468  713  119 ..., 1132   44  369]
+--------------------------------
+PCA & SVM: Start learning: 0.00s
+PCA & SVM: Total time: 0.00s
+--------------------------------
+PCA & SVM: PCA finished: 9.85m
+PCA & SVM: Total time: 9.85m
+--------------------------------
+PCA & SVM: Finished transforming data sets: 6.65s
+PCA & SVM: Total time: 9.96m
+--------------------------------
+PCA & SVM: Finished grid search: 4.37m
+PCA & SVM: Total time: 14.33m
+Best estimator found by grid search:
+SVC(C=12, cache_size=200, class_weight='balanced', coef0=0.0,
+  decision_function_shape=None, degree=3, gamma=0.0075, kernel='rbf',
+  max_iter=-1, probability=False, random_state=66478, shrinking=True,
+  tol=0.001, verbose=False)
+             precision    recall  f1-score   support
+
+       Blue       0.86      0.69      0.77        55
+        Box       0.51      0.67      0.58        55
+        Can       0.47      0.42      0.44        55
+   Chemical       0.74      0.36      0.49        55
+   Colorful       0.94      0.80      0.86        55
+      Green       0.79      0.91      0.85        55
+      White       0.44      0.65      0.53        55
+
+avg / total       0.68      0.64      0.64       385
+
+[[38  0  2  2  0  1 12]
+ [ 4 37  4  4  0  2  4]
+ [ 0 18 23  0  2  0 12]
+ [ 0 13  7 20  0  3 12]
+ [ 0  0  3  0 44  4  4]
+ [ 0  1  2  0  0 50  2]
+ [ 2  4  8  1  1  3 36]]
+Validation error: 32.2%
++----------+------+-----+-----+------+------+------+------+-------+
+|          | Blue | Box | Can | Chem | Colo | Gree | Whit | Pred  |
++==========+======+=====+=====+======+======+======+======+=======+
+| Blue     | 38   | 0   | 2   | 2    | 0    | 1    | 12   | 69.1% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Box      | 4    | 37  | 4   | 4    | 0    | 2    | 4    | 67.3% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Can      | 0    | 18  | 23  | 0    | 2    | 0    | 12   | 41.8% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Chemical | 0    | 13  | 7   | 20   | 0    | 3    | 12   | 36.4% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Colorful | 0    | 0   | 3   | 0    | 44   | 4    | 4    | 80.0% |
++----------+------+-----+-----+------+------+------+------+-------+
+| Green    | 0    | 1   | 2   | 0    | 0    | 50   | 2    | 90.9% |
++----------+------+-----+-----+------+------+------+------+-------+
+| White    | 2    | 4   | 8   | 1    | 1    | 3    | 36   | 65.5% |
++----------+------+-----+-----+------+------+------+------+-------+
+--------------------------------
+PCA & SVM: Finished validation prediction: 0.28s
+PCA & SVM: Total time: 14.33m

@@ -1,15 +1,15 @@
 from sklearn.decomposition import PCA
-
 import matplotlib.pyplot as plt
-from time import time
-import numpy as np
 from sklearn.model_selection import GridSearchCV
 from sklearn.svm import SVC
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import precision_recall_fscore_support
 import Programming.configuration as conf
-from Programming.DataScripts import data_reader, data_process, data_normalization
+from Programming.HelperScripts import helper
+from Programming.HelperScripts.time_calculator import TimeCalculator
+from Programming.Learning.PCA_SVM import configuration_default
+
 
 def plot_gallery(images, titles, h, w, depth, n_row=5, n_col=4):
     """Helper function to plot a gallery of portraits"""
@@ -23,55 +23,65 @@ def plot_gallery(images, titles, h, w, depth, n_row=5, n_col=4):
         plt.yticks(())
 
 
-def compute(data_sets):
-    n_samples, h, w, depth = data_sets.train.images.shape
-    data_sets.flatten()
-    n_components = 150
-    pca = PCA(n_components=n_components, svd_solver='randomized',
-          whiten=True)
-    pca.fit(data_sets.train.images)
+class PCA_SVM(object):
+    def __init__(self, data_sets):
+        self.init_name()
+        self.time_logger = TimeCalculator(self.name)
+        self.init_configuration()
+        self.init_data(data_sets)
 
-    eigenfaces = pca.components_.reshape((n_components, h, w, depth))
+    def init_name(self):
+        self.name = "PCA & SVM"
 
-    #eigenface_titles = ["eigenface %d" % i for i in range(eigenfaces.shape[0])]
-    #plot_gallery(eigenfaces, eigenface_titles, h, w, depth)
-    #plt.show()
+    def init_configuration(self):
+        self.conf_s = configuration_default
 
-    X_t_train = pca.transform(data_sets.train.images)
-    X_t_test = pca.transform(data_sets.test.images)
+    def init_data(self, data_sets):
+        data_sets.flatten()
+        self.training_data = data_sets.train.images
+        self.validation_data = data_sets.validation.images if not self.conf_s.USE_TEST_DATA else data_sets.test.images
 
-    print("Fitting the classifier to the training set")
-    t0 = time()
-    param_grid = {'C': [1, 3, 5, 8, 10],
-                  'gamma': [0.0001, 0.0005, 0.001, 0.005, 0.01, 0.1],
-                  'kernel': ['linear', 'rbf', 'poly', 'sigmoid']}
-    param_grid = {'C': [10],
-                  'gamma': [0.0075],
-                  'kernel': ['rbf']}
-    clf = GridSearchCV(SVC(class_weight='balanced', random_state=conf.SEED), param_grid)
-    print(X_t_train.shape)
-    print(data_sets.train.labels.shape)
-    clf = clf.fit(X_t_train, data_sets.train.labels.reshape(data_sets.train.labels.shape[0]))
-    print("done in %0.3fs" % (time() - t0))
-    print("Best estimator found by grid search:")
-    print(clf.best_estimator_)
+        self.train_labels = data_sets.train.labels
+        self.train_labels = self.train_labels.reshape(self.train_labels.shape[0])
+        self.validation_labels = data_sets.validation.labels if not self.conf_s.USE_TEST_DATA else data_sets.test.labels
+        self.validation_labels = self.validation_labels.reshape(self.validation_labels.shape[0])
 
-    print("Predicting people's names on the test set")
-    t0 = time()
-    y_pred = clf.predict(X_t_test)
-    print("done in %0.3fs" % (time() - t0))
+    def run(self):
+        self.time_logger.show("Start learning")
 
-    y_test = data_sets.test.labels.reshape(data_sets.test.labels.shape[0])
-    print(classification_report(y_test, y_pred, target_names=conf.DATA_TYPES_USED))
-    print(confusion_matrix(y_test, y_pred, labels=range(len(conf.DATA_TYPES_USED))))
+        n_components = self.conf_s.NUM_OF_COMPONENTS
+        pca = PCA(n_components=n_components, svd_solver='randomized',
+              whiten=True)
+        pca.fit(self.training_data)
+        self.time_logger.show("PCA finished")
 
-    test_error, _, _, _ = precision_recall_fscore_support(y_test, y_pred,
-                                                  average='macro')
-    test_error *= 100
-    test_error = 100 - test_error
+        #eigenfaces = pca.components_.reshape((n_components, h, w, depth))
+        #eigenface_titles = ["eigenface %d" % i for i in range(eigenfaces.shape[0])]
+        #plot_gallery(eigenfaces, eigenface_titles, h, w, depth)
+        #plt.show()
 
-    return test_error, confusion_matrix(y_test, y_pred, labels=range(len(conf.DATA_TYPES_USED)))
+        self.training_data = pca.transform(self.training_data)
+        self.validation_data = pca.transform(self.validation_data)
+        self.time_logger.show("Finished transforming data sets")
 
+        clf = GridSearchCV(SVC(class_weight='balanced', random_state=conf.SEED), self.conf_s.PARAM_GRID)
+        clf = clf.fit(self.training_data, self.train_labels)
+        self.time_logger.show("Finished grid search")
+        print("Best estimator found by grid search:")
+        print(clf.best_estimator_)
 
-if __name__ == '__main__':
-  main()
+        y_pred = clf.predict(self.validation_data)
+        y_test = self.validation_labels
+
+        confusion_ma = confusion_matrix(y_test, y_pred, labels=range(len(conf.DATA_TYPES_USED)))
+        print(classification_report(y_test, y_pred, target_names=conf.DATA_TYPES_USED))
+        print(confusion_matrix(y_test, y_pred, labels=range(len(conf.DATA_TYPES_USED))))
+
+        test_error, _, _, _ = precision_recall_fscore_support(y_test, y_pred,
+                                                      average='macro')
+        test_error *= 100
+        test_error = 100 - test_error
+
+        helper.write_eval_stats(confusion_ma, test_error, self.conf_s.USE_TEST_DATA)
+        self.time_logger.show("Finished validation prediction")
+        return test_error, confusion_ma
