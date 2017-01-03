@@ -2,6 +2,7 @@ from texttable import Texttable
 from os import listdir
 from os.path import join
 import Programming.configuration as conf
+import numpy as np
 
 
 def get_label_index(path, data_types):
@@ -56,3 +57,13 @@ def unpack_file(path):
 
 def write_line():
     print '--------------------------------'
+
+def error_rate(predictions, labels):
+    """Return the error rate based on dense predictions and sparse labels."""
+    error_rate = 100.0 - (100.0 *
+                          np.sum(np.argmax(predictions, 1) == labels) /
+                          predictions.shape[0])
+    correct = np.zeros((conf.NUM_LABELS, conf.NUM_LABELS), dtype=int)
+    for prediction, label in zip(predictions, labels):
+        correct[int(label), np.argmax(prediction)] += 1
+    return error_rate, correct

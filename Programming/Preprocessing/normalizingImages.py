@@ -4,15 +4,15 @@ import numpy as np
 from os import walk
 import random
 
-SOURCE_FOLDER_PATH = '../../../Images/Cropped images/'
+SOURCE_FOLDER_PATH = 'Images/Cropped images/'
 SOURCE_FOLDER_NAME = "Dataset"
-BLACK = False
+BLACK = True
 OUTPUT_FOLDER = 'Bordered with black color/' if BLACK else 'Extended with itself/'
 OUTPUT_FOLDER = SOURCE_FOLDER_PATH + OUTPUT_FOLDER
 
 
 for SCALE in range(1):
-    SIZE = 16 * (SCALE + 2)
+    SIZE = 16 * (SCALE + 3)
     NEW_NAME_OF_DIR = "Dataset_"+str(SIZE)+"_"+str(SIZE)
     f = []
     for (dirpath, dirnames, filenames) in walk(SOURCE_FOLDER_PATH+SOURCE_FOLDER_NAME+'/'):
