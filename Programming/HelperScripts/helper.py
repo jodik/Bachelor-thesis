@@ -19,7 +19,7 @@ def write_confusion_matrix(matrix):
     for i in range(conf.NUM_LABELS):
         tmp = [conf.DATA_TYPES_USED[i]]
         if i == 0 and conf.SIMPLIFIED_CATEGORIES:
-            tmp = ['Bottles']
+            tmp = ['Plastics']
         count = 0
         for num in matrix[i]:
             tmp.append(num)
@@ -29,7 +29,7 @@ def write_confusion_matrix(matrix):
 
     cols = [''] + conf.DATA_TYPES_USED + ['Predicted']
     if conf.SIMPLIFIED_CATEGORIES:
-        cols[1] = 'Bottles'
+        cols[1] = 'Plastics'
         cols = cols[0:4] + [cols[-1]]
     cols = map(lambda x: x[:4], cols)
     table.add_rows([cols] + data)
