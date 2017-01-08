@@ -13,17 +13,6 @@ from keras.utils.np_utils import to_categorical
 from keras.metrics import categorical_accuracy
 
 
-def error_rate(predictions, labels):
-    """Return the error rate based on dense predictions and sparse labels."""
-    error_rate = 100.0 - (100.0 *
-                          np.sum(np.argmax(predictions, 1) == labels) /
-                          predictions.shape[0])
-    correct = np.zeros((conf.NUM_LABELS, conf.NUM_LABELS), dtype=int)
-    for prediction, label in zip(predictions, labels):
-        correct[int(label), np.argmax(prediction)] += 1
-    return error_rate, correct
-
-
 class ClassifierSimpleAutoEncoder(AutoencoderDataLoader):
     def __init__(self, data_sets):
         self.init_name()
@@ -58,7 +47,7 @@ class ClassifierSimpleAutoEncoder(AutoencoderDataLoader):
         self.test_labels = to_categorical(self.test_labels, nb_classes=conf.NUM_LABELS)
 
     def model(self):
-        encoded_input = Input(shape=(32,))
+        encoded_input = Input(shape=(128,))
         hidden_layer = Dense(self.conf_s.NUMBER_OF_NEURONS_IN_HIDDEN_LAYER, activation='sigmoid')(encoded_input)
         output_layer = Dense(conf.NUM_LABELS, activation='sigmoid')(hidden_layer)
         classifier = Model(input=encoded_input, output=output_layer)
@@ -76,9 +65,10 @@ class ClassifierSimpleAutoEncoder(AutoencoderDataLoader):
                                            validation_data=(self.validation_data, self.validation_labels),
                                            verbose=0 if conf.WRITE_TO_FILE else 1)
 
-        self.write_losses(history_callback.history["loss"], history_callback.history["val_loss"])
+        AutoencoderDataLoader.write_losses(history_callback.history["loss"], history_callback.history["val_loss"])
 
         val_predcs = classifier.predict(self.validation_data)
-        accuracy, confusion_matrix = error_rate(val_predcs, self.validation_labels_o)
+        accuracy, confusion_matrix = helper.error_rate(val_predcs, self.validation_labels_o)
         helper.write_eval_stats(confusion_matrix, accuracy, self.conf_s.USE_TEST_DATA)
         self.time_logger.show("Finished learning")
+        return accuracy, confusion_matrix

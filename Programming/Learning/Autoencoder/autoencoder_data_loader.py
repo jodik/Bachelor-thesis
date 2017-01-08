@@ -24,7 +24,8 @@ class AutoencoderDataLoader(object):
         self.train_labels = data_sets.train.labels
         self.train_size = self.train_labels.shape[0]
 
-    def write_losses(self, train_loss_history, val_loss_history):
+    @staticmethod
+    def write_losses(train_loss_history, val_loss_history):
         helper.write_line()
         epoch = 1
         for x in val_loss_history:
