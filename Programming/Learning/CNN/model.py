@@ -6,22 +6,26 @@ class Model(object):
     def __init__(self, configuration_specific):
         self.configuration_specific = configuration_specific
 
-    def init(self, train_size, eval_size):
-        self.init_input_nodes(eval_size, train_size)
+    def init(self, train_size, validation_size, test_size):
+        self.init_input_nodes(test_size, validation_size, train_size)
         self.init_convolutional_layers()
         self.init_normal_layers()
         self.init_predictions()
         self.init_optimizer(train_size)
 
-    def init_input_nodes(self, eval_size, train_size):
+    def init_input_nodes(self, test_size, validation_size, train_size):
         self.train_data_node = tf.placeholder(
             tf.float32,
             shape=(self.configuration_specific.BATCH_SIZE, self.configuration_specific.IMAGE_HEIGHT,
                    self.configuration_specific.IMAGE_WIDTH, self.configuration_specific.NUM_CHANNELS))
         self.train_labels_node = tf.placeholder(tf.int64, shape=(self.configuration_specific.BATCH_SIZE,))
-        self.eval_data_node = tf.placeholder(
+        self.test_data_node = tf.placeholder(
             tf.float32,
-            shape=(eval_size, self.configuration_specific.IMAGE_HEIGHT,
+            shape=(test_size, self.configuration_specific.IMAGE_HEIGHT,
+                   self.configuration_specific.IMAGE_WIDTH, self.configuration_specific.NUM_CHANNELS))
+        self.validation_data_node = tf.placeholder(
+            tf.float32,
+            shape=(validation_size, self.configuration_specific.IMAGE_HEIGHT,
                    self.configuration_specific.IMAGE_WIDTH, self.configuration_specific.NUM_CHANNELS))
         self.train_eval_data_node = tf.placeholder(
             tf.float32,
@@ -122,8 +126,11 @@ class Model(object):
     def create_train_model(self):
         return self.create_model(self.train_data_node, True)
 
-    def create_eval_model(self):
-        return self.create_model(self.eval_data_node)
+    def create_validation_model(self):
+        return self.create_model(self.validation_data_node)
+
+    def create_test_model(self):
+        return self.create_model(self.test_data_node)
 
     def create_train_eval_model(self):
         return self.create_model(self.train_eval_data_node)
@@ -134,7 +141,8 @@ class Model(object):
         # Predictions for the current training minibatch.
         self.train_prediction = tf.nn.softmax(self.train_logits)
         # Predictions for the test and validation, which we'll compute less often.
-        self.eval_prediction = tf.nn.softmax(self.create_eval_model())
+        self.test_prediction = tf.nn.softmax(self.create_test_model())
+        self.validation_prediction = tf.nn.softmax(self.create_validation_model())
         self.train_eval_prediction = tf.nn.softmax(self.create_train_eval_model())
 
     def init_optimizer(self, train_size):

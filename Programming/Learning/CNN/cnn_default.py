@@ -41,7 +41,7 @@ class CNNDefault(object):
         self.init_labels(data_sets)
         self.init_data(data_sets)
         self.init_configuration()
-        self.init_model(data_sets.validation.labels.shape[0])
+        self.init_model(data_sets.validation.labels.shape[0], data_sets.test.labels.shape[0])
 
     def init_name(self):
         self.name = "CNN Default"
@@ -66,13 +66,17 @@ class CNNDefault(object):
     def init_configuration(self):
         self.conf_s = configuration_default
 
-    def init_model(self, eval_size):
+    def init_model(self, validation_size, test_size):
         self.model = Model(self.conf_s)
-        self.model.init(self.train_size, eval_size)
+        self.model.init(self.train_size, validation_size, test_size)
         self.time_logger.show("Model creation")
 
-    def eval(self, data, sess):
-        predictions = sess.run(self.model.eval_prediction, feed_dict={self.model.eval_data_node: data})
+    def eval_validation(self, data, sess):
+        predictions = sess.run(self.model.validation_prediction, feed_dict={self.model.validation_data_node: data})
+        return predictions
+
+    def eval_test(self, data, sess):
+        predictions = sess.run(self.model.test_prediction, feed_dict={self.model.test_data_node: data})
         return predictions
 
     def error_rate(self, predictions, labels):
@@ -104,7 +108,7 @@ class CNNDefault(object):
 
     def log_results(self, step, sess, l, lr, predictions, batch_labels):
         self.time_logger.show('Step %d (epoch %.2f)' % (step, self.num_of_epochs(step)))
-        validation_error, _ = self.error_rate(self.eval(self.validation_data, sess), self.validation_labels)
+        validation_error, _ = self.error_rate(self.eval_validation(self.validation_data, sess), self.validation_labels)
         print('Minibatch loss: %.3f, learning rate: %.6f' % (l, lr))
         print('Minibatch error: %.1f%%' % self.error_rate(predictions, batch_labels)[0])
         print('Validation error: %.1f%%' % validation_error)
@@ -117,11 +121,12 @@ class CNNDefault(object):
 
     def validate(self, sess):
         validation_error, _ = self.error_rate(
-            self.eval(self.validation_data, sess),
+            self.eval_validation(self.validation_data, sess),
             self.validation_labels)
         self.past_validation_errors.append(validation_error)
         eval_data, eval_labels = self.retrieve_eval_data()
-        self.past_eval_results.append(self.error_rate(self.eval(eval_data, sess), eval_labels))
+        tmp = self.eval_validation(eval_data, sess) if not self.conf_s.USE_TEST_DATA else self.eval_test(eval_data, sess)
+        self.past_eval_results.append(self.error_rate(tmp, eval_labels))
 
     def train_in_batches(self, sess):
         step = 0
