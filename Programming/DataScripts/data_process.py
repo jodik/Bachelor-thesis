@@ -43,7 +43,6 @@ def getPermutation(permutation_index, labels, test_size):
     if permutation_index >= 10 or permutation_index < 0:
         raise ValueError('Permutation index should not be larger than 9 and lower than 0')
     perm = np.arange(num_of_images_total)
-    np.random.seed(conf.SEED)
     np.random.shuffle(perm)
 
     total_count = np.bincount(np.array(labels, dtype=int))
@@ -69,7 +68,7 @@ def process(full_data, permutation_index):
 
     train_perm, val_perm, test_perm = getPermutation(permutation_index, full_data.labels[:original_set_size], TEST_SIZE)
 
-    test_data = copy.deepcopy(full_data).apply_permutation(test_perm)
+    test_data = copy.deepcopy(full_data).apply_permutation(test_perm
     validation_data = copy.deepcopy(full_data).apply_permutation(val_perm)
     train_data = filterAndCreateTrainSet(validation_data.names, test_data.names, full_data)
 

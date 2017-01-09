@@ -1,0 +1,754 @@
+CONFIGURATION LOCAL:
+FC1_FEATURES = 1300
+BASE_LEARNING_RATE = 0.0005
+DECAY_RATE = 0.6
+MOMENTUM = 0.95
+DROPOUT_PROBABILITY = 0.4
+DECAY_STEP_X_TIMES_TRAIN_SIZE = 8
+CON_FIRST_STRIDE = 1
+CONV_FIRST_FILTER_SIZE = 5
+CONV_SECOND_FILTER_SIZE = 5
+CONV_FIRST_DEPTH = 30
+POOL_FIRST_SIZE = 2
+CONV_SECOND_DEPTH = CONV_FIRST_DEPTH * 2
+POOL_SEC_SIZE = 2
+EVAL_FREQUENCY = 60
+VALIDATION_FREQUENCY = 30
+TRAIN_VALIDATION_CONDITION = 15
+BATCH_SIZE = 100
+NUM_CHANNELS = 3
+USE_TEST_DATA = False
+SCALE = 2
+--------------------------------
+CONFIGURATION GLOBAL:
+EXTENDED_DATASET = True
+BLACK_BORDER = True
+HARD_DIFFICULTY = True
+SIMPLIFIED_CATEGORIES = True
+CROPPED_VERSION = True
+WRITE_TO_FILE = True
+FULL_CROSS_VALIDATION = True
+CROSS_VALIDATION_ITERATIONS = 5
+SEED = 66478
+TEST_PERCENTAGE = 20
+PERMUTATION_INDEX = 3
+--------------------------------
+--------------------------------
+Full Cross-Validation: Started: 0.00s
+Full Cross-Validation: Total time: 0.00s
+
+COMPUTE 1. CROSSVALIDATION:
+
+(10440, 10440)
+[1017  177  111]
+-140598.811765 test data sum
+--------------------------------
+CNN Default: Model creation: 0.42s
+CNN Default: Total time: 0.42s
+--------------------------------
+CNN Default: Start: 0.00s
+CNN Default: Total time: 0.42s
+--------------------------------
+CNN Default: Variable initialization: 0.25s
+CNN Default: Total time: 0.67s
+--------------------------------
+CNN Default: Step 0 (epoch 0.00): 0.80s
+CNN Default: Total time: 1.47s
+Minibatch loss: 34.654, learning rate: 0.000500
+Minibatch error: 65.0%
+Validation error: 63.4%
+--------------------------------
+CNN Default: Step 60 (epoch 0.38): 14.90s
+CNN Default: Total time: 16.37s
+Minibatch loss: 10.858, learning rate: 0.000488
+Minibatch error: 41.0%
+Validation error: 38.3%
+--------------------------------
+CNN Default: Step 120 (epoch 0.77): 14.83s
+CNN Default: Total time: 31.20s
+Minibatch loss: 10.279, learning rate: 0.000476
+Minibatch error: 28.0%
+Validation error: 27.4%
+--------------------------------
+CNN Default: Step 180 (epoch 1.15): 14.78s
+CNN Default: Total time: 45.99s
+Minibatch loss: 10.376, learning rate: 0.000465
+Minibatch error: 37.0%
+Validation error: 31.3%
+--------------------------------
+CNN Default: Step 240 (epoch 1.54): 14.94s
+CNN Default: Total time: 60.93s
+Minibatch loss: 10.139, learning rate: 0.000453
+Minibatch error: 17.0%
+Validation error: 23.5%
+--------------------------------
+CNN Default: Step 300 (epoch 1.92): 15.12s
+CNN Default: Total time: 76.05s
+Minibatch loss: 10.242, learning rate: 0.000442
+Minibatch error: 27.0%
+Validation error: 24.1%
+--------------------------------
+CNN Default: Step 360 (epoch 2.30): 16.92s
+CNN Default: Total time: 1.55m
+Minibatch loss: 10.147, learning rate: 0.000432
+Minibatch error: 20.0%
+Validation error: 20.8%
+--------------------------------
+CNN Default: Step 420 (epoch 2.69): 20.32s
+CNN Default: Total time: 1.89m
+Minibatch loss: 10.231, learning rate: 0.000421
+Minibatch error: 24.0%
+Validation error: 19.3%
+--------------------------------
+CNN Default: Step 480 (epoch 3.07): 21.73s
+CNN Default: Total time: 2.25m
+Minibatch loss: 9.981, learning rate: 0.000411
+Minibatch error: 13.0%
+Validation error: 22.2%
+--------------------------------
+CNN Default: Step 540 (epoch 3.46): 22.14s
+CNN Default: Total time: 2.62m
+Minibatch loss: 10.043, learning rate: 0.000401
+Minibatch error: 14.0%
+Validation error: 22.2%
+--------------------------------
+CNN Default: Step 600 (epoch 3.84): 21.96s
+CNN Default: Total time: 2.99m
+Minibatch loss: 9.985, learning rate: 0.000391
+Minibatch error: 14.0%
+Validation error: 24.5%
+--------------------------------
+CNN Default: Step 660 (epoch 4.22): 22.55s
+CNN Default: Total time: 3.36m
+Minibatch loss: 10.078, learning rate: 0.000382
+Minibatch error: 18.0%
+Validation error: 20.6%
+--------------------------------
+CNN Default: Step 720 (epoch 4.61): 26.83s
+CNN Default: Total time: 3.81m
+Minibatch loss: 9.904, learning rate: 0.000373
+Minibatch error: 12.0%
+Validation error: 22.4%
+--------------------------------
+CNN Default: Step 780 (epoch 4.99): 32.24s
+CNN Default: Total time: 4.35m
+Minibatch loss: 10.048, learning rate: 0.000364
+Minibatch error: 19.0%
+Validation error: 23.0%
+--------------------------------
+CNN Default: Step 840 (epoch 5.38): 34.26s
+CNN Default: Total time: 4.92m
+Minibatch loss: 9.995, learning rate: 0.000355
+Minibatch error: 17.0%
+Validation error: 27.8%
+--------------------------------
+CNN Default: Training the model: 17.22s
+CNN Default: Total time: 5.20m
+
+RESULTS:
+Time per epoch: 56.01 secs
+Number of epochs: 5.6
+Min validation error: 19.3%
+Validation error: 19.3%
++----------+------+-----+-----+-------+
+|          | Plas | Box | Can | Pred  |
++==========+======+=====+=====+=======+
+| Plastics | 143  | 6   | 13  | 88.3% |
++----------+------+-----+-----+-------+
+| Box      | 23   | 115 | 24  | 71.0% |
++----------+------+-----+-----+-------+
+| Can      | 19   | 9   | 134 | 82.7% |
++----------+------+-----+-----+-------+
+
+COMPUTE 2. CROSSVALIDATION:
+
+(10440, 10440)
+[1017  177  111]
+-140598.811765 test data sum
+--------------------------------
+CNN Default: Model creation: 0.78s
+CNN Default: Total time: 0.78s
+--------------------------------
+CNN Default: Start: 0.00s
+CNN Default: Total time: 0.78s
+--------------------------------
+CNN Default: Variable initialization: 0.53s
+CNN Default: Total time: 1.31s
+--------------------------------
+CNN Default: Step 0 (epoch 0.00): 1.87s
+CNN Default: Total time: 3.18s
+Minibatch loss: 34.122, learning rate: 0.000500
+Minibatch error: 67.0%
+Validation error: 69.5%
+--------------------------------
+CNN Default: Step 60 (epoch 0.38): 35.47s
+CNN Default: Total time: 38.65s
+Minibatch loss: 10.886, learning rate: 0.000488
+Minibatch error: 43.0%
+Validation error: 37.7%
+--------------------------------
+CNN Default: Step 120 (epoch 0.77): 31.55s
+CNN Default: Total time: 70.20s
+Minibatch loss: 10.370, learning rate: 0.000476
+Minibatch error: 32.0%
+Validation error: 33.5%
+--------------------------------
+CNN Default: Step 180 (epoch 1.15): 34.40s
+CNN Default: Total time: 1.74m
+Minibatch loss: 10.360, learning rate: 0.000465
+Minibatch error: 29.0%
+Validation error: 25.1%
+--------------------------------
+CNN Default: Step 240 (epoch 1.54): 34.64s
+CNN Default: Total time: 2.32m
+Minibatch loss: 10.315, learning rate: 0.000453
+Minibatch error: 27.0%
+Validation error: 25.5%
+--------------------------------
+CNN Default: Step 300 (epoch 1.92): 34.59s
+CNN Default: Total time: 2.90m
+Minibatch loss: 10.287, learning rate: 0.000442
+Minibatch error: 27.0%
+Validation error: 24.7%
+--------------------------------
+CNN Default: Step 360 (epoch 2.30): 35.21s
+CNN Default: Total time: 3.48m
+Minibatch loss: 10.276, learning rate: 0.000432
+Minibatch error: 25.0%
+Validation error: 25.1%
+--------------------------------
+CNN Default: Step 420 (epoch 2.69): 34.47s
+CNN Default: Total time: 4.06m
+Minibatch loss: 10.081, learning rate: 0.000421
+Minibatch error: 15.0%
+Validation error: 23.0%
+--------------------------------
+CNN Default: Step 480 (epoch 3.07): 34.77s
+CNN Default: Total time: 4.64m
+Minibatch loss: 10.051, learning rate: 0.000411
+Minibatch error: 19.0%
+Validation error: 25.3%
+--------------------------------
+CNN Default: Step 540 (epoch 3.46): 34.88s
+CNN Default: Total time: 5.22m
+Minibatch loss: 10.038, learning rate: 0.000401
+Minibatch error: 15.0%
+Validation error: 23.9%
+--------------------------------
+CNN Default: Step 600 (epoch 3.84): 35.06s
+CNN Default: Total time: 5.80m
+Minibatch loss: 10.001, learning rate: 0.000391
+Minibatch error: 17.0%
+Validation error: 21.4%
+--------------------------------
+CNN Default: Step 660 (epoch 4.22): 35.57s
+CNN Default: Total time: 6.40m
+Minibatch loss: 9.992, learning rate: 0.000382
+Minibatch error: 19.0%
+Validation error: 22.8%
+--------------------------------
+CNN Default: Step 720 (epoch 4.61): 34.60s
+CNN Default: Total time: 6.97m
+Minibatch loss: 10.000, learning rate: 0.000373
+Minibatch error: 17.0%
+Validation error: 26.3%
+--------------------------------
+CNN Default: Step 780 (epoch 4.99): 35.18s
+CNN Default: Total time: 7.56m
+Minibatch loss: 9.926, learning rate: 0.000364
+Minibatch error: 13.0%
+Validation error: 22.4%
+--------------------------------
+CNN Default: Step 840 (epoch 5.38): 35.09s
+CNN Default: Total time: 8.14m
+Minibatch loss: 10.125, learning rate: 0.000355
+Minibatch error: 20.0%
+Validation error: 24.5%
+--------------------------------
+CNN Default: Step 900 (epoch 5.76): 34.98s
+CNN Default: Total time: 8.73m
+Minibatch loss: 9.929, learning rate: 0.000346
+Minibatch error: 13.0%
+Validation error: 21.6%
+--------------------------------
+CNN Default: Step 960 (epoch 6.14): 35.27s
+CNN Default: Total time: 9.32m
+Minibatch loss: 9.932, learning rate: 0.000338
+Minibatch error: 14.0%
+Validation error: 22.0%
+--------------------------------
+CNN Default: Step 1020 (epoch 6.53): 34.82s
+CNN Default: Total time: 9.90m
+Minibatch loss: 9.954, learning rate: 0.000330
+Minibatch error: 15.0%
+Validation error: 22.8%
+--------------------------------
+CNN Default: Step 1080 (epoch 6.91): 34.79s
+CNN Default: Total time: 10.48m
+Minibatch loss: 9.864, learning rate: 0.000322
+Minibatch error: 10.0%
+Validation error: 20.2%
+--------------------------------
+CNN Default: Step 1140 (epoch 7.30): 35.31s
+CNN Default: Total time: 11.06m
+Minibatch loss: 9.948, learning rate: 0.000314
+Minibatch error: 14.0%
+Validation error: 24.5%
+--------------------------------
+CNN Default: Step 1200 (epoch 7.68): 35.13s
+CNN Default: Total time: 11.65m
+Minibatch loss: 9.884, learning rate: 0.000306
+Minibatch error: 11.0%
+Validation error: 22.8%
+--------------------------------
+CNN Default: Step 1260 (epoch 8.06): 35.27s
+CNN Default: Total time: 12.24m
+Minibatch loss: 9.858, learning rate: 0.000299
+Minibatch error: 15.0%
+Validation error: 24.5%
+--------------------------------
+CNN Default: Step 1320 (epoch 8.45): 35.18s
+CNN Default: Total time: 12.82m
+Minibatch loss: 9.859, learning rate: 0.000292
+Minibatch error: 11.0%
+Validation error: 23.5%
+--------------------------------
+CNN Default: Step 1380 (epoch 8.83): 34.75s
+CNN Default: Total time: 13.40m
+Minibatch loss: 9.912, learning rate: 0.000284
+Minibatch error: 14.0%
+Validation error: 25.1%
+--------------------------------
+CNN Default: Step 1440 (epoch 9.22): 35.21s
+CNN Default: Total time: 13.99m
+Minibatch loss: 9.884, learning rate: 0.000278
+Minibatch error: 11.0%
+Validation error: 22.2%
+--------------------------------
+CNN Default: Step 1500 (epoch 9.60): 34.37s
+CNN Default: Total time: 14.56m
+Minibatch loss: 9.823, learning rate: 0.000271
+Minibatch error: 8.0%
+Validation error: 25.3%
+--------------------------------
+CNN Default: Step 1560 (epoch 9.98): 34.52s
+CNN Default: Total time: 15.14m
+Minibatch loss: 9.839, learning rate: 0.000264
+Minibatch error: 9.0%
+Validation error: 22.8%
+--------------------------------
+CNN Default: Training the model: 0.57s
+CNN Default: Total time: 15.15m
+
+RESULTS:
+Time per epoch: 90.96 secs
+Number of epochs: 10.0
+Min validation error: 19.3%
+Validation error: 19.3%
++----------+------+-----+-----+-------+
+|          | Plas | Box | Can | Pred  |
++==========+======+=====+=====+=======+
+| Plastics | 142  | 11  | 9   | 87.7% |
++----------+------+-----+-----+-------+
+| Box      | 24   | 126 | 12  | 77.8% |
++----------+------+-----+-----+-------+
+| Can      | 29   | 9   | 124 | 76.5% |
++----------+------+-----+-----+-------+
+
+COMPUTE 3. CROSSVALIDATION:
+
+(10440, 10440)
+[1017  177  111]
+-140598.811765 test data sum
+--------------------------------
+CNN Default: Model creation: 0.77s
+CNN Default: Total time: 0.77s
+--------------------------------
+CNN Default: Start: 0.00s
+CNN Default: Total time: 0.77s
+--------------------------------
+CNN Default: Variable initialization: 0.94s
+CNN Default: Total time: 1.71s
+--------------------------------
+CNN Default: Step 0 (epoch 0.00): 1.78s
+CNN Default: Total time: 3.49s
+Minibatch loss: 32.726, learning rate: 0.000500
+Minibatch error: 74.0%
+Validation error: 61.1%
+--------------------------------
+CNN Default: Step 60 (epoch 0.38): 35.28s
+CNN Default: Total time: 38.77s
+Minibatch loss: 10.986, learning rate: 0.000488
+Minibatch error: 51.0%
+Validation error: 37.7%
+--------------------------------
+CNN Default: Step 120 (epoch 0.77): 31.20s
+CNN Default: Total time: 69.97s
+Minibatch loss: 10.452, learning rate: 0.000476
+Minibatch error: 33.0%
+Validation error: 34.8%
+--------------------------------
+CNN Default: Step 180 (epoch 1.15): 33.77s
+CNN Default: Total time: 1.73m
+Minibatch loss: 10.325, learning rate: 0.000465
+Minibatch error: 35.0%
+Validation error: 27.0%
+--------------------------------
+CNN Default: Step 240 (epoch 1.54): 35.47s
+CNN Default: Total time: 2.32m
+Minibatch loss: 10.177, learning rate: 0.000453
+Minibatch error: 21.0%
+Validation error: 31.1%
+--------------------------------
+CNN Default: Step 300 (epoch 1.92): 34.85s
+CNN Default: Total time: 2.90m
+Minibatch loss: 10.272, learning rate: 0.000442
+Minibatch error: 29.0%
+Validation error: 27.8%
+--------------------------------
+CNN Default: Step 360 (epoch 2.30): 34.83s
+CNN Default: Total time: 3.48m
+Minibatch loss: 10.280, learning rate: 0.000432
+Minibatch error: 26.0%
+Validation error: 30.5%
+--------------------------------
+CNN Default: Step 420 (epoch 2.69): 34.85s
+CNN Default: Total time: 4.06m
+Minibatch loss: 10.061, learning rate: 0.000421
+Minibatch error: 17.0%
+Validation error: 31.7%
+--------------------------------
+CNN Default: Step 480 (epoch 3.07): 28.20s
+CNN Default: Total time: 4.53m
+Minibatch loss: 10.048, learning rate: 0.000411
+Minibatch error: 17.0%
+Validation error: 27.2%
+--------------------------------
+CNN Default: Step 540 (epoch 3.46): 30.91s
+CNN Default: Total time: 5.05m
+Minibatch loss: 10.020, learning rate: 0.000401
+Minibatch error: 15.0%
+Validation error: 26.3%
+--------------------------------
+CNN Default: Step 600 (epoch 3.84): 34.52s
+CNN Default: Total time: 5.62m
+Minibatch loss: 10.035, learning rate: 0.000391
+Minibatch error: 15.0%
+Validation error: 27.0%
+--------------------------------
+CNN Default: Training the model: 0.59s
+CNN Default: Total time: 5.63m
+
+RESULTS:
+Time per epoch: 87.86 secs
+Number of epochs: 3.8
+Min validation error: 22.2%
+Validation error: 22.2%
++----------+------+-----+-----+-------+
+|          | Plas | Box | Can | Pred  |
++==========+======+=====+=====+=======+
+| Plastics | 134  | 12  | 16  | 82.7% |
++----------+------+-----+-----+-------+
+| Box      | 6    | 120 | 36  | 74.1% |
++----------+------+-----+-----+-------+
+| Can      | 9    | 29  | 124 | 76.5% |
++----------+------+-----+-----+-------+
+
+COMPUTE 4. CROSSVALIDATION:
+
+(10440, 10440)
+[1017  177  111]
+-140598.811765 test data sum
+--------------------------------
+CNN Default: Model creation: 0.67s
+CNN Default: Total time: 0.67s
+--------------------------------
+CNN Default: Start: 0.00s
+CNN Default: Total time: 0.67s
+--------------------------------
+CNN Default: Variable initialization: 0.93s
+CNN Default: Total time: 1.60s
+--------------------------------
+CNN Default: Step 0 (epoch 0.00): 2.03s
+CNN Default: Total time: 3.63s
+Minibatch loss: 31.861, learning rate: 0.000500
+Minibatch error: 63.0%
+Validation error: 65.6%
+--------------------------------
+CNN Default: Step 60 (epoch 0.38): 34.37s
+CNN Default: Total time: 38.00s
+Minibatch loss: 10.777, learning rate: 0.000488
+Minibatch error: 40.0%
+Validation error: 38.5%
+--------------------------------
+CNN Default: Step 120 (epoch 0.77): 34.48s
+CNN Default: Total time: 72.48s
+Minibatch loss: 10.508, learning rate: 0.000476
+Minibatch error: 32.0%
+Validation error: 30.9%
+--------------------------------
+CNN Default: Step 180 (epoch 1.15): 34.67s
+CNN Default: Total time: 1.79m
+Minibatch loss: 10.457, learning rate: 0.000465
+Minibatch error: 36.0%
+Validation error: 29.0%
+--------------------------------
+CNN Default: Step 240 (epoch 1.54): 34.68s
+CNN Default: Total time: 2.36m
+Minibatch loss: 10.190, learning rate: 0.000453
+Minibatch error: 23.0%
+Validation error: 25.3%
+--------------------------------
+CNN Default: Step 300 (epoch 1.92): 32.10s
+CNN Default: Total time: 2.90m
+Minibatch loss: 10.198, learning rate: 0.000442
+Minibatch error: 24.0%
+Validation error: 21.4%
+--------------------------------
+CNN Default: Step 360 (epoch 2.30): 33.52s
+CNN Default: Total time: 3.46m
+Minibatch loss: 10.248, learning rate: 0.000432
+Minibatch error: 26.0%
+Validation error: 25.5%
+--------------------------------
+CNN Default: Step 420 (epoch 2.69): 34.85s
+CNN Default: Total time: 4.04m
+Minibatch loss: 10.140, learning rate: 0.000421
+Minibatch error: 29.0%
+Validation error: 17.9%
+--------------------------------
+CNN Default: Step 480 (epoch 3.07): 35.28s
+CNN Default: Total time: 4.63m
+Minibatch loss: 10.021, learning rate: 0.000411
+Minibatch error: 13.0%
+Validation error: 23.5%
+--------------------------------
+CNN Default: Step 540 (epoch 3.46): 35.25s
+CNN Default: Total time: 5.21m
+Minibatch loss: 10.107, learning rate: 0.000401
+Minibatch error: 21.0%
+Validation error: 21.0%
+--------------------------------
+CNN Default: Step 600 (epoch 3.84): 34.44s
+CNN Default: Total time: 5.79m
+Minibatch loss: 10.068, learning rate: 0.000391
+Minibatch error: 15.0%
+Validation error: 22.0%
+--------------------------------
+CNN Default: Step 660 (epoch 4.22): 34.85s
+CNN Default: Total time: 6.37m
+Minibatch loss: 9.875, learning rate: 0.000382
+Minibatch error: 9.0%
+Validation error: 18.9%
+--------------------------------
+CNN Default: Step 720 (epoch 4.61): 35.19s
+CNN Default: Total time: 6.96m
+Minibatch loss: 10.012, learning rate: 0.000373
+Minibatch error: 18.0%
+Validation error: 25.3%
+--------------------------------
+CNN Default: Step 780 (epoch 4.99): 34.73s
+CNN Default: Total time: 7.53m
+Minibatch loss: 9.965, learning rate: 0.000364
+Minibatch error: 13.0%
+Validation error: 22.4%
+--------------------------------
+CNN Default: Step 840 (epoch 5.38): 34.56s
+CNN Default: Total time: 8.11m
+Minibatch loss: 9.871, learning rate: 0.000355
+Minibatch error: 10.0%
+Validation error: 18.9%
+--------------------------------
+CNN Default: Step 900 (epoch 5.76): 34.80s
+CNN Default: Total time: 8.69m
+Minibatch loss: 9.998, learning rate: 0.000346
+Minibatch error: 14.0%
+Validation error: 20.6%
+--------------------------------
+CNN Default: Step 960 (epoch 6.14): 34.23s
+CNN Default: Total time: 9.26m
+Minibatch loss: 10.008, learning rate: 0.000338
+Minibatch error: 18.0%
+Validation error: 23.0%
+--------------------------------
+CNN Default: Step 1020 (epoch 6.53): 34.72s
+CNN Default: Total time: 9.84m
+Minibatch loss: 9.819, learning rate: 0.000330
+Minibatch error: 7.0%
+Validation error: 18.5%
+--------------------------------
+CNN Default: Training the model: 0.62s
+CNN Default: Total time: 9.85m
+
+RESULTS:
+Time per epoch: 90.44 secs
+Number of epochs: 6.5
+Min validation error: 17.5%
+Validation error: 17.5%
++----------+------+-----+-----+-------+
+|          | Plas | Box | Can | Pred  |
++==========+======+=====+=====+=======+
+| Plastics | 139  | 9   | 14  | 85.8% |
++----------+------+-----+-----+-------+
+| Box      | 6    | 110 | 46  | 67.9% |
++----------+------+-----+-----+-------+
+| Can      | 0    | 10  | 152 | 93.8% |
++----------+------+-----+-----+-------+
+
+COMPUTE 5. CROSSVALIDATION:
+
+(10440, 10440)
+[1017  177  111]
+-140598.811765 test data sum
+--------------------------------
+CNN Default: Model creation: 0.78s
+CNN Default: Total time: 0.78s
+--------------------------------
+CNN Default: Start: 0.00s
+CNN Default: Total time: 0.78s
+--------------------------------
+CNN Default: Variable initialization: 1.09s
+CNN Default: Total time: 1.87s
+--------------------------------
+CNN Default: Step 0 (epoch 0.00): 1.47s
+CNN Default: Total time: 3.34s
+Minibatch loss: 34.037, learning rate: 0.000500
+Minibatch error: 67.0%
+Validation error: 65.0%
+--------------------------------
+CNN Default: Step 60 (epoch 0.38): 33.60s
+CNN Default: Total time: 36.94s
+Minibatch loss: 11.146, learning rate: 0.000488
+Minibatch error: 51.0%
+Validation error: 35.6%
+--------------------------------
+CNN Default: Step 120 (epoch 0.77): 32.00s
+CNN Default: Total time: 68.94s
+Minibatch loss: 10.381, learning rate: 0.000476
+Minibatch error: 32.0%
+Validation error: 20.2%
+--------------------------------
+CNN Default: Step 180 (epoch 1.15): 34.93s
+CNN Default: Total time: 1.73m
+Minibatch loss: 10.497, learning rate: 0.000465
+Minibatch error: 35.0%
+Validation error: 20.8%
+--------------------------------
+CNN Default: Step 240 (epoch 1.54): 34.71s
+CNN Default: Total time: 2.31m
+Minibatch loss: 10.450, learning rate: 0.000453
+Minibatch error: 30.0%
+Validation error: 26.7%
+--------------------------------
+CNN Default: Step 300 (epoch 1.92): 34.59s
+CNN Default: Total time: 2.89m
+Minibatch loss: 10.217, learning rate: 0.000442
+Minibatch error: 28.0%
+Validation error: 18.5%
+--------------------------------
+CNN Default: Step 360 (epoch 2.30): 35.02s
+CNN Default: Total time: 3.47m
+Minibatch loss: 10.143, learning rate: 0.000432
+Minibatch error: 26.0%
+Validation error: 20.8%
+--------------------------------
+CNN Default: Step 420 (epoch 2.69): 35.19s
+CNN Default: Total time: 4.06m
+Minibatch loss: 10.157, learning rate: 0.000421
+Minibatch error: 19.0%
+Validation error: 18.9%
+--------------------------------
+CNN Default: Step 480 (epoch 3.07): 30.82s
+CNN Default: Total time: 4.57m
+Minibatch loss: 10.007, learning rate: 0.000411
+Minibatch error: 15.0%
+Validation error: 18.3%
+--------------------------------
+CNN Default: Step 540 (epoch 3.46): 32.63s
+CNN Default: Total time: 5.11m
+Minibatch loss: 10.043, learning rate: 0.000401
+Minibatch error: 18.0%
+Validation error: 22.6%
+--------------------------------
+CNN Default: Step 600 (epoch 3.84): 33.78s
+CNN Default: Total time: 5.68m
+Minibatch loss: 9.883, learning rate: 0.000391
+Minibatch error: 11.0%
+Validation error: 19.1%
+--------------------------------
+CNN Default: Step 660 (epoch 4.22): 32.98s
+CNN Default: Total time: 6.23m
+Minibatch loss: 10.000, learning rate: 0.000382
+Minibatch error: 16.0%
+Validation error: 24.5%
+--------------------------------
+CNN Default: Step 720 (epoch 4.61): 32.14s
+CNN Default: Total time: 6.76m
+Minibatch loss: 10.023, learning rate: 0.000373
+Minibatch error: 20.0%
+Validation error: 17.3%
+--------------------------------
+CNN Default: Step 780 (epoch 4.99): 34.42s
+CNN Default: Total time: 7.34m
+Minibatch loss: 9.956, learning rate: 0.000364
+Minibatch error: 15.0%
+Validation error: 21.2%
+--------------------------------
+CNN Default: Step 840 (epoch 5.38): 34.84s
+CNN Default: Total time: 7.92m
+Minibatch loss: 9.936, learning rate: 0.000355
+Minibatch error: 15.0%
+Validation error: 19.5%
+--------------------------------
+CNN Default: Step 900 (epoch 5.76): 34.41s
+CNN Default: Total time: 8.49m
+Minibatch loss: 9.979, learning rate: 0.000346
+Minibatch error: 17.0%
+Validation error: 16.5%
+--------------------------------
+CNN Default: Step 960 (epoch 6.14): 34.91s
+CNN Default: Total time: 9.07m
+Minibatch loss: 9.955, learning rate: 0.000338
+Minibatch error: 14.0%
+Validation error: 19.3%
+--------------------------------
+CNN Default: Step 1020 (epoch 6.53): 34.64s
+CNN Default: Total time: 9.65m
+Minibatch loss: 9.906, learning rate: 0.000330
+Minibatch error: 13.0%
+Validation error: 19.1%
+--------------------------------
+CNN Default: Training the model: 0.64s
+CNN Default: Total time: 9.66m
+
+RESULTS:
+Time per epoch: 88.69 secs
+Number of epochs: 6.5
+Min validation error: 16.5%
+Validation error: 16.5%
++----------+------+-----+-----+-------+
+|          | Plas | Box | Can | Pred  |
++==========+======+=====+=====+=======+
+| Plastics | 142  | 11  | 9   | 87.7% |
++----------+------+-----+-----+-------+
+| Box      | 22   | 122 | 18  | 75.3% |
++----------+------+-----+-----+-------+
+| Can      | 10   | 10  | 142 | 87.7% |
++----------+------+-----+-----+-------+
+
+
+ Full Cross Validation results:
+
+Validation error: 19.0%
++----------+------+-----+-----+-------+
+|          | Plas | Box | Can | Pred  |
++==========+======+=====+=====+=======+
+| Plastics | 700  | 49  | 61  | 86.4% |
++----------+------+-----+-----+-------+
+| Box      | 81   | 593 | 136 | 73.2% |
++----------+------+-----+-----+-------+
+| Can      | 67   | 67  | 676 | 83.5% |
++----------+------+-----+-----+-------+
+--------------------------------
+Full Cross-Validation: Finished: 47.24m
+Full Cross-Validation: Total time: 47.24m

@@ -1,5 +1,6 @@
 from sklearn.decomposition import PCA
 import matplotlib.pyplot as plt
+import numpy as np
 from sklearn.model_selection import GridSearchCV
 from sklearn.svm import SVC
 from sklearn.metrics import classification_report
@@ -42,6 +43,9 @@ class PCA_SVM(object):
         self.validation_data = data_sets.validation.images if not self.conf_s.USE_TEST_DATA else data_sets.test.images
 
         self.train_labels = data_sets.train.labels
+        if self.conf_s.USE_TEST_DATA:
+            self.training_data = np.concatenate((self.training_data, data_sets.validation.images))
+            self.train_labels = np.concatenate((self.train_labels, data_sets.validation.labels))
         self.train_labels = self.train_labels.reshape(self.train_labels.shape[0])
         self.validation_labels = data_sets.validation.labels if not self.conf_s.USE_TEST_DATA else data_sets.test.labels
         self.validation_labels = self.validation_labels.reshape(self.validation_labels.shape[0])
@@ -55,9 +59,9 @@ class PCA_SVM(object):
         pca.fit(self.training_data)
         self.time_logger.show("PCA finished")
 
-        #eigenfaces = pca.components_.reshape((n_components, h, w, depth))
+        #eigenfaces = pca.components_.reshape((n_components, 32, 32, 3))
         #eigenface_titles = ["eigenface %d" % i for i in range(eigenfaces.shape[0])]
-        #plot_gallery(eigenfaces, eigenface_titles, h, w, depth)
+        #plot_gallery(eigenfaces, eigenface_titles, 32, 32, 3)
         #plt.show()
 
         self.training_data = pca.transform(self.training_data)

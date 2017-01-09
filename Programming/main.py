@@ -6,7 +6,7 @@ from Programming.HelperScripts.what_to_run import WhatToRun
 from DataScripts.data_sets_retrieval import get_new_data_sets
 from Programming.HelperScripts.time_calculator import TimeCalculator
 
-WHAT_TO_RUN = WhatToRun.pca_svm
+WHAT_TO_RUN = WhatToRun.cnn_default
 
 
 def compute(permutation_index):
@@ -27,6 +27,7 @@ def main():
         confusion_matrix_across_all_iterations = np.zeros((conf.NUM_LABELS, conf.NUM_LABELS), dtype=int)
         for i in range(conf.CROSS_VALIDATION_ITERATIONS):
             print('\nCOMPUTE %d. CROSSVALIDATION:\n' % (i+1))
+            np.random.seed(conf.SEED)
             test_error, confusion_matrix = compute(i)
             error += test_error
             confusion_matrix_across_all_iterations += confusion_matrix
