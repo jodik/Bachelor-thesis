@@ -68,7 +68,7 @@ def process(full_data, permutation_index):
 
     train_perm, val_perm, test_perm = getPermutation(permutation_index, full_data.labels[:original_set_size], TEST_SIZE)
 
-    test_data = copy.deepcopy(full_data).apply_permutation(test_perm
+    test_data = copy.deepcopy(full_data).apply_permutation(test_perm)
     validation_data = copy.deepcopy(full_data).apply_permutation(val_perm)
     train_data = filterAndCreateTrainSet(validation_data.names, test_data.names, full_data)
 
