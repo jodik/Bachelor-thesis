@@ -4,7 +4,11 @@ from Programming.Learning.CNN.cnn_default import CNNDefault
 
 
 def concatante(data_set):
+    sh = data_set.images.shape
+    sh = sh[0], sh[1], sh[2], 1
+    t = np.zeros(sh)
     return np.concatenate([data_set.images, data_set.edge_descriptors], axis=3)
+
 
 class CNN4Channels(CNNDefault):
     def __init__(self, data_sets):

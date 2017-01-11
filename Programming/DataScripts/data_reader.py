@@ -25,6 +25,9 @@ def read_images():
         len(all_images) / (conf_default.IMAGE_WIDTH * conf_default.IMAGE_HEIGHT * conf_global.NUM_CHANNELS_PIC))
     all_images = all_images.reshape(num_of_images, conf_default.IMAGE_HEIGHT, conf_default.IMAGE_WIDTH,
                                     conf_global.NUM_CHANNELS_PIC)
+    if not conf_global.CROPPED_VERSION:
+        all_images = np.concatenate((all_images, np.zeros((1410,4,32,3))), axis = 1)
+        all_images = np.concatenate((np.zeros((1410, 4, 32, 3)), all_images), axis=1)
     all_images = all_images / conf_global.PIXEL_DEPTH - 0.5
     return all_images
 

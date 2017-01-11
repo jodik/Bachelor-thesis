@@ -6,14 +6,14 @@ from keras.layers import Dense
 from keras.models import load_model
 
 from Programming.HelperScripts import helper
-from Programming.Learning.Autoencoder import configuration_classifier_simple
+from Programming.Learning.Autoencoder import configuration_classifier_deep
 import Programming.configuration as conf
 from Programming.Learning.Autoencoder.autoencoder_data_loader import AutoencoderDataLoader
 from keras.utils.np_utils import to_categorical
 from keras.metrics import categorical_accuracy
 
 
-class ClassifierSimpleAutoEncoder(AutoencoderDataLoader):
+class ClassifierDeepAutoEncoder(AutoencoderDataLoader):
     def __init__(self, data_sets):
         self.init_name()
         AutoencoderDataLoader.__init__(self, data_sets)
@@ -25,12 +25,15 @@ class ClassifierSimpleAutoEncoder(AutoencoderDataLoader):
         self.name = "ClassifierSimpleAutoEncoder"
 
     def init_configuration(self):
-        self.conf_s = configuration_classifier_simple
+        self.conf_s = configuration_classifier_deep
 
     def retrieve_encoder(self):
         img_input = Input(shape=(32 * 32 * 3,))
-        autoencoder = load_model(configuration_classifier_simple.AUTOENCODER_MODEL)
-        encoder = Model(input=img_input, output=autoencoder.layers[-2](img_input))
+        autoencoder = load_model(configuration_classifier_deep.AUTOENCODER_MODEL)
+        encoded = autoencoder.layers[-6](img_input)
+        encoded = autoencoder.layers[-5](encoded)
+        encoded = autoencoder.layers[-4](encoded)
+        encoder = Model(input=img_input, output=encoded)
         return encoder
 
     def transform_input_data(self):
@@ -47,7 +50,7 @@ class ClassifierSimpleAutoEncoder(AutoencoderDataLoader):
         self.test_labels = to_categorical(self.test_labels, nb_classes=conf.NUM_LABELS)
 
     def model(self):
-        encoded_input = Input(shape=(128,))
+        encoded_input = Input(shape=(32,))
         hidden_layer = Dense(self.conf_s.NUMBER_OF_NEURONS_IN_HIDDEN_LAYER, activation='sigmoid')(encoded_input)
         output_layer = Dense(conf.NUM_LABELS, activation='sigmoid')(hidden_layer)
         classifier = Model(input=encoded_input, output=output_layer)

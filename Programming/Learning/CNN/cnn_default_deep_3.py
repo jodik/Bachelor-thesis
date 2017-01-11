@@ -60,7 +60,7 @@ class CNNDefaultDeep3(CNNDefault):
     def init_configuration(self):
         self.conf_s = configuration_default_deep_3
 
-    def init_model(self, eval_size):
+    def init_model(self, validation_size, test_size):
         self.model = MyModel(self.conf_s)
-        self.model.init(self.train_size, eval_size)
+        self.model.init(self.train_size, validation_size, test_size)
         self.time_logger.show("Model creation")

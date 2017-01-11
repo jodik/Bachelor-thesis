@@ -6,7 +6,7 @@ from Programming.HelperScripts.what_to_run import WhatToRun
 from DataScripts.data_sets_retrieval import get_new_data_sets
 from Programming.HelperScripts.time_calculator import TimeCalculator
 
-WHAT_TO_RUN = WhatToRun.cnn_default
+WHAT_TO_RUN = WhatToRun.cnn_default_deep_3
 
 
 def compute(permutation_index):

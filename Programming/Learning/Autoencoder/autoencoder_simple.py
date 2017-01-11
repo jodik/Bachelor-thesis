@@ -33,7 +33,7 @@ class SimpleAutoEncoder(AutoencoderDataLoader):
         return Model(input=input_img, output=decoded)
 
     def save_model(self, model):
-        model.save('Learning/Autoencoder/models/simple42.h5')
+        model.save('Learning/Autoencoder/models/simple44.h5')
 
     def run(self):
         self.time_logger.show("Start learning")
@@ -47,7 +47,7 @@ class SimpleAutoEncoder(AutoencoderDataLoader):
                         validation_data=(self.validation_data, self.validation_data),
                         verbose=0 if conf.WRITE_TO_FILE else 1)
 
-        self.write_losses(history_callback.history["loss"], history_callback.history["val_loss"])
+        AutoencoderDataLoader.write_losses(history_callback.history["loss"], history_callback.history["val_loss"])
         if self.conf_s.SAVE_MODEL:
             self.save_model(autoencoder)
         self.time_logger.show("Finished learning")

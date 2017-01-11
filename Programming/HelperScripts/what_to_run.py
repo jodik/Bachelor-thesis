@@ -9,6 +9,7 @@ from Programming.Learning.CNN.cnn_default_deep_3 import CNNDefaultDeep3
 from enum import Enum
 from Programming.Learning.PCA_SVM import pca_svm, pca_svm_edges
 from Programming.Learning.Autoencoder.autoencoder_simple import SimpleAutoEncoder
+from Programming.Learning.Autoencoder.classifier_deep import ClassifierDeepAutoEncoder
 from Programming.Learning.Autoencoder.visualization_simple import VisualisationSimpleAutoEncoder
 from Programming.Learning.Autoencoder.classifier_simple import ClassifierSimpleAutoEncoder
 
@@ -26,6 +27,7 @@ class WhatToRun(Enum):
     deep_autoencoder = DeepAutoEncoder
     visualisation_simple_autoencoder = VisualisationSimpleAutoEncoder
     simple_autoencoder_classifier = ClassifierSimpleAutoEncoder
+    deep_autoencoder_classifier = ClassifierDeepAutoEncoder
     cnn_res = CNNRes
 
     def __init__(self, val):
